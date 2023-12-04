@@ -1,0 +1,52 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@300;400&family=Roboto&display=swap");
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+body {
+  font-family: "Barlow", sans-serif;
+  background-color: rgb(248, 250, 246);
+  overflow: auto;
+}
+
+.campaign-container {
+  border: 3px solid black;
+  width: 90vw;
+  margin: 20px auto;
+  height: 700px;
+  overflow: auto;
+  background-color: rgb(136, 112, 167);
+  border-radius: 10px;
+}
+
+.add-container {
+  width: 90vw;
+  margin: 20px auto;
+  align-items: center;
+}
+
+.users-container {
+  width: 90vw;
+  margin: 20px auto;
+}
+
+Button {
+  padding: 5px 20px 5px; /* up leftright down */
+  border-radius: 5px;
+  margin: 10px 10px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.cdk-global-overlay-wrapper {
+  pointer-events: auto !important;
+  overflow-y: scroll !important;
+  align-items: start !important;
+  z-index: auto !important;
+}
+.cdk-overlay-pane {
+  margin: 1rem;
+  z-index: 1002;
+}

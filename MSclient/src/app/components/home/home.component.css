@@ -1,0 +1,44 @@
+p-button {
+  position: absolute; /* Aseta kiinteä sijainti */
+  top: 10px; /* Aseta yläreunaan 10 pikseliä */
+  right: 10px; /* Aseta vasempaan reunaan 10 pikseliä */
+  z-index: 999;
+
+  color: red;
+}
+
+@media screen and (max-width: 600px) {
+  button {
+    font-size: small;
+    right: 5px;
+    padding: 5px;
+  }
+}
+
+.welcome {
+  align-items: center;
+}
+
+.welcome h3 {
+  margin-left: 50px;
+  margin-top: 30px;
+}
+
+.login-to-see {
+  text-align: center;
+  margin-top: 50px;
+}
+.legends {
+  display: flex;
+  flex-direction: column;
+  margin-left: 80px;
+}
+
+.legend {
+  display: flex;
+  flex-direction: row;
+}
+
+.legend p {
+  margin-left: 20px;
+}

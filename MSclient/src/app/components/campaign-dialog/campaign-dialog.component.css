@@ -1,0 +1,75 @@
+.popup p {
+  font-weight: 400;
+}
+
+.popup h4 {
+  color: rgb(16, 16, 16);
+  font-weight: 300;
+}
+
+.popup {
+  background-color: rgb(255, 255, 255);
+}
+
+.creator,
+.contact {
+  display: flex;
+  margin-bottom: 40px;
+  margin: auto;
+  width: 50%;
+  margin-bottom: 30px;
+}
+
+.creator {
+  margin-top: 20px;
+}
+
+.creator-title,
+.contact-title {
+  font-weight: 700;
+}
+.creator-name,
+.contact-info {
+  font-style: italic;
+  margin-left: 20px;
+  text-align: center;
+  font-size: large;
+}
+
+h4 {
+  margin-top: 60px;
+  border-bottom: 2px solid black;
+}
+/*
+ border-bottom: solid 1px black;
+  padding: 10px;
+
+*/
+
+td {
+  padding-left: 20px;
+  padding-right: 10px;
+}
+
+tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+tr:nth-child(even) {
+  background-color: #eae3e3;
+}
+
+.rivi {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+th {
+  min-width: 200px;
+  padding-left: 10px;
+}
+
+table {
+  width: 100%;
+  margin: auto;
+  border-collapse: collapse;
+}

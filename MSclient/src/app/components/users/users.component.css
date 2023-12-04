@@ -1,0 +1,12 @@
+img {
+  height: 20px;
+  cursor: pointer;
+}
+
+button {
+  color: aliceblue;
+}
+.users-table {
+  width: 100%;
+  text-align: center;
+}

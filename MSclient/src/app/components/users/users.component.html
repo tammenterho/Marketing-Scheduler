@@ -1,0 +1,48 @@
+<p-button
+  severity="{{ color }}"
+  [raised]="true"
+  class="p-button-success btn"
+  (click)="showUsers()"
+  label="Users"
+>
+</p-button>
+<table class="users-table" *ngIf="color == 'danger'">
+  <tr>
+    <th>ID</th>
+    <th>Company</th>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Phone</th>
+  </tr>
+  <tr *ngFor="let user of users">
+    <td>
+      {{ user.id }}
+    </td>
+    <td>
+      {{ user.company }}
+    </td>
+    <td>
+      {{ user.firstName }}
+    </td>
+    <td>
+      {{ user.lastName }}
+    </td>
+    <td>
+      {{ user.login }}
+    </td>
+    <td>
+      {{ user.email }}
+    </td>
+    <td>
+      {{ user.phone }}
+    </td>
+
+    <img
+      (click)="user.id && deleteUser(user.id)"
+      class="delete-icon"
+      src="../assets/images/delete-icon.svg"
+    />
+  </tr>
+</table>

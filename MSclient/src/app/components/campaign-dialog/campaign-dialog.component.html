@@ -1,0 +1,94 @@
+<div class="popup">
+  <div class="creator">
+    <p class="creator-title">Campaign Creator:</p>
+    <p class="creator-name">{{ campaignData.creator }}</p>
+  </div>
+  <div class="contact">
+    <p class="contact-title">Campaign Contact:</p>
+    <p class="contact-info">{{ campaignData.adcontact }}</p>
+  </div>
+
+  <p-panel header="General Information" class="nameCompany">
+    <table>
+      <tr>
+        <div class="rivi">
+          <th>Name of the company:</th>
+          <td>{{ campaignData.company }}</td>
+        </div>
+      </tr>
+      <tr>
+        <div class="rivi">
+          <th>Name of the campaign:</th>
+          <td>{{ campaignData.name }}</td>
+        </div>
+      </tr>
+      <tr>
+        <div class="rivi">
+          <th>Budget:</th>
+          <td>{{ campaignData.adbudget }} €</td>
+        </div>
+      </tr>
+      <tr>
+        <div class="rivi">
+          <th>Duration:</th>
+          <td>
+            {{ campaignData.adstart | date : "dd.MM.yyyy" }} -
+            {{ campaignData.adend | date : "dd.MM.yyyy" }}
+          </td>
+        </div>
+      </tr>
+    </table>
+  </p-panel>
+
+  <p-panel header="Demographic Information" class="nameCompany">
+    <table>
+      <tr>
+        <div class="rivi">
+          <th>Target age and gender:</th>
+          <td>{{ campaignData.adtarget }}</td>
+        </div>
+      </tr>
+      <tr>
+        <div class="rivi">
+          <th>Target area:</th>
+          <td>{{ campaignData.adarea }}</td>
+        </div>
+      </tr>
+    </table>
+  </p-panel>
+
+  <p-panel header="Campaign Information" class="nameCompany">
+    <table>
+      <tr>
+        <div class="rivi">
+          <th>Title for the campaign:</th>
+          <td>"{{ campaignData.adtitle }}"</td>
+        </div>
+      </tr>
+      <tr>
+        <div class="rivi">
+          <th>Copytext for the Campaign:</th>
+          <td>"{{ campaignData.adtext }}"</td>
+        </div>
+      </tr>
+      <tr>
+        <div class="rivi">
+          <th>Media info:</th>
+          <td>{{ campaignData.mediainfo }}</td>
+        </div>
+      </tr>
+      <tr>
+        <div class="rivi">
+          <th>Url and CTA:</th>
+          <td>{{ campaignData.adurl }}</td>
+        </div>
+      </tr>
+      <tr>
+        <div class="rivi">
+          <th>Other info:</th>
+          <td>{{ campaignData.adother }}</td>
+        </div>
+      </tr>
+    </table>
+  </p-panel>
+</div>
