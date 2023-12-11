@@ -80,6 +80,8 @@ export class CampaignItemComponent implements OnInit {
     this.emptyCampaigns = 'There have not been any campaigns';
   }
   onCurrent() {
+    console.log('onCurrent called');
+
     this.campaignTime = 'current';
     this.filterCampaigns();
     this.upcomingColor = false;

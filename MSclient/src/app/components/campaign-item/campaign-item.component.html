@@ -45,12 +45,7 @@
     <td (click)="campaign.id && openDialog(campaign.id)">
       {{ campaign.adbudget }} €
     </td>
-    <td
-      class="status"
-      (click)="
-        user.login === 'admin' && campaign.id && toggleStatus(campaign.id)
-      "
-    >
+    <td class="status" (click)="campaign.id && toggleStatus(campaign.id)">
       <i
         class="pi {{
           campaign.adstatus === 'Y' ? 'pi-check-circle' : 'pi-circle'
@@ -60,12 +55,7 @@
         }}; font-size: 1.5rem;"
       ></i>
     </td>
-    <td
-      *ngIf="
-        user.login === 'admin' ||
-        (user.login !== 'admin' && campaign.adstatus === 'N')
-      "
-    >
+    <td>
       <i
         (click)="campaign.id && deleteCampaign(campaign.id)"
         class="pi pi-delete-left"
