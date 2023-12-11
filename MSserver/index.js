@@ -1,8 +1,12 @@
 // Noden sisäänrakennettu web-palvelimen määrittelevä moduuli
-import http from "http";
 import express from "express";
+import http from "http";
+import connectDB from "./db.js";
+
+connectDB();
 
 const app = express();
+const server = http.createServer(app);
 
 /*
 Json-parserin toimintaperiaatteena on, että se ottaa pyynnön 
@@ -44,7 +48,7 @@ app.delete("/api/campaigns/:id", (request, response) => {
 });
 
 const PORT = 3001;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
