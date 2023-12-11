@@ -1,55 +1,24 @@
-// Noden sisäänrakennettu web-palvelimen määrittelevä moduuli
+// index.js
 import express from "express";
 import http from "http";
 import connectDB from "./db.js";
+import campaignController from "./controllers/campaignController.js";
+import userController from "./controllers/userController.js";
 
 connectDB();
 
 const app = express();
 const server = http.createServer(app);
 
-/*
-Json-parserin toimintaperiaatteena on, että se ottaa pyynnön 
-mukana olevan JSON-muotoisen datan, muuttaa sen 
-JavaScript-olioksi ja sijoittaa request-olion kenttään 
-body ennen kuin routen käsittelijää kutsutaan.
-*/
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("<h1>Hello World!</h1>");
-});
+// Käytä kampanjaan liittyviä reittejä
+app.use("/api/campaigns", campaignController);
 
-app.get("/api/campaigns", (req, res) => {
-  res.json(campaigns);
-});
+// Käytä käyttäjään liittyviä reittejä
+app.use("/api/users", userController);
 
-app.get("/api/campaigns/:id", (request, response) => {
-  const id = Number(request.params.id);
-  const campaign = campaigns.find((campaign) => campaign.id === id);
-  if (campaign) {
-    response.json(campaign);
-  } else {
-    response.status(404).end();
-  }
-});
-
-app.post("/api/campaigns", (request, response) => {
-  const campaign = request.body;
-  console.log(campaign);
-  response.json(campaign);
-});
-
-app.delete("/api/campaigns/:id", (request, response) => {
-  const id = Number(request.params.id);
-  campaigns = campaigns.filter((campaign) => campaign.id !== id);
-
-  response.status(204).end();
-});
-
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
-// nodemonin takia ei tarvi uudestaan käynnistää kun serveriä muokkaa
