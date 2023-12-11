@@ -45,7 +45,7 @@ export class CampaignItemComponent implements OnInit {
 
   getAllCampaigns() {
     this.campaignService.getCampaigns().subscribe((campaigns) => {
-      this.user = this.auth.getLogin(); // Assuming getLogin() returns user information
+      /*this.user = this.auth.getLogin(); // Assuming getLogin() returns user information
       if (this.user.login === 'admin') {
         this.campaigns = campaigns;
       } else {
@@ -54,10 +54,12 @@ export class CampaignItemComponent implements OnInit {
             campaign.owner === this.user.id || this.user.login === 'admin'
         );
       }
-
+*/
+      this.campaigns = campaigns;
       this.filteredCampaigns = [...this.campaigns]; // Kopio alkuperäisestä taulukosta
       this.filterCampaigns(); // filteröidään currentin mukaan heti. sbscribe asynkroninen kuten then
       this.size = this.filteredCampaigns.length; // asetaan listan koko heti
+      console.log('haetaan kampanjat itsem komponentissa' + this.campaigns);
 
       if (this.filteredCampaigns.length === 0) {
         this.noCampaigns = true;

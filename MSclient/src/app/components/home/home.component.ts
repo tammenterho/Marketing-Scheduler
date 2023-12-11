@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  componentToShow: string = 'logregister';
+  componentToShow: string = 'data'; // tähän logregister kun login toimii
 
   constructor(
     public auth: AuthService,

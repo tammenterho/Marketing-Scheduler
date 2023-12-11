@@ -9,10 +9,20 @@ import { map, catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class CampaignService {
-  private apiUrl = 'http://localhost:8080/campaigns';
+  private apiUrl = 'http://localhost:5050/api/campaigns/';
 
   constructor(private http: HttpClient, private auth: AuthService) {}
 
+  getCampaigns(): Observable<Campaign[]> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.auth.getAuthToken(),
+    });
+    console.log('haetaan campaign servicessä');
+
+    return this.http.get<Campaign[]>(this.apiUrl, { headers: headers });
+  }
+  /*
   getCampaigns(): Observable<Campaign[]> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -23,6 +33,8 @@ export class CampaignService {
 
     return this.http.get<Campaign[]>(this.apiUrl, { headers: headers });
   }
+
+  */
 
   addCampaign(campaign: Campaign): Observable<Campaign> {
     const headers = new HttpHeaders({
