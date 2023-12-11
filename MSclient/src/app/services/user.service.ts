@@ -10,7 +10,7 @@ import { ConsoleLogger } from '@angular/compiler-cli';
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = 'http://localhost:8080/users';
+  private apiUrl = 'http://localhost:5050/api/users/';
 
   constructor(private http: HttpClient, private auth: AuthService) {}
 
@@ -18,7 +18,7 @@ export class UserService {
     console.log('haetaan nyt servicessä');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + this.auth.getAuthToken(),
+      // Authorization: 'Bearer ' + this.auth.getAuthToken(),
     });
 
     return this.http.get<User[]>(this.apiUrl, { headers: headers });

@@ -16,7 +16,7 @@ export class CampaignService {
   getCampaigns(): Observable<Campaign[]> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + this.auth.getAuthToken(),
+      //Authorization: 'Bearer ' + this.auth.getAuthToken(),
     });
     console.log('haetaan campaign servicessä');
 
