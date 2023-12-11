@@ -30,10 +30,17 @@ export class AddCampaignComponent {
   } // ei tarvi outputtia koska on serviceluokka josta saa kaikki metodit
 
   addCampaign(campaign: Campaign) {
-    this.campaignService
-      .addCampaign(campaign)
-      .subscribe((campaign) => this.campaigns.push(campaign));
+    console.log('Adding campaign:', campaign);
+    this.eventService.triggerAddCampaignEvent(campaign);
+    this.campaignService.addCampaign(campaign).subscribe(
+      (addedCampaign) => {
+        this.campaigns.push(addedCampaign);
 
-    this.eventService.triggerAddCampaignEvent();
+        console.log('Campaign added successfully');
+      },
+      (error) => {
+        console.error('Error adding campaign:', error);
+      }
+    );
   }
 }

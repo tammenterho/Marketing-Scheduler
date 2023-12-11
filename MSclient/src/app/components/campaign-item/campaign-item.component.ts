@@ -30,7 +30,9 @@ export class CampaignItemComponent implements OnInit {
     public dialog: MatDialog,
     private eventService: EventServiceService,
     private auth: AuthService
-  ) {}
+  ) {
+    console.log('CampaignItemComponent created');
+  }
 
   ngOnInit(): void {
     this.getAllCampaigns();
@@ -38,9 +40,13 @@ export class CampaignItemComponent implements OnInit {
   }
 
   private subscribeToAddCampaignEvent() {
-    this.eventService.addCampaign$.subscribe(() => {
-      this.getAllCampaigns();
-    }); // servicet pitää aina laittaa konstruktoriin
+    this.eventService.addCampaign$.subscribe((newCampaign) => {
+      console.log('Received addCampaignEvent in CampaignItemComponent');
+      if (newCampaign) {
+        this.campaigns.push(newCampaign);
+        this.filterCampaigns(); // Suorita uudelleen suodatus ja päivitys paikalliselle listalle
+      }
+    });
   }
 
   getAllCampaigns() {
