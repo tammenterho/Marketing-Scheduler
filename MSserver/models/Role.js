@@ -1,3 +1,4 @@
+// Role.js
 import mongoose from "mongoose";
 
 const RoleSchema = mongoose.Schema(
