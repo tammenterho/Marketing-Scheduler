@@ -39,7 +39,7 @@ export class CampaignService {
   addCampaign(campaign: Campaign): Observable<Campaign> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + this.auth.getAuthToken(),
+      Authorization: 'Bearer ' + this.auth.getToken(),
     });
 
     //console.log('adding');
@@ -53,7 +53,7 @@ export class CampaignService {
   updateCampaign(campaign: Campaign): Observable<Campaign> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + this.auth.getAuthToken(),
+      Authorization: 'Bearer ' + this.auth.getToken(),
     });
 
     const updateUrl = `${this.apiUrl}/${campaign.id}`;
@@ -82,7 +82,7 @@ export class CampaignService {
   deleteCampaignById(campaign: Campaign): Observable<string> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + this.auth.getAuthToken(),
+      Authorization: 'Bearer ' + this.auth.getToken(),
     });
 
     const deleteUrl = `${this.apiUrl}/${campaign.id}`;

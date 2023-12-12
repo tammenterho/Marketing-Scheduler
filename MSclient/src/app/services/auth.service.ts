@@ -1,85 +1,141 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserDto } from '../models/user-dto.model';
+import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080';
+  private isAuthenticated = false;
+  private token: string = '';
+  private tokenTimer: any;
+  private userId!: string;
+  private authStatusListener = new Subject<boolean>();
 
-  loginSuccessful = new EventEmitter<void>();
-  private userDto: UserDto | null = null;
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private profileService: ProfileService
+  ) {}
 
-  constructor(private http: HttpClient) {}
-
-  setLogin(response: any): void {
-    window.localStorage.setItem('login', JSON.stringify(response));
+  getToken() {
+    return this.token;
   }
 
-  setId(response: { id: number }): void {
-    window.localStorage.setItem('id', response.id.toString());
+  getIsAuth() {
+    return this.isAuthenticated;
   }
 
-  getLogin(): any {
-    const userJson = window.localStorage.getItem('login');
-    const user = userJson ? JSON.parse(userJson) : null;
-    // console.log('User from localStorage:', user);
-    return user;
+  getUserId() {
+    return this.userId;
+  }
+  getAuthStatusListener() {
+    return this.authStatusListener.asObservable();
   }
 
-  getAuthToken(): string | null {
-    const token = window.localStorage.getItem('auth_token');
-    //console.log('Token retrieved from localStorage:', token);
-    return token;
+  signIn(email: string, password: string) {
+    const authData: AuthData = { email: email, password: password };
+    this.http
+      .post<{ token: string; expiresIn: number; userId: string }>(
+        BACKEND_URL + 'login',
+        authData
+      )
+      .subscribe(
+        (response) => {
+          const token = response.token;
+          this.token = token;
+          if (token) {
+            const expiresInDuration = response.expiresIn;
+            this.setAuthTimer(expiresInDuration);
+            this.isAuthenticated = true;
+            this.userId = response.userId;
+            this.authStatusListener.next(true);
+            const now = new Date();
+            const expirationDate = new Date(
+              now.getTime() + expiresInDuration * 1000
+            );
+
+            this.saveAuthData(token, expirationDate, this.userId);
+            this.router.navigate(['/']);
+          }
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 
-  setAuthToken(token: string | null): void {
-    if (token !== null) {
-      window.localStorage.setItem('auth_token', token);
-      //console.log('Token saved to localStorage:', token);
-    } else {
-      window.localStorage.removeItem('auth_token');
-      //console.log('Token removed from localStorage');
+  createUser(email: string, password: string) {
+    const authData: AuthData = { email: email, password: password };
+    this.http.post(BACKEND_URL + 'signup', authData).subscribe(
+      (response) => {
+        this.router.navigate(['/']);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  logout() {
+    this.token = null;
+    this.isAuthenticated = false;
+    this.authStatusListener.next(false);
+    clearTimeout(this.tokenTimer);
+    this.clearAuthData();
+    this.router.navigate(['/']);
+  }
+
+  autoAuthUser() {
+    const authInformation = this.getAuthData();
+
+    if (!authInformation) {
+      return;
+    }
+    const now = new Date();
+    const expiresIn = authInformation.expirationDate.getTime() - now.getTime();
+
+    if (expiresIn > 0) {
+      this.token = authInformation.token;
+      this.isAuthenticated = true;
+      this.userId = authInformation.userId;
+      this.setAuthTimer(expiresIn / 1000);
+      this.authStatusListener.next(true);
     }
   }
 
-  onLoginSuccess(): void {
-    this.loginSuccessful.emit();
-  }
-
-  request(method: string, url: string, data: any): Observable<any> {
-    const headers = new HttpHeaders();
-    const authToken = this.getAuthToken();
-
-    console.log('AuthService - Request Data:', data);
-
-    if (authToken !== null) {
-      headers.set('Authorization', `Bearer ${authToken}`);
-
-      //console.log('Authorization header set with token:', authToken);
+  private getAuthData() {
+    const token = localStorage.getItem('token');
+    const expirationDate = localStorage.getItem('expiration');
+    const userId = localStorage.getItem('userId');
+    if (!token || !expirationDate) {
+      return;
     }
-
-    const requestOptions = {
-      headers: headers,
+    return {
+      token: token,
+      expirationDate: new Date(expirationDate),
+      userId: userId,
     };
+  }
 
-    console.log(`Making ${method} request to ${this.apiUrl}${url}`);
+  private setAuthTimer(duration: number) {
+    this.tokenTimer = setTimeout(() => {
+      this.logout();
+    }, duration * 1000);
+  }
 
-    if (method === 'GET') {
-      return this.http.get(`${this.apiUrl}${url}`, requestOptions);
-    } else if (method === 'POST') {
-      //console.log('Request data:', data);
-      return this.http.post(`${this.apiUrl}${url}`, data, requestOptions);
-    } else if (method === 'PUT') {
-      //console.log('Request data:', data);
-      return this.http.put(`${this.apiUrl}${url}`, data, requestOptions);
-    } else if (method === 'DELETE') {
-      //console.log('Request data:', data);
-      return this.http.delete(`${this.apiUrl}${url}`, requestOptions);
-    }
+  private saveAuthData(token: string, expirationDate: Date, userId: string) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('expiration', expirationDate.toISOString());
+    localStorage.setItem('userId', userId);
+  }
 
-    throw new Error('Unsupported HTTP method');
+  private clearAuthData() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expiration');
+    localStorage.removeItem('userId');
   }
 }

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  componentToShow: string = 'data'; // tähän logregister kun login toimii
+  componentToShow: string = 'logregister'; // tähän logregister kun login toimii
 
   constructor(
     public auth: AuthService,
@@ -22,7 +22,7 @@ export class HomeComponent {
   ngOnInit(): void {
     // Kuuntele loginSuccessful-tapahtumaa ja kutsu getCampaigns-metodia
     this.auth.loginSuccessful.subscribe(() => {
-      const authToken = this.auth.getAuthToken();
+      const authToken = this.auth.getToken();
       console.log('Received auth token:', authToken);
 
       // Käytä authTokenia pyynnöissä
@@ -47,83 +47,61 @@ export class HomeComponent {
   }
 
   onLogin(input: any): void {
-    this.auth
-      .request('POST', '/login', {
-        login: input.login,
-        password: input.password,
-      })
-      .subscribe({
-        next: (response) => {
-          // Käsittele onnistunutta vastausta
-          //console.log('tässä response' + JSON.stringify(response));
-          this.auth.setLogin(response);
-          this.auth.setAuthToken(response.token);
-          //console.log('user tässä ' + response.login);
-          this.componentToShow = 'data';
-          this.auth.onLoginSuccess();
-          console.log('log in succesful');
+    this.auth.login(input.email, input.password).subscribe({
+      next: (response) => {
+        // Käsittele onnistunutta vastausta
+        //console.log('tässä response' + JSON.stringify(response));
+        this.componentToShow = 'data';
 
-          this.snackBar.open('Kirjattu sisään', 'OK', {
-            duration: 3000,
-            verticalPosition: 'top',
-            panelClass: ['green-snackbar'],
-          });
-        },
-        error: (error) => {
-          // Käsittele virhettä
-          console.error(error);
+        this.snackBar.open('Kirjattu sisään', 'OK', {
+          duration: 3000,
+          verticalPosition: 'top',
+          panelClass: ['green-snackbar'],
+        });
+      },
+      error: (error) => {
+        // Käsittele virhettä
+        console.error(error);
 
-          this.snackBar.open('Väärä salasana tai tunnus', 'OK', {
-            duration: 3000,
-            verticalPosition: 'top',
-            panelClass: ['red-snackbar'],
-          });
-        },
-        complete: () => {},
-      });
+        this.snackBar.open('Väärä salasana tai tunnus', 'OK', {
+          duration: 3000,
+          verticalPosition: 'top',
+          panelClass: ['red-snackbar'],
+        });
+      },
+      complete: () => {},
+    });
   }
 
   onRegister(input: any): void {
-    console.log('Current auth token:', this.auth.getAuthToken()); // Tarkista, että metodi kutsutaan
+    console.log('Current auth token:', this.auth.getToken()); // Tarkista, että metodi kutsutaan
 
-    this.auth
-      .request('POST', '/register', {
-        firstName: input.firstName,
-        lastName: input.lastName,
-        login: input.login,
-        password: input.password,
-        email: input.email,
-        phone: input.phone,
-        company: input.company,
-      })
-      .subscribe({
-        next: (response) => {
-          console.log('Registration successful:', response); // Tulosta vastaus konsoliin
-          this.auth.setAuthToken(response.token);
-          this.componentToShow = 'logregister';
+    this.auth.signup(input.email, input.password).subscribe({
+      next: (response) => {
+        console.log('Registration successful:', response); // Tulosta vastaus konsoliin
+        this.componentToShow = 'logregister';
 
-          this.snackBar.open('Rekisteröinti onnistui! Kirjaudu sisään', 'OK', {
-            duration: 3000,
-            verticalPosition: 'top',
-            panelClass: ['green-snackbar'],
-          });
-        },
+        this.snackBar.open('Rekisteröinti onnistui! Kirjaudu sisään', 'OK', {
+          duration: 3000,
+          verticalPosition: 'top',
+          panelClass: ['green-snackbar'],
+        });
+      },
 
-        error: (error) => {
-          console.error('Registration error:', error); // Tulosta virhe konsoliin
-          this.auth.setAuthToken(null);
-          this.componentToShow = 'logregister';
+      error: (error) => {
+        console.error('Registration error:', error); // Tulosta virhe konsoliin
+        this.componentToShow = 'logregister';
 
-          this.snackBar.open('Username ei kelpaa', 'OK', {
-            duration: 3000,
-            verticalPosition: 'top',
-            panelClass: ['red-snackbar'],
-          });
-        },
-        complete: () => {
-          console.log('Registration complete'); // Tarkista, että complete-lohko suoritetaan
-          this.componentToShow = 'logregister';
-        },
-      });
+        this.snackBar.open('Username ei kelpaa', 'OK', {
+          duration: 3000,
+          verticalPosition: 'top',
+          panelClass: ['red-snackbar'],
+        });
+      },
+      complete: () => {
+        console.log('Registration complete'); // Tarkista, että complete-lohko suoritetaan
+        this.componentToShow = 'logregister';
+      },
+    });
   }
 }

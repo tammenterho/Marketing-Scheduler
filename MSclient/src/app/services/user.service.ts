@@ -27,7 +27,7 @@ export class UserService {
   deleteUserById(user: User): Observable<string> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + this.auth.getAuthToken(),
+      Authorization: 'Bearer ' + this.auth.getToken(),
     });
     const deleteUrl = `${this.apiUrl}/${user.id}`;
     // console.log('deleting');
