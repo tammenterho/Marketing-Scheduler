@@ -40,3 +40,18 @@ export const getAllRoles = async (req, res, next) => {
     return res.status(500).send("Internal Server error");
   }
 };
+
+export const deleteRole = async (req, res, next) => {
+  try {
+    const roleId = req.params.id;
+    const role = await Role.findById({ _id: roleId });
+    if (role) {
+      await Role.findByIdAndDelete(roleId);
+      return res.status(200).send("Role deleted");
+    } else {
+      return res.status(404).send("Role not found!");
+    }
+  } catch (error) {
+    return res.status(500).send("Internal Server error");
+  }
+};
