@@ -25,3 +25,5 @@ app.listen(5050, () => {
   connectMongoDB("AuthDB");
   console.log("connected to backend");
 });
+
+// when testing with postman, add Content-Type - Application/json to headers for the req to work

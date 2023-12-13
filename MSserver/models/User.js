@@ -22,8 +22,6 @@ const UserSchema = new mongoose.Schema(
       required: true,
       ref: "Role", // to which table its referring
     },
-    // phone: { type: String, required: true },
-    // company: { type: String, required: true },
   },
   {
     timestamps: true,
@@ -31,3 +29,5 @@ const UserSchema = new mongoose.Schema(
 );
 
 export default mongoose.model("User", UserSchema);
+
+// Remember CamelCasing also in MongoDB Compass
