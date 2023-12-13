@@ -1,5 +1,9 @@
 import express from "express";
-import { login, register } from "../controllers/auth.controller.js";
+import {
+  login,
+  register,
+  registerAdmin,
+} from "../controllers/auth.controller.js";
 
 const router = express.Router(); // router has all crud get put post delete methods
 
@@ -10,5 +14,8 @@ router.post("/register", register);
 // login
 
 router.post("/login", login);
+
+// register as Admin
+router.post("/register-admin", registerAdmin);
 
 export default router;
