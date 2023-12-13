@@ -1,6 +1,7 @@
 import Role from "../models/Role.js";
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import { CreateError } from "../utils/error.js";
 import { CreateSuccess } from "../utils/success.js";
 
@@ -24,8 +25,13 @@ export const register = async (req, res, next) => {
 
 export const login = async (req, res, next) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
-    console.log("user: " + user + " " + req);
+    const user = await User.findOne({ email: req.body.email }).populate(
+      "roles",
+      "role"
+    );
+    const { roles } = user;
+
+    // console.log("user: " + user + " " + req);
 
     if (!user) {
       return next(CreateError(404, "User not found!"));
@@ -37,7 +43,21 @@ export const login = async (req, res, next) => {
     if (!isPasswordCorrect) {
       return next(CreateError(400, "Password is incorrect"));
     }
-    return next(CreateSuccess(200, "Login succesful!"));
+    const token = jwt.sign(
+      {
+        id: user._id,
+        isAdmin: user.isAdmin,
+        roles: roles,
+      },
+      process.env.JWT_SECRET
+    );
+    res;
+    res.cookie("access_token", token, { httpOnly: true }).status(200).json({
+      status: 200,
+      message: "Login success",
+      data: user,
+    });
+    // return next(CreateSuccess(200, "Login succesful!"));
   } catch (error) {
     return res.status(500).send("Something went wrong!");
   }
