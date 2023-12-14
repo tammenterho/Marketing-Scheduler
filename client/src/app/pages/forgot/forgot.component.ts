@@ -7,6 +7,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-forgot',
@@ -19,6 +20,7 @@ export default class ForgotComponent implements OnInit {
   forgotForm!: FormGroup;
 
   fb = inject(FormBuilder);
+  authService = inject(AuthService);
 
   ngOnInit(): void {
     this.forgotForm = this.fb.group({
@@ -27,6 +29,14 @@ export default class ForgotComponent implements OnInit {
   }
 
   sendEmail() {
-    console.log(this.forgotForm.value);
+    this.authService.sendEmailService(this.forgotForm.value.email).subscribe({
+      next: (res) => {
+        alert(res.message);
+        this.forgotForm.reset();
+      },
+      error: (err) => {
+        alert(err.error.message);
+      },
+    });
   }
 }

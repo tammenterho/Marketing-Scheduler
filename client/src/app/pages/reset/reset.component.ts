@@ -44,6 +44,19 @@ export default class ResetComponent implements OnInit {
   }
 
   reset() {
-    console.log(this.resetForm.value);
+    let resetObj = {
+      token: this.token,
+      password: this.resetForm.value.password,
+    };
+    this.authService.resetPasswordService(resetObj).subscribe({
+      next: (res) => {
+        alert(res.message);
+        this.resetForm.reset();
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        alert(err.error.message);
+      },
+    });
   }
 }
