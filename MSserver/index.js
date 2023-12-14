@@ -6,6 +6,7 @@ import roleRoute from "./routes/role.js";
 import authRoute from "./routes/auth.js";
 import userRoute from "./routes/user.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 const app = express();
 dotenv.config(); // error -> throw new MongooseError('The `uri` parameter to `openUri()` must be a ' +
@@ -13,6 +14,7 @@ dotenv.config(); // error -> throw new MongooseError('The `uri` parameter to `op
 // middleware
 app.use(express.json()); // can use json format in body
 app.use(cookieParser());
+app.use(cors({ origin: "http://localhost:4200", credentials: true }));
 app.use("/api/role", roleRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
