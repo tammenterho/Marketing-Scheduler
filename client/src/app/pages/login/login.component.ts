@@ -32,6 +32,17 @@ export default class LoginComponent {
   }
 
   login() {
-    console.log(this.loginForm.value);
+    //console.log(this.loginForm.value);
+
+    this.authService.loginService(this.loginForm.value).subscribe({
+      next: (res) => {
+        alert('Login is succesfull!');
+        this.router.navigate(['/home']);
+        this.loginForm.reset();
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }
