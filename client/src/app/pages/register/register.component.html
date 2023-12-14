@@ -8,7 +8,14 @@
         type="text"
         placeholder="FirstName"
       />
-      <span class="text-red-500">*FirstName is required</span>
+      <span
+        *ngIf="
+          registerForm.hasError('required', 'firstName') &&
+          registerForm.controls['firstName'].dirty
+        "
+        class="text-red-500"
+        >*FirstName is required</span
+      >
     </div>
     <div class="flex flex-col mt-4 mb-1">
       <input
@@ -17,7 +24,14 @@
         type="text"
         placeholder="Lastname"
       />
-      <span class="text-red-500">*Lastname is required</span>
+      <span
+        *ngIf="
+          registerForm.hasError('required', 'lastName') &&
+          registerForm.controls['lastName'].dirty
+        "
+        class="text-red-500"
+        >*Lastname is required</span
+      >
     </div>
 
     <div class="flex flex-col mt-4 mb-1">
@@ -27,7 +41,17 @@
         type="text"
         placeholder="Email"
       />
-      <span class="text-red-500">*Email is required</span>
+      <span
+        *ngIf="
+          registerForm.hasError('required', 'email') &&
+          registerForm.controls['email'].dirty
+        "
+        class="text-red-500"
+        >*Email is required</span
+      >
+      <span *ngIf="registerForm.hasError('email', 'email')" class="text-red-500"
+        >*Email is Invalid</span
+      >
     </div>
     <div class="flex flex-col mt-4 mb-1">
       <input
@@ -36,7 +60,14 @@
         type="text"
         placeholder="Username"
       />
-      <span class="text-red-500">*Username is required</span>
+      <span
+        *ngIf="
+          registerForm.hasError('required', 'userName') &&
+          registerForm.controls['userName'].dirty
+        "
+        class="text-red-500"
+        >*Username is required</span
+      >
     </div>
     <div class="flex flex-col mt-4 mb-1">
       <input
@@ -45,7 +76,14 @@
         type="text"
         placeholder="Password"
       />
-      <span class="text-red-500">*Password is required</span>
+      <span
+        *ngIf="
+          registerForm.hasError('required', 'password') &&
+          registerForm.controls['password'].dirty
+        "
+        class="text-red-500"
+        >*Password is required</span
+      >
     </div>
     <div class="flex flex-col mt-4 mb-1">
       <input
@@ -54,9 +92,25 @@
         type="text"
         placeholder="Confirm password"
       />
-      <span class="text-red-500">*Confirm password is required</span>
+      <span
+        *ngIf="
+          registerForm.hasError('required', 'confirmPassword') &&
+          registerForm.controls['confirmPassword'].dirty
+        "
+        class="text-red-500"
+        >*Confirm password is required</span
+      >
+      <span
+        *ngIf="
+          registerForm.hasError('confirmPasswordValidator', 'confirmPassword')
+        "
+        class="text-red-500"
+        >*Password didn't match</span
+      >
     </div>
     <button
+      [disabled]="registerForm.invalid"
+      [class.disabled]="registerForm.invalid"
       class="bg-indigo-500 p-2 rounded mt-3 text-white"
       (click)="register()"
     >

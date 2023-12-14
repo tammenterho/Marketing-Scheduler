@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { confirmPasswordValidator } from 'src/app/validators/confirmPassword.validator';
 
 @Component({
   selector: 'app-register',
@@ -20,14 +21,22 @@ export default class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
 
   ngOnInit(): void {
-    this.registerForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', Validators.compose([Validators.required, Validators.email])],
-      userName: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
-    });
+    this.registerForm = this.fb.group(
+      {
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        email: [
+          '',
+          Validators.compose([Validators.required, Validators.email]),
+        ],
+        userName: ['', Validators.required],
+        password: ['', Validators.required],
+        confirmPassword: ['', Validators.required],
+      },
+      {
+        validator: confirmPasswordValidator('password', 'confirmPassword'),
+      }
+    );
   }
 
   register() {
