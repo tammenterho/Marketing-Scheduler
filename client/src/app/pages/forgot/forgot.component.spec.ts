@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ForgetComponent } from './forget.component';
+import { ForgotComponent } from './forgot.component';
 
 describe('ForgetComponent', () => {
-  let component: ForgetComponent;
-  let fixture: ComponentFixture<ForgetComponent>;
+  let component: ForgotComponent;
+  let fixture: ComponentFixture<ForgotComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ForgetComponent]
+      imports: [ForgotComponent],
     });
-    fixture = TestBed.createComponent(ForgetComponent);
+    fixture = TestBed.createComponent(ForgotComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

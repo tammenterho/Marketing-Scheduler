@@ -2,12 +2,10 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-forget',
+  selector: 'app-forgot',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './forget.component.html',
-  styleUrls: ['./forget.component.css']
+  templateUrl: './forgot.component.html',
+  styleUrls: ['./forgot.component.css'],
 })
-export class ForgetComponent {
-
-}
+export default class ForgotComponent {}
