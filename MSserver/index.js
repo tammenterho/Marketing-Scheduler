@@ -12,7 +12,7 @@ dotenv.config(); // error -> throw new MongooseError('The `uri` parameter to `op
 
 // middleware
 app.use(express.json()); // can use json format in body
-app.use(cookieParser);
+app.use(cookieParser());
 app.use("/api/role", roleRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
