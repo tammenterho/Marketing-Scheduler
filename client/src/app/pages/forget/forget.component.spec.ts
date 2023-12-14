@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginFormComponent } from './login.component';
+import { ForgetComponent } from './forget.component';
 
-describe('LoginComponent', () => {
-  let component: LoginFormComponent;
-  let fixture: ComponentFixture<LoginFormComponent>;
+describe('ForgetComponent', () => {
+  let component: ForgetComponent;
+  let fixture: ComponentFixture<ForgetComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LoginFormComponent],
+      imports: [ForgetComponent]
     });
-    fixture = TestBed.createComponent(LoginFormComponent);
+    fixture = TestBed.createComponent(ForgetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

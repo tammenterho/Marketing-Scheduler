@@ -19,8 +19,8 @@ export class LoginFormComponent {
   login: string = '';
   password: string = '';
   email: string = '';
-  phone: string = '';
-  company: string = '';
+  // phone: string = '';
+  // company: string = '';
 
   onLoginTab(): void {
     this.active = 'login';
@@ -42,15 +42,13 @@ export class LoginFormComponent {
 
   onSubmitRegister(): void {
     console.log('register klikattu');
-    console.log('First Name:', this.email, this.phone);
+    console.log('First Name:', this.email);
     this.onSubmitRegisterEvent.emit({
       firstName: this.firstName,
       lastName: this.lastName,
       login: this.login,
       password: this.password,
       email: this.email,
-      phone: this.phone,
-      company: this.company,
     });
   }
 }
