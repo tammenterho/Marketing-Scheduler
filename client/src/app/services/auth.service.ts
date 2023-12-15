@@ -30,4 +30,8 @@ export class AuthService {
       resetObj
     );
   }
+
+  isLoggedIn() {
+    return !!localStorage.getItem('user_id');
+  }
 }
