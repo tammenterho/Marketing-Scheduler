@@ -45,6 +45,7 @@ For an example implementation, refer to the MMfront repository.
 ## Usage
 
 1. Start/Create the MongoDB database.
+   I am currently using [MongoDB Atlas free version](https://www.mongodb.com/atlas/database) and MongoDB Compass UI.
 
 2. Start the server
 
