@@ -6,8 +6,6 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './create-campaign.component.html',
-  styleUrls: ['./create-campaign.component.css']
+  styleUrls: ['./create-campaign.component.css'],
 })
-export class CreateCampaignComponent {
-
-}
+export class CreateCampaignComponent {}
