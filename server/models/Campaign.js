@@ -4,8 +4,7 @@ import mongoose from "mongoose";
 const CampaignSchema = new mongoose.Schema({
   creator: String,
   company: String,
-  id: Number,
-  owner: Number,
+  owner: String,
   name: String,
   adtitle: String,
   adtext: String,
@@ -21,6 +20,4 @@ const CampaignSchema = new mongoose.Schema({
   adcontact: String,
 });
 
-const CampaignModel = mongoose.model("Campaign", CampaignSchema);
-
-export default CampaignModel;
+export default mongoose.model("Campaign", CampaignSchema);

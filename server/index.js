@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import roleRoute from "./routes/role.js";
 import authRoute from "./routes/auth.js";
 import userRoute from "./routes/user.js";
+import campaignsRoute from "./routes/campaign.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -18,6 +19,7 @@ app.use(cors({ origin: "http://localhost:4200", credentials: true }));
 app.use("/api/role", roleRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
+app.use("/api/campaigns", campaignsRoute);
 
 // Response handler middleware
 app.use((obj, req, res, next) => {
