@@ -1,5 +1,7 @@
-<div class="flex flex-col items-center border-2 border-black">
-  <div class="flex mb-2 mt-5">
+<div class="border-2 border-black">
+  <!-- BUTTONS AND SEARCH -->
+
+  <div class="flex flex-col items-center sticky mb-2 mt-5">
     <!-- BUTTONS -->
 
     <div class="flex mb-2 mr-5">
@@ -8,6 +10,7 @@
       <button class="mr-2 border-2 border-black rounded-xl p-3">
         Upcoming
       </button>
+      <span class="mr-2 p-3">0kpl</span>
     </div>
 
     <!--  SEARCH -->
@@ -31,7 +34,7 @@
 
   <!--  TABLE -->
 
-  <div>
+  <div class="flex mt-20 overflow-x-auto">
     <table
       class="table-layout: auto; border-separate [border-spacing:2rem] text-center"
     >
@@ -46,13 +49,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Mikon kukkakauppa</td>
-          <td class="ml-5">Joulukukka-tarjous-23</td>
-          <td>22.12.2023</td>
-          <td>23.01.2024</td>
-          <td>1200 €</td>
-          <td>Done</td>
+        <tr *ngFor="let campaign of campaigns">
+          <td>{{ campaign.company }}</td>
+          <td>{{ campaign.name }}</td>
+          <td>{{ campaign.adstart }}</td>
+          <td>{{ campaign.adend }}</td>
+          <td>{{ campaign.adbudget }}</td>
+          <td>{{ campaign.adstatus }}</td>
         </tr>
       </tbody>
     </table>
