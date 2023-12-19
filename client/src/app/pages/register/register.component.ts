@@ -33,7 +33,7 @@ export default class RegisterComponent implements OnInit {
           '',
           Validators.compose([Validators.required, Validators.email]),
         ],
-        userName: ['', Validators.required],
+        company: ['', Validators.required],
         password: ['', Validators.required],
         confirmPassword: ['', Validators.required],
       },

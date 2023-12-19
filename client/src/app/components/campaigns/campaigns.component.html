@@ -1,15 +1,13 @@
-<div class="border-2 border-black">
+<div class="border-2 rounded-lg border-black">
   <!-- BUTTONS AND SEARCH -->
 
-  <div class="flex flex-col items-center sticky mb-2 mt-5">
+  <div class="flex flex-col items-center sticky mb-2 mt-0">
     <!-- BUTTONS -->
 
     <div class="flex mb-2 mr-5">
-      <button class="mr-2 border-2 border-black rounded-xl p-3">Past</button>
-      <button class="mr-2 border-2 border-black rounded-xl p-3">Current</button>
-      <button class="mr-2 border-2 border-black rounded-xl p-3">
-        Upcoming
-      </button>
+      <button class="border-2 border-black rounded-xl p-3">Past</button>
+      <button class="border-2 border-black rounded-xl p-3">Current</button>
+      <button class="border-2 border-black rounded-xl p-3">Upcoming</button>
       <span class="mr-2 p-3">0kpl</span>
     </div>
 
@@ -34,7 +32,7 @@
 
   <!--  TABLE -->
 
-  <div class="flex mt-20 overflow-x-auto">
+  <div class="flex mt-10 overflow-x-auto">
     <table
       class="table-layout: auto; border-separate [border-spacing:2rem] text-center"
     >
@@ -52,9 +50,9 @@
         <tr *ngFor="let campaign of campaigns">
           <td>{{ campaign.company }}</td>
           <td>{{ campaign.name }}</td>
-          <td>{{ campaign.adstart }}</td>
-          <td>{{ campaign.adend }}</td>
-          <td>{{ campaign.adbudget }}</td>
+          <td>{{ campaign.adstart | date : "dd.MM.yyyy" }}</td>
+          <td>{{ campaign.adend | date : "dd.MM.yyyy" }}</td>
+          <td>{{ campaign.adbudget }} €</td>
           <td>{{ campaign.adstatus }}</td>
         </tr>
       </tbody>

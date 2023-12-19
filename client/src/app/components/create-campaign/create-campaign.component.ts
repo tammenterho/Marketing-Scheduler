@@ -8,4 +8,6 @@ import { CommonModule } from '@angular/common';
   templateUrl: './create-campaign.component.html',
   styleUrls: ['./create-campaign.component.css'],
 })
-export class CreateCampaignComponent {}
+export class CreateCampaignComponent {
+  company: string = localStorage.getItem('company') || '';
+}

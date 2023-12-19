@@ -14,7 +14,7 @@ export const register = async (req, res, next) => {
   const newUser = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    userName: req.body.userName,
+    company: req.body.company,
     email: req.body.email,
     password: hashPassword, // Only 3 lines and password is crypted
     roles: role,
@@ -72,7 +72,7 @@ export const registerAdmin = async (req, res, next) => {
   const newUser = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    userName: req.body.userName,
+    company: req.body.company,
     email: req.body.email,
     password: hashPassword, // Only 3 lines and password is crypted
     isAdmin: true,

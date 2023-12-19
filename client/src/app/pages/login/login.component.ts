@@ -38,11 +38,13 @@ export default class LoginComponent {
       next: (res) => {
         alert('Login is succesfull!');
         console.log('id' + res.data._id);
-        // console.log('company:  ' + res.data.userName);
 
         localStorage.setItem('user_id', res.data._id);
-        // localStorage.setItem('company', res.data.userName);
+        localStorage.setItem('company', res.data.company);
+        localStorage.setItem('firstname', res.data.firstName);
+        localStorage.setItem('lastname', res.data.lastName);
 
+        // console.log('company:  ' + res.data.userName);
         this.authService.isLoggedIn$.next(true);
 
         this.router.navigate(['/home']);

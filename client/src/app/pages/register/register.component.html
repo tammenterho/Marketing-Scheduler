@@ -55,18 +55,18 @@
     </div>
     <div class="flex flex-col mt-4 mb-1">
       <input
-        formControlName="userName"
+        formControlName="company"
         class="p-2 border border-gray-300 rounded"
         type="text"
-        placeholder="Username"
+        placeholder="Company"
       />
       <span
         *ngIf="
-          registerForm.hasError('required', 'userName') &&
-          registerForm.controls['userName'].dirty
+          registerForm.hasError('required', 'company') &&
+          registerForm.controls['company'].dirty
         "
         class="text-red-500"
-        >*Username is required</span
+        >*Company is required</span
       >
     </div>
     <div class="flex flex-col mt-4 mb-1">
