@@ -1,14 +1,16 @@
 <!-- Create new campaign -->
+<div *ngIf="isLoggedIn">
+  <app-campaigns></app-campaigns>
+  <div class="mt-10 ml-10">
+    <h1
+      class="text-2xl font-bold leading-none tracking-tight text-gray-900 dark:text-white mb-2 mt-10"
+    >
+      Create a new campaign
+    </h1>
+    <button class="{{ color }} p-2 rounded  text-white" (click)="showCreate()">
+      {{ text }}
+    </button>
+  </div>
 
-<div class="mt-10 ml-10">
-  <h1
-    class="text-2xl font-extrabold leading-none tracking-tight text-gray-900 dark:text-white mb-2 mt-10"
-  >
-    Create a new campaign
-  </h1>
-  <button class="{{ color }} p-2 rounded  text-white" (click)="showCreate()">
-    {{ text }}
-  </button>
+  <app-create-campaign *ngIf="showAddCampaign"></app-create-campaign>
 </div>
-
-<app-create-campaign *ngIf="showAddCampaign"></app-create-campaign>

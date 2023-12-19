@@ -1,0 +1,60 @@
+<div class="flex flex-col items-center border-2 border-black">
+  <div class="flex mb-2 mt-5">
+    <!-- BUTTONS -->
+
+    <div class="flex mb-2 mr-5">
+      <button class="mr-2 border-2 border-black rounded-xl p-3">Past</button>
+      <button class="mr-2 border-2 border-black rounded-xl p-3">Current</button>
+      <button class="mr-2 border-2 border-black rounded-xl p-3">
+        Upcoming
+      </button>
+    </div>
+
+    <!--  SEARCH -->
+
+    <div class="w-full max-w-lg">
+      <span class="absolute mt-1.5 mx-3"
+        ><i class="fa fa-search font-light" aria-hidden="true"></i
+      ></span>
+      <input
+        type="text"
+        placeholder="Search Campaign"
+        class="w-96 p-2 pl-9 rounded rounded-r-none text-gray-600"
+      />
+      <button
+        class="bg-slate-400 p-2 rounded-r text-white outline-none outline-0"
+      >
+        Search
+      </button>
+    </div>
+  </div>
+
+  <!--  TABLE -->
+
+  <div>
+    <table
+      class="table-layout: auto; border-separate [border-spacing:2rem] text-center"
+    >
+      <thead>
+        <tr>
+          <th>COMPANY</th>
+          <th>NAME</th>
+          <th>START</th>
+          <th>END</th>
+          <th>BUDGET</th>
+          <th>STATUS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mikon kukkakauppa</td>
+          <td class="ml-5">Joulukukka-tarjous-23</td>
+          <td>22.12.2023</td>
+          <td>23.01.2024</td>
+          <td>1200 €</td>
+          <td>Done</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
