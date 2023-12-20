@@ -10,10 +10,6 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./create-campaign.component.css'],
 })
 export class CreateCampaignComponent implements OnInit {
-  targetGender: string = 'all';
-
-  targetCTA: string = 'Contact us!';
-
   company: string = localStorage.getItem('company') || '';
 
   inputCompany!: string;
@@ -28,14 +24,13 @@ export class CreateCampaignComponent implements OnInit {
   inputMedia!: string;
   inputUrl!: string;
   inputOther!: string;
+  inputCta!: string;
+  inputGender!: string;
 
   ngOnInit(): void {}
 
   addCampaign() {
     console.log('add klikattu');
-
-    let tGender = JSON.stringify(this.targetGender);
-    let adCta = JSON.stringify(this.targetCTA);
 
     const newCampaign = {
       creator:
@@ -46,17 +41,14 @@ export class CreateCampaignComponent implements OnInit {
       name: this.inputName,
       adtitle: this.inputAdTitle,
       adtext: this.inputAdText,
-      adtarget:
-        'Age ' +
-        this.inputAdTarget +
-        ', ' +
-        (tGender ? ' ' + JSON.parse(tGender).name : ''),
+      adtarget: 'Age ' + this.inputAdTarget + ', ' + this.inputGender,
       adarea: this.inputAdArea,
       adbudget: this.inputBudget,
       adstart: this.inputStart,
       adend: this.inputEnd,
       mediainfo: this.inputMedia,
-      adurl: this.inputUrl + ', ' + (adCta ? ' ' + JSON.parse(adCta).name : ''),
+      adurl: this.inputUrl,
+      adCta: this.inputCta,
       adother: this.inputOther,
       adstatus: 'N',
     };
