@@ -39,6 +39,7 @@ export class CreateCampaignComponent implements OnInit {
         localStorage.getItem('lastname'),
       company: this.inputCompany,
       name: this.inputName,
+      owner: localStorage.getItem('user_id'),
       adtitle: this.inputAdTitle,
       adtext: this.inputAdText,
       adtarget: 'Age ' + this.inputAdTarget + ', ' + this.inputGender,
