@@ -38,8 +38,8 @@ export class CreateCampaignComponent implements OnInit {
         ' ' +
         localStorage.getItem('lastname'),
       company: this.inputCompany,
-      name: this.inputName,
       owner: localStorage.getItem('user_id'),
+      name: this.inputName,
       adtitle: this.inputAdTitle,
       adtext: this.inputAdText,
       adtarget: 'Age ' + this.inputAdTarget + ', ' + this.inputGender,
@@ -49,9 +49,13 @@ export class CreateCampaignComponent implements OnInit {
       adend: this.inputEnd,
       mediainfo: this.inputMedia,
       adurl: this.inputUrl,
-      adCta: this.inputCta,
+      adcta: this.inputCta,
       adother: this.inputOther,
       adstatus: 'N',
+      adcontact:
+        localStorage.getItem('firstname') +
+        ' ' +
+        localStorage.getItem('lastname'),
     };
 
     console.log('uusi kampanja' + JSON.stringify(newCampaign));
