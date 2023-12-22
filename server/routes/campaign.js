@@ -1,11 +1,13 @@
 import express from "express";
-import { getAllCampaigns } from "../controllers/campaign.controller.js";
-import { verifyUser } from "../utils/verifyToken.js";
+import {
+  getAllCampaigns,
+  postCampaign,
+} from "../controllers/campaign.controller.js";
 
 const router = express.Router(); // router has all crud get put post delete methods
 
 router.get("/campaigns/:userId", getAllCampaigns);
 
-// router.post("/create")
+router.post("/campaigns", postCampaign);
 
 export default router;

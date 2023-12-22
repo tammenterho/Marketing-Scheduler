@@ -61,12 +61,12 @@ export class CreateCampaignComponent implements OnInit {
         localStorage.getItem('lastname'),
     };
 
-    // console.log('uusi kampanja' + JSON.stringify(newCampaign));
+    console.log('uusi kampanja' + JSON.stringify(newCampaign));
 
     this.campaignService.postCampaignService(newCampaign).subscribe({
       next: (res: any) => {
         res.data;
-        console.log('lähetetään kampanja' + res.data);
+        console.log('lähetetään kampanja');
       },
       error: (err) => {
         console.log(err);

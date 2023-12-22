@@ -8,6 +8,8 @@ import User from "../models/User.js";
 const router = express.Router();
 
 // controllers/campaignController.js
+
+// getAllCampaigns
 export const getAllCampaigns = async (req, res, next) => {
   console.log("got here : " + req.params.userId);
 
@@ -29,6 +31,30 @@ export const getAllCampaigns = async (req, res, next) => {
   } catch (error) {
     console.log("erroria puskee");
     return next(CreateError(500, "Internal Server Error!"));
+  }
+};
+
+// postCampaign
+
+export const postCampaign = async (req, res, next) => {
+  console.log("posting in server");
+
+  try {
+    // Oletan, että kampanja tiedot tulevat pyynnön rungosta newCampaign-kentän alla
+    const newCampaign = req.body;
+    console.log("tämä on serverin uusi kampanja" + newCampaign);
+
+    // Luo uusi Campaign-instanssi Mongoose-mallin perusteella
+    const campaign = new Campaign(newCampaign);
+
+    // Tallenna kampanja tietokantaan
+    const savedCampaign = await campaign.save();
+
+    // Palauta tallennettu kampanja vastauksena
+    return next(CreateSuccess(201, "Campaign successfully created"));
+  } catch (error) {
+    console.error("Error posting campaign:", error);
+    return next(CreateError(500, "Internal Server Error"));
   }
 };
 
