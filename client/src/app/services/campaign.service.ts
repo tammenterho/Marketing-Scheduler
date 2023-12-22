@@ -14,4 +14,11 @@ export class CampaignService {
       `${apiUrls.campaignServiceApi}campaigns/${userId}`
     );
   }
+
+  postCampaignService(newCampaign: any) {
+    return this.http.post<any>(
+      `${apiUrls.campaignServiceApi}campaigns`,
+      newCampaign
+    );
+  }
 }

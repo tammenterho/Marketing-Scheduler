@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CampaignService } from 'src/app/services/campaign.service';
 
 @Component({
   selector: 'app-create-campaign',
@@ -10,6 +11,8 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./create-campaign.component.css'],
 })
 export class CreateCampaignComponent implements OnInit {
+  campaignService = inject(CampaignService); // kun injektoi niin ei tarvitse contstructoria
+
   company: string = localStorage.getItem('company') || '';
 
   inputCompany!: string;
@@ -58,6 +61,16 @@ export class CreateCampaignComponent implements OnInit {
         localStorage.getItem('lastname'),
     };
 
-    console.log('uusi kampanja' + JSON.stringify(newCampaign));
+    // console.log('uusi kampanja' + JSON.stringify(newCampaign));
+
+    this.campaignService.postCampaignService(newCampaign).subscribe({
+      next: (res: any) => {
+        res.data;
+        console.log('lähetetään kampanja' + res.data);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }

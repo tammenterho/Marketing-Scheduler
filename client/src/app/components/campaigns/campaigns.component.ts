@@ -10,7 +10,7 @@ import { CampaignService } from 'src/app/services/campaign.service';
   styleUrls: ['./campaigns.component.css'],
 })
 export class CampaignsComponent implements OnInit {
-  campaignService = inject(CampaignService);
+  campaignService = inject(CampaignService); // kun injektoi niin ei tarvitse contstructoria
   campaigns: any[] = [];
 
   ngOnInit(): void {
