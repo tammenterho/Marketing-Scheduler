@@ -16,9 +16,14 @@ export const getAllCampaigns = async (req, res, next) => {
     const user = await User.findById(userId);
     console.log("user tässänäin : " + user);
 
-    const userCampaigns = await Campaign.find({ owner: userId });
+    if (!user.isAdmin) {
+      const userCampaigns = await Campaign.find({ owner: userId });
 
-    return next(CreateSuccess(200, "User Campaigns", userCampaigns));
+      return next(CreateSuccess(200, "User Campaigns", userCampaigns));
+    } else if (user.isAdmin) {
+      const adminCampaigns = await Campaign.find();
+      return next(CreateSuccess(200, "Admin campaigns", adminCampaigns));
+    }
   } catch (error) {
     console.log("erroria puskee");
     return next(CreateError(500, "Internal Server Error!"));
