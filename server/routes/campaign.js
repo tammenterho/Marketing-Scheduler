@@ -4,6 +4,8 @@ import { verifyUser } from "../utils/verifyToken.js";
 
 const router = express.Router(); // router has all crud get put post delete methods
 
-router.get("/campaigns", getAllCampaigns);
+router.get("/campaigns/:userId", getAllCampaigns);
+
+// router.post("/create")
 
 export default router;

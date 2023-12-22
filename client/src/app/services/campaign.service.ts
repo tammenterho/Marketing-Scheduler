@@ -8,11 +8,10 @@ import { apiUrls } from '../api.urls';
 export class CampaignService {
   http = inject(HttpClient);
 
-  getCampaignsService(loginObj: any) {
-    console.log('loginobj:  ' + loginObj);
+  getCampaignsService(userId: string) {
+    console.log('loginobj:  ' + userId);
     return this.http.get<any>(
-      `${apiUrls.campaignServiceApi}campaigns`,
-      loginObj
+      `${apiUrls.campaignServiceApi}campaigns/${userId}`
     );
   }
 }

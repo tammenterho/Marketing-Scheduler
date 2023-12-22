@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('company');
     localStorage.removeItem('firstname');
     localStorage.removeItem('lastname');
+    localStorage.removeItem('isAdmin');
     this.authService.isLoggedIn$.next(false);
   }
 }

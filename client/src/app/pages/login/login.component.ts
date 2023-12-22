@@ -43,6 +43,7 @@ export default class LoginComponent {
         localStorage.setItem('company', res.data.company);
         localStorage.setItem('firstname', res.data.firstName);
         localStorage.setItem('lastname', res.data.lastName);
+        localStorage.setItem('isAdmin', res.data.isAdmin);
 
         // console.log('company:  ' + res.data.userName);
         this.authService.isLoggedIn$.next(true);

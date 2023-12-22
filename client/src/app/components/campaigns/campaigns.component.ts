@@ -14,17 +14,19 @@ export class CampaignsComponent implements OnInit {
   campaigns: any[] = [];
 
   ngOnInit(): void {
-    this.campaignService
-      .getCampaignsService(localStorage.getItem('user_id'))
-      .subscribe({
-        next: (res: any) => {
-          this.campaigns = res.data;
-          console.log('campaigns: ' + this.campaigns);
-          console.log('Response from server:', JSON.stringify(res, null, 2));
-        },
-        error: (err) => {
-          console.log(err);
-        },
-      });
+    this.getAllCampaigns();
+  }
+
+  getAllCampaigns() {
+    const userId = localStorage.getItem('user_id') || '';
+
+    this.campaignService.getCampaignsService(userId).subscribe({
+      next: (res: any) => {
+        this.campaigns = res.data;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }

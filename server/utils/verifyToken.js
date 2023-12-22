@@ -3,6 +3,7 @@ import { CreateError } from "./error.js";
 
 export const verifyToken = (req, res, next) => {
   const token = req.cookies.access_token;
+  console.log("token on verifyssä" + token);
   if (!token) {
     return next(CreateError(401, "You are not authenticated")); // if theres no token
   }
