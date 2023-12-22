@@ -23,6 +23,8 @@ export const getAllCampaigns = async (req, res, next) => {
     } else if (user.isAdmin) {
       const adminCampaigns = await Campaign.find();
       return next(CreateSuccess(200, "Admin campaigns", adminCampaigns));
+    } else {
+      return next(CreateError(400, "Couldn't find user"));
     }
   } catch (error) {
     console.log("erroria puskee");
