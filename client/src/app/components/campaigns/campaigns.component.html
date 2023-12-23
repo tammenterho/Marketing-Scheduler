@@ -5,12 +5,36 @@
     <!-- TIME BUTTONS -->
 
     <div class="flex mb-10 mr-5">
-      <button class="border-2 border-black rounded-xl p-3 mr-4">All</button>
-      <button class="w-28 border-2 border-black p-3 rounded-s-3xl">Past</button>
-      <button class="w-28 border-t-2 border-b-2 border-black p-3">
+      <button
+        class="{{
+          allBtnColor
+        }} text-white hover:bg-green-900 w-16 border-2 border-white rounded-xl p-3 mr-4"
+        (click)="getAllButton()"
+      >
+        All
+      </button>
+      <button
+        class="{{
+          pastBtnColor
+        }} text-white hover:bg-green-900 w-28 border-2 border-white p-3 rounded-s-3xl"
+        (click)="getPastCampaigns()"
+      >
+        Past
+      </button>
+      <button
+        class="{{
+          currentBtnColor
+        }} text-white hover:bg-green-900 w-28 border-t-2 border-b-2 border-white p-3"
+        (click)="getCurrentCampaigns()"
+      >
         Current
       </button>
-      <button class="w-28 border-2 border-black p-3 rounded-e-3xl">
+      <button
+        class="{{
+          upcomingBtnColor
+        }} text-white hover:bg-green-900 w-28 border-2 border-white p-3 rounded-e-3xl"
+        (click)="getUpcomingCampaigns()"
+      >
         Upcoming
       </button>
       <span class="mr-2 p-3">0kpl</span>
@@ -37,22 +61,22 @@
 
   <!--  TABLE -->
 
-  <div class="flex xxs:justify-start justify-center mt-10 overflow-x-auto">
+  <div class="flex xxs:justify-start justify-center mt-10 overflow-x-auto h-64">
     <table
       class="min-w-full table-layout: auto; border-separate [border-spacing:2rem] text-center"
     >
       <thead>
         <tr>
-          <th>COMPANY</th>
-          <th>NAME</th>
-          <th>START</th>
-          <th>END</th>
-          <th>BUDGET</th>
-          <th>STATUS</th>
+          <th class="w-1/6">COMPANY</th>
+          <th class="w-1/6">NAME</th>
+          <th class="w-1/6">START</th>
+          <th class="w-1/6">END</th>
+          <th class="w-1/6">BUDGET</th>
+          <th class="w-1/6">STATUS</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let campaign of campaigns">
+        <tr *ngFor="let campaign of filteredCampaigns">
           <td>{{ campaign.company }}</td>
           <td>{{ campaign.name }}</td>
           <td>{{ campaign.adstart | date : "dd.MM.yyyy" }}</td>

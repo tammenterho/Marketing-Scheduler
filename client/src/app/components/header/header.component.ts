@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HeaderComponent implements OnInit {
   authService = inject(AuthService);
   isLoggedIn: boolean = false;
+  user: string = localStorage.getItem('company') || '';
 
   ngOnInit(): void {
     this.authService.isLoggedIn$.subscribe((res) => {

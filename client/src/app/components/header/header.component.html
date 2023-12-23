@@ -2,8 +2,8 @@
   class="w-full flex justify-between items-center a p-5 bg-violet-500 shadow-2xl"
 >
   <div class="logo">
-    <span class="text-gray-200 text-4xl flex justify-start items-center"
-      >Marketing Scheduler</span
+    <span class="text-gray-200 text-3xl flex justify-start items-center"
+      >Welcome {{ user }}!</span
     >
   </div>
 
@@ -21,10 +21,6 @@
       >
     </ng-container>
     <ng-container *ngIf="isLoggedIn">
-      <span
-        class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200"
-        >Welcome</span
-      >
       <span
         routerLink="/login"
         (click)="logout()"
