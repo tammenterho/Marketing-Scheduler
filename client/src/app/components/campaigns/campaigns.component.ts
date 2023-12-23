@@ -20,6 +20,7 @@ export class CampaignsComponent implements OnInit {
   pastBtnColor: string = 'bg-gray-500';
   currentBtnColor: string = 'bg-gray-500';
   upcomingBtnColor: string = 'bg-gray-500';
+  campaignsSize: number = 0;
 
   ngOnInit(): void {
     this.getAllCampaigns();
@@ -31,6 +32,8 @@ export class CampaignsComponent implements OnInit {
     this.campaignService.getCampaignsService(userId).subscribe({
       next: (res: any) => {
         this.campaigns = res.data;
+        this.filteredCampaigns = this.campaigns;
+        this.campaignsSize = this.filteredCampaigns.length;
       },
       error: (err) => {
         console.log(err);
@@ -45,6 +48,7 @@ export class CampaignsComponent implements OnInit {
     this.upcomingBtnColor = 'bg-gray-500';
 
     this.filteredCampaigns = this.campaigns;
+    this.campaignsSize = this.filteredCampaigns.length;
   }
 
   getPastCampaigns() {
@@ -59,6 +63,7 @@ export class CampaignsComponent implements OnInit {
     );
     console.log(this.pastCampaigns);
     this.filteredCampaigns = this.pastCampaigns;
+    this.campaignsSize = this.filteredCampaigns.length;
   }
 
   getCurrentCampaigns() {
@@ -80,6 +85,7 @@ export class CampaignsComponent implements OnInit {
 
     console.log(this.currentCampaigns);
     this.filteredCampaigns = this.currentCampaigns;
+    this.campaignsSize = this.filteredCampaigns.length;
   }
   getUpcomingCampaigns() {
     console.log('upcoming clicked');
@@ -100,5 +106,6 @@ export class CampaignsComponent implements OnInit {
 
     console.log(this.currentCampaigns);
     this.filteredCampaigns = this.currentCampaigns;
+    this.campaignsSize = this.filteredCampaigns.length;
   }
 }

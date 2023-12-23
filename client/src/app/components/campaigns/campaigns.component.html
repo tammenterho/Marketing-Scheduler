@@ -5,6 +5,22 @@
     <!-- TIME BUTTONS -->
 
     <div class="flex mb-10 mr-5">
+      <svg
+        (click)="getAllCampaigns()"
+        class="h-8 w-8 text-red-900 cursor-pointer mt-3 mr-3"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="23 4 23 10 17 10" />
+        <polyline points="1 20 1 14 7 14" />
+        <path
+          d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"
+        />
+      </svg>
       <button
         class="{{
           allBtnColor
@@ -37,7 +53,7 @@
       >
         Upcoming
       </button>
-      <span class="mr-2 p-3">0kpl</span>
+      <span class="mr-2 p-3">{{ campaignsSize }} kpl</span>
     </div>
 
     <!--  SEARCH -->
@@ -62,9 +78,7 @@
   <!--  TABLE -->
 
   <div class="flex xxs:justify-start justify-center mt-10 overflow-x-auto h-64">
-    <table
-      class="min-w-full table-layout: auto; border-separate [border-spacing:2rem] text-center"
-    >
+    <table class="min-w-full table-layout: auto; border-separate text-center">
       <thead>
         <tr>
           <th class="w-1/6">COMPANY</th>
@@ -76,7 +90,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let campaign of filteredCampaigns">
+        <tr
+          *ngFor="let campaign of filteredCampaigns"
+          class="even:bg-gray-200 odd:bg-white h-20 align-top"
+        >
           <td>{{ campaign.company }}</td>
           <td>{{ campaign.name }}</td>
           <td>{{ campaign.adstart | date : "dd.MM.yyyy" }}</td>
