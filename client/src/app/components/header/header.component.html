@@ -1,11 +1,10 @@
 <nav
   class="w-full flex justify-between items-center a p-5 bg-violet-500 shadow-2xl"
 >
-  <div class="logo">
-    <span class="text-gray-200 text-3xl flex justify-start items-center"
-      >Welcome {{ user }}!</span
-    >
-  </div>
+  <span class="text-gray-200 text-3xl flex justify-start items-center">
+    <ng-container *ngIf="isLoggedIn"> Welcome {{ user }}! </ng-container>
+    <ng-container *ngIf="!isLoggedIn"> Marketing Scheduler! </ng-container>
+  </span>
 
   <div class="nav-items">
     <ng-container *ngIf="!isLoggedIn">
