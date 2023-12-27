@@ -4,7 +4,8 @@ module.exports = {
   content: ["./src/**/*.{html,ts}"],
   theme: {
     screens: {
-      xxs: "300px", // min-width
+      xxxs: "300px", // min-width
+      xxs: "450px", // min-width
       xs: "600px", // min-width
     },
     extend: {},

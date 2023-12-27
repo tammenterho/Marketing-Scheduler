@@ -1,7 +1,7 @@
 <div class="border-2 rounded-lg border-black">
   <!-- BUTTONS AND SEARCH -->
 
-  <div class="flex flex-col items-center sticky mb-2 mt-4">
+  <div class="flex flex-col items-center sticky ml-5 mb-2 mt-4">
     <!-- TIME BUTTONS -->
 
     <div class="flex mb-10">
@@ -24,7 +24,7 @@
       <button
         class="{{
           allBtnColor
-        }} text-white flex-shrink hover:bg-green-900 w-16 xss:w-18 border-2 border-white rounded-xl p-3 mr-4"
+        }} text-white flex-shrink hover:bg-green-900 w-16 xxs:w-20 border-2 border-white rounded-xl p-3 mr-4"
         (click)="getAllButton()"
       >
         All
@@ -32,7 +32,7 @@
       <button
         class="{{
           pastBtnColor
-        }} text-white hover:bg-green-900  w-16 xss:w-28 border-2 border-white p-3 rounded-s-3xl"
+        }} text-white hover:bg-green-900  w-16 xxs:w-28 border-2 border-white p-3 rounded-s-3xl"
         (click)="getPastCampaigns()"
       >
         Past
@@ -40,7 +40,7 @@
       <button
         class="{{
           currentBtnColor
-        }} text-white hover:bg-green-900 w-16 xss:w-28 border-t-2 border-b-2 border-white p-3"
+        }} text-white hover:bg-green-900 w-16 xxs:w-28 border-t-2 border-b-2 border-white p-3"
         (click)="getCurrentCampaigns()"
       >
         Current
@@ -48,7 +48,7 @@
       <button
         class="{{
           upcomingBtnColor
-        }} text-white hover:bg-green-900 w-16 xss:w-28 border-2 border-white p-3 rounded-e-3xl"
+        }} text-white hover:bg-green-900 w-16 xxs:w-28 border-2 border-white p-3 rounded-e-3xl"
         (click)="getUpcomingCampaigns()"
       >
         Upcoming
@@ -58,7 +58,7 @@
 
     <!--  SEARCH -->
 
-    <div class="w-96 mx-5 justify-center">
+    <div class="w-4/5 mx-5 justify-center">
       <span class="absolute mt-1.5"
         ><i class="fa fa-search font-light" aria-hidden="true"></i
       ></span>
@@ -77,8 +77,10 @@
 
   <!--  TABLE -->
 
-  <div class="flex xxs:justify-start justify-center mt-10 overflow-x-auto h-64">
-    <table class="min-w-full table-layout: auto; border-separate text-center">
+  <div class="flex justify-start mt-10 overflow-x-auto h-2/3">
+    <table
+      class="min-w-full p-10 left-0 table-layout: fixed; border-separate text-center"
+    >
       <thead>
         <tr>
           <th class="w-1/6">COMPANY</th>
@@ -89,7 +91,7 @@
           <th class="w-1/6">STATUS</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="">
         <tr
           *ngFor="let campaign of filteredCampaigns"
           class="even:bg-gray-200 odd:bg-white h-20 align-middle"
