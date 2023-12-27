@@ -88,10 +88,11 @@
           <th class="w-1/6">START</th>
           <th class="w-1/6">END</th>
           <th class="w-1/6">BUDGET</th>
-          <th class="w-1/6">STATUS</th>
+          <th class="w-1/10">STATUS</th>
+          <th class="w-1/10"></th>
         </tr>
       </thead>
-      <tbody class="">
+      <tbody>
         <tr
           *ngFor="let campaign of filteredCampaigns"
           class="even:bg-gray-200 odd:bg-white h-20 align-middle"
@@ -101,28 +102,28 @@
           <td>{{ campaign.adstart | date : "dd.MM.yyyy" }}</td>
           <td>{{ campaign.adend | date : "dd.MM.yyyy" }}</td>
           <td>{{ campaign.adbudget }} €</td>
+          <td>
+            {{ campaign.adstatus }}
+          </td>
           <td class="">
-            <div class="flex justify-end">
-              {{ campaign.adstatus }}
-              <svg
-                class="h-6 w-8 text-red-500 ml-5"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" />
-                <line x1="4" y1="7" x2="20" y2="7" />
-                <line x1="10" y1="11" x2="10" y2="17" />
-                <line x1="14" y1="11" x2="14" y2="17" />
-                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-              </svg>
-            </div>
+            <svg
+              class="text-red-500 justify-center m-auto"
+              width="24"
+              height="24"
+              viewBox="0 0 25 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" />
+              <line x1="4" y1="7" x2="20" y2="7" />
+              <line x1="10" y1="11" x2="10" y2="17" />
+              <line x1="14" y1="11" x2="14" y2="17" />
+              <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+              <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+            </svg>
           </td>
         </tr>
       </tbody>
