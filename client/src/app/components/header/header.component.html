@@ -1,12 +1,16 @@
-<nav
-  class="w-full flex justify-between items-center a p-5 bg-violet-500 shadow-2xl"
->
-  <span class="text-gray-200 text-3xl flex justify-start items-center">
-    <ng-container *ngIf="isLoggedIn"> Welcome {{ user }}! </ng-container>
-    <ng-container *ngIf="!isLoggedIn"> Marketing Scheduler! </ng-container>
-  </span>
+<nav class="flex items-center py-10 bg-violet-500 shadow-2xl">
+  <div class="flex nav-items w-1/2 justify-start m-3">
+    <span class="text-gray-200 text-xl flex items-center">
+      <ng-container *ngIf="isLoggedIn" class="">
+        Welcome {{ user }}!
+      </ng-container>
+      <ng-container *ngIf="!isLoggedIn" class="w-1/2">
+        Marketing Scheduler!
+      </ng-container>
+    </span>
+  </div>
 
-  <div class="nav-items">
+  <div class="flex nav-items w-1/2 justify-end">
     <ng-container *ngIf="!isLoggedIn">
       <span
         routerLink="/login"
