@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
     this.authService.isLoggedIn$.subscribe((res) => {
       this.isLoggedIn = this.authService.isLoggedIn();
     });
+    this.user = localStorage.getItem('company') || '';
   }
 
   logout() {

@@ -60,6 +60,11 @@ export const postCampaign = async (req, res, next) => {
 
 export const deleteCampaign = async (req, res, next) => {
   console.log("deleting campaign server");
+
+  try {
+    const campaignId = req.params.userId;
+    const campaign = await Campaign.findById();
+  } catch (error) {}
 };
 
 export default router;
