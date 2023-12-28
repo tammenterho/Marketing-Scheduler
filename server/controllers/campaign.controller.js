@@ -59,12 +59,16 @@ export const postCampaign = async (req, res, next) => {
 };
 
 export const deleteCampaign = async (req, res, next) => {
-  console.log("deleting campaign server");
+  console.log("deleting campaign server, campaign id");
 
   try {
-    const campaignId = req.params.userId;
-    const campaign = await Campaign.findById();
-  } catch (error) {}
+    const campaignId = req.params.campaignId;
+
+    const res = await Campaign.findByIdAndDelete(campaignId);
+  } catch (error) {
+    console.error("Error deleting campaign:", error);
+    return next(CreateError(500, "Internal Server Error"));
+  }
 };
 
 export default router;

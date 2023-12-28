@@ -34,6 +34,7 @@ export class CampaignsComponent implements OnInit {
         this.campaigns = res.data;
         this.filteredCampaigns = this.campaigns;
         this.campaignsSize = this.filteredCampaigns.length;
+        console.log('KAMPANJAT' + JSON.stringify(this.campaigns));
       },
       error: (err) => {
         console.log(err);
@@ -107,5 +108,18 @@ export class CampaignsComponent implements OnInit {
     console.log(this.currentCampaigns);
     this.filteredCampaigns = this.currentCampaigns;
     this.campaignsSize = this.filteredCampaigns.length;
+  }
+
+  // DELETE BY ID
+
+  deleteCampaign(campaignId: string) {
+    console.log('campaign id ' + campaignId);
+
+    this.campaignService.deleteCampaignService(campaignId).subscribe({
+      next: (res: any) => {},
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }

@@ -11,6 +11,6 @@ router.get("/campaigns/:userId", getAllCampaigns);
 
 router.post("/campaigns", postCampaign);
 
-router.delete("/campaign/:_id", deleteCampaign);
+router.delete("/campaigns/:campaignId", deleteCampaign);
 
 export default router;

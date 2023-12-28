@@ -23,4 +23,14 @@ export class CampaignService {
       newCampaign
     );
   }
+
+  // DELETE CAMPAIGN BY ID
+
+  deleteCampaignService(campaignId: string) {
+    console.log('DELETING' + campaignId);
+
+    return this.http.delete<any>(
+      `${apiUrls.campaignServiceApi}campaigns/${campaignId}`
+    );
+  }
 }
