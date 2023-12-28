@@ -58,6 +58,8 @@ export const postCampaign = async (req, res, next) => {
   }
 };
 
+// delete campaign by id
+
 export const deleteCampaign = async (req, res, next) => {
   console.log("deleting campaign server, campaign id");
 

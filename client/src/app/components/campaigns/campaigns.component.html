@@ -103,7 +103,12 @@
           <td>
             {{ campaign.adstatus }}
           </td>
-          <td class="">
+          <td
+            *ngIf="
+              isAdmin === 'true' ||
+              (isAdmin !== 'false' && campaign.adstatus === 'N')
+            "
+          >
             <svg
               (click)="campaign._id && deleteCampaign(campaign._id)"
               class="text-red-500 m-auto"

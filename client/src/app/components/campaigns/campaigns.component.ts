@@ -21,9 +21,11 @@ export class CampaignsComponent implements OnInit {
   currentBtnColor: string = 'bg-gray-500';
   upcomingBtnColor: string = 'bg-gray-500';
   campaignsSize: number = 0;
+  isAdmin: string = 'false';
 
   ngOnInit(): void {
     this.getAllCampaigns();
+    this.isAdmin = localStorage.getItem('isAdmin') || '';
   }
 
   getAllCampaigns() {
