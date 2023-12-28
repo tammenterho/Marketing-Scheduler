@@ -7,6 +7,7 @@ module.exports = {
       xxxs: "300px", // min-width
       xxs: "450px", // min-width
       xs: "600px", // min-width
+      lg: "900px",
     },
     extend: {},
   },
