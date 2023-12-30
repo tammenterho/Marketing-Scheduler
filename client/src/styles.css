@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "primeicons/primeicons.css";
+
 .disabled {
   opacity: 0.6;
   cursor: not-allowed;

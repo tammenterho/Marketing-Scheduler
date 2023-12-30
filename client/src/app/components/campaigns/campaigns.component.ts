@@ -21,11 +21,17 @@ export class CampaignsComponent implements OnInit {
   currentBtnColor: string = 'bg-gray-500';
   upcomingBtnColor: string = 'bg-gray-500';
   campaignsSize: number = 0;
-  isAdmin: string = 'false';
+  isAdmin: boolean = false;
+  formattedDate: string = '';
 
   ngOnInit(): void {
     this.getAllCampaigns();
-    this.isAdmin = localStorage.getItem('isAdmin') || '';
+    const storedIsAdmin = localStorage.getItem('isAdmin');
+    this.isAdmin = storedIsAdmin ? JSON.parse(storedIsAdmin) : false;
+
+    const currentTime = Date.now();
+    this.formattedDate = new Date(currentTime).toLocaleDateString('fi-FI');
+    console.log('aika nyt' + this.formattedDate);
   }
 
   getAllCampaigns() {
