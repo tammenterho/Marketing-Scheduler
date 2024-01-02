@@ -1,4 +1,6 @@
-<div class="h-3/4 border-2 rounded-lg border-black">
+<div
+  class="min-h-full border-2 rounded-lg border-black mb-10 ml-2 mr-0 lg:mx-32"
+>
   <!-- BUTTONS AND SEARCH -->
 
   <div class="flex flex-col items-center sticky ml-5 mb-2 mt-4">
@@ -69,9 +71,9 @@
 
   <!--  TABLE -->
 
-  <div class="flex justify-start mt-10 overflow-x-auto h-2/3">
+  <div class="flex justify-start mt-10 overflow-x-auto">
     <table
-      class="min-w-full p-10 left-0 table-layout: fixed; border-separate text-center"
+      class="min-w-full p-6 left-0 table-layout: fixed; border-separate text-center"
     >
       <thead>
         <tr>
@@ -96,7 +98,7 @@
             {{ campaign.name }}
           </td>
           <td (click)="campaign._id && openDialog(campaign._id)">
-            {{ campaign.adstart | date : "dd.MM.yyyy" }}
+            {{ campaign.adstart | date : "dd.MM.yyyy" }}-
           </td>
           <td (click)="campaign._id && openDialog(campaign._id)">
             {{ campaign.adend | date : "dd.MM.yyyy" }}
@@ -105,9 +107,8 @@
             {{ campaign.adbudget }} €
           </td>
           <td
-            *ngIf="isAdmin"
-            (click)="toggleStatus(campaign._id)"
-            class="cursor-pointer"
+            [ngClass]="{ 'cursor-pointer': isAdmin && campaign._id }"
+            (click)="isAdmin && campaign._id && toggleStatus(campaign._id)"
           >
             <i
               class="pi {{
