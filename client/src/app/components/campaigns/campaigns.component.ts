@@ -130,4 +130,27 @@ export class CampaignsComponent implements OnInit {
       },
     });
   }
+
+  toggleStatus(campaignId: string) {
+    const clickedCampaign = this.campaigns.find(
+      (campaign) => campaign._id === campaignId
+    );
+
+    console.log('löydetty kampanja ' + JSON.stringify(clickedCampaign));
+
+    /*
+    if (clickedCampaign) {
+      // Käännä status
+      clickedCampaign.adstatus = clickedCampaign.adstatus === 'Y' ? 'N' : 'Y';
+*/
+
+    this.campaignService.updateCampaign(clickedCampaign).subscribe({
+      next: (updatedCampaign) => {
+        console.log('UPDATED' + updatedCampaign);
+      },
+      error: (error) => {
+        console.log('failed to update', error);
+      },
+    });
+  }
 }

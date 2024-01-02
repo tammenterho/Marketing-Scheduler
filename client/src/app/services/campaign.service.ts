@@ -33,4 +33,16 @@ export class CampaignService {
       `${apiUrls.campaignServiceApi}campaigns/${campaignId}`
     );
   }
+
+  // UPDATE CAMPAIGN
+
+  updateCampaign(clickedCampaign: any) {
+    console.log('UPDATING ' + JSON.stringify(clickedCampaign));
+    const campaignId = clickedCampaign._id;
+
+    return this.http.put<any>(
+      `${apiUrls.campaignServiceApi}campaigns/${campaignId}`,
+      clickedCampaign
+    );
+  }
 }
