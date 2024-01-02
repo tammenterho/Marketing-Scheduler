@@ -61,7 +61,7 @@ export const postCampaign = async (req, res, next) => {
 // delete campaign by id
 
 export const deleteCampaign = async (req, res, next) => {
-  console.log("deleting campaign server, campaign id");
+  console.log("deleting campaign server");
 
   try {
     const campaignId = req.params.campaignId;
@@ -69,6 +69,37 @@ export const deleteCampaign = async (req, res, next) => {
     const res = await Campaign.findByIdAndDelete(campaignId);
   } catch (error) {
     console.error("Error deleting campaign:", error);
+    return next(CreateError(500, "Internal Server Error"));
+  }
+};
+
+// UPDATE CAMPAIGN
+
+export const updateCampaign = async (req, res, next) => {
+  console.log("updating campaign in server");
+
+  try {
+    const campaign = await Campaign.findById(req.params.campaignId); // Muutettu id-haku
+    if (campaign) {
+      const newData = req.body;
+      const updatedCampaign = await Campaign.findByIdAndUpdate(
+        req.params.campaignId,
+        newData,
+        { new: true } // Tämä varmistaa, että palautetaan päivitetty tieto
+      );
+      /*
+      if (updatedCampaign) {
+        res.status(200).json(updatedCampaign);
+        return next(CreateSuccess(200, "Updated campaign"));
+      } else {
+        return next(CreateError(404, "Campaign not found"));
+      }
+    } else {
+      return next(CreateError(404, "Campaign not found"));
+      */
+    }
+  } catch (error) {
+    console.error("Error updating campaign:", error);
     return next(CreateError(500, "Internal Server Error"));
   }
 };
