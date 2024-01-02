@@ -89,11 +89,21 @@
           *ngFor="let campaign of filteredCampaigns"
           class="even:bg-gray-200 odd:bg-white h-20 align-middle"
         >
-          <td>{{ campaign.company }}</td>
-          <td>{{ campaign.name }}</td>
-          <td>{{ campaign.adstart | date : "dd.MM.yyyy" }}</td>
-          <td>{{ campaign.adend | date : "dd.MM.yyyy" }}</td>
-          <td>{{ campaign.adbudget }} €</td>
+          <td (click)="campaign._id && openDialog(campaign._id)">
+            {{ campaign.company }}
+          </td>
+          <td (click)="campaign._id && openDialog(campaign._id)">
+            {{ campaign.name }}
+          </td>
+          <td (click)="campaign._id && openDialog(campaign._id)">
+            {{ campaign.adstart | date : "dd.MM.yyyy" }}
+          </td>
+          <td (click)="campaign._id && openDialog(campaign._id)">
+            {{ campaign.adend | date : "dd.MM.yyyy" }}
+          </td>
+          <td (click)="campaign._id && openDialog(campaign._id)">
+            {{ campaign.adbudget }} €
+          </td>
           <td
             *ngIf="isAdmin"
             (click)="toggleStatus(campaign._id)"

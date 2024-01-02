@@ -6,11 +6,13 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CampaignService } from 'src/app/services/campaign.service';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-campaigns',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatDialogModule],
   templateUrl: './campaigns.component.html',
   styleUrls: ['./campaigns.component.css'],
 })
@@ -22,6 +24,7 @@ export class CampaignsComponent implements OnInit {
   currentCampaigns: any[] = [];
   upcomingCampaigns: any[] = [];
   filteredCampaigns: any[] = [];
+  campaignData!: any;
   allBtnColor: string = 'bg-green-500';
   pastBtnColor: string = 'bg-gray-500';
   currentBtnColor: string = 'bg-gray-500';
@@ -29,6 +32,8 @@ export class CampaignsComponent implements OnInit {
   campaignsSize: number = 0;
   isAdmin: boolean = false;
   emptyCampaigns: string = '';
+
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.getAllCampaigns();
@@ -161,6 +166,26 @@ export class CampaignsComponent implements OnInit {
         error: (error) => {
           console.log('failed to update', error);
         },
+      });
+    }
+  }
+
+  openDialog(clickedCampaignId: string): void {
+    // Hae kampanja id:n perusteella
+    const clickedCampaign = this.campaigns.find(
+      (campaign) => campaign._id === clickedCampaignId
+    );
+
+    if (clickedCampaign) {
+      const dialogRef = this.dialog.open(DialogComponent, {
+        width: '700px',
+        data: clickedCampaign,
+      });
+      this.campaignData = clickedCampaign;
+      console.log(this.campaignData);
+
+      dialogRef.afterClosed().subscribe((result) => {
+        //console.log('Dialog suljettu', result);
       });
     }
   }
