@@ -98,7 +98,7 @@
             {{ campaign.name }}
           </td>
           <td (click)="campaign._id && openDialog(campaign._id)">
-            {{ campaign.adstart | date : "dd.MM.yyyy" }}-
+            {{ campaign.adstart | date : "dd.MM.yyyy" }} -
           </td>
           <td (click)="campaign._id && openDialog(campaign._id)">
             {{ campaign.adend | date : "dd.MM.yyyy" }}
