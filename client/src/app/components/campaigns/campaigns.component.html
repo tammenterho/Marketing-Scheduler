@@ -24,7 +24,7 @@
       <button
         class="{{
           allBtnColor
-        }} text-white flex-shrink hover:bg-green-900 w-16 xxs:w-20 border-2 border-white rounded-xl p-3 mr-4"
+        }}  text-white flex-shrink hover:bg-green-900 w-16 xxs:w-20 border-2 border-white rounded-xl p-3 mr-4"
         (click)="getAllButton()"
       >
         All
@@ -32,27 +32,21 @@
       <button
         class="{{
           pastBtnColor
-        }} text-white hover:bg-green-900  w-16 xxs:w-28 border-2 border-white p-3 rounded-s-3xl"
+        }} text-white hover:bg-green-900 pi pi-backward  w-16 xxs:w-28 border-2 border-white p-3 rounded-s-3xl"
         (click)="getPastCampaigns()"
-      >
-        Past
-      </button>
+      ></button>
       <button
         class="{{
           currentBtnColor
-        }} text-white hover:bg-green-900 w-16 xxs:w-28 border-t-2 border-b-2 border-white p-3"
+        }} text-white hover:bg-green-900 pi pi-play w-16  xxs:w-28 border-t-2 border-b-2 border-white p-3"
         (click)="getCurrentCampaigns()"
-      >
-        Current
-      </button>
+      ></button>
       <button
         class="{{
           upcomingBtnColor
-        }} text-white hover:bg-green-900 w-16 xxs:w-28 border-2 border-white p-3 rounded-e-3xl"
+        }} text-white hover:bg-green-900 w-16 pi pi-forward xxs:w-28 border-2 border-white p-3 rounded-e-3xl"
         (click)="getUpcomingCampaigns()"
-      >
-        Upcoming
-      </button>
+      ></button>
       <span class="mr-2 p-3">{{ campaignsSize }} kpl</span>
     </div>
 
@@ -100,7 +94,11 @@
           <td>{{ campaign.adstart | date : "dd.MM.yyyy" }}</td>
           <td>{{ campaign.adend | date : "dd.MM.yyyy" }}</td>
           <td>{{ campaign.adbudget }} €</td>
-          <td *ngIf="isAdmin" (click)="toggleStatus(campaign._id)">
+          <td
+            *ngIf="isAdmin"
+            (click)="toggleStatus(campaign._id)"
+            class="cursor-pointer"
+          >
             <i
               class="pi {{
                 campaign.adstatus === 'Y' ? 'pi-check-circle' : 'pi-circle'
@@ -116,7 +114,7 @@
             >
               <svg
                 (click)="campaign._id && deleteCampaign(campaign._id)"
-                class="text-red-500 m-auto"
+                class="text-red-500 m-auto cursor-pointer"
                 width="24"
                 height="24"
                 viewBox="0 0 25 24"
@@ -138,5 +136,10 @@
         </tr>
       </tbody>
     </table>
+  </div>
+  <div class="w-full mt-4 text-center">
+    <p class="text-center mb-16" *ngIf="campaignsSize === 0">
+      {{ emptyCampaigns }}
+    </p>
   </div>
 </div>

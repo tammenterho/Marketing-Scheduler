@@ -20,6 +20,7 @@ export class CampaignsComponent implements OnInit {
   currentDate = Date.now();
   pastCampaigns: any[] = [];
   currentCampaigns: any[] = [];
+  upcomingCampaigns: any[] = [];
   filteredCampaigns: any[] = [];
   allBtnColor: string = 'bg-green-500';
   pastBtnColor: string = 'bg-gray-500';
@@ -27,7 +28,7 @@ export class CampaignsComponent implements OnInit {
   upcomingBtnColor: string = 'bg-gray-500';
   campaignsSize: number = 0;
   isAdmin: boolean = false;
-  formattedDate: string = '';
+  emptyCampaigns: string = '';
 
   ngOnInit(): void {
     this.getAllCampaigns();
@@ -59,6 +60,8 @@ export class CampaignsComponent implements OnInit {
 
     this.filteredCampaigns = this.campaigns;
     this.campaignsSize = this.filteredCampaigns.length;
+
+    this.emptyCampaigns = 'No campaigns';
   }
 
   getPastCampaigns() {
@@ -74,6 +77,7 @@ export class CampaignsComponent implements OnInit {
     console.log(this.pastCampaigns);
     this.filteredCampaigns = this.pastCampaigns;
     this.campaignsSize = this.filteredCampaigns.length;
+    this.emptyCampaigns = 'There have not been any campaigns';
   }
 
   getCurrentCampaigns() {
@@ -96,6 +100,7 @@ export class CampaignsComponent implements OnInit {
     console.log(this.currentCampaigns);
     this.filteredCampaigns = this.currentCampaigns;
     this.campaignsSize = this.filteredCampaigns.length;
+    this.emptyCampaigns = 'Theres no campaigns running at the moment';
   }
   getUpcomingCampaigns() {
     console.log('upcoming clicked');
@@ -105,7 +110,7 @@ export class CampaignsComponent implements OnInit {
     this.currentBtnColor = 'bg-gray-500';
     this.upcomingBtnColor = 'bg-green-500';
 
-    this.currentCampaigns = this.campaigns.filter((campaign) => {
+    this.upcomingCampaigns = this.campaigns.filter((campaign) => {
       const startDate = new Date(campaign.adstart).getTime();
 
       const now = this.currentDate;
@@ -115,8 +120,9 @@ export class CampaignsComponent implements OnInit {
     });
 
     console.log(this.currentCampaigns);
-    this.filteredCampaigns = this.currentCampaigns;
+    this.filteredCampaigns = this.upcomingCampaigns;
     this.campaignsSize = this.filteredCampaigns.length;
+    this.emptyCampaigns = 'Theres no upcoming campaigns';
   }
 
   // DELETE BY ID
