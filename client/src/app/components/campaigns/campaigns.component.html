@@ -100,7 +100,7 @@
           <td>{{ campaign.adstart | date : "dd.MM.yyyy" }}</td>
           <td>{{ campaign.adend | date : "dd.MM.yyyy" }}</td>
           <td>{{ campaign.adbudget }} €</td>
-          <td (click)="toggleStatus(campaign._id)">
+          <td *ngIf="isAdmin" (click)="toggleStatus(campaign._id)">
             <i
               class="pi {{
                 campaign.adstatus === 'Y' ? 'pi-check-circle' : 'pi-circle'

@@ -1,4 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CampaignService } from 'src/app/services/campaign.service';
 
@@ -28,10 +33,6 @@ export class CampaignsComponent implements OnInit {
     this.getAllCampaigns();
     const storedIsAdmin = localStorage.getItem('isAdmin');
     this.isAdmin = storedIsAdmin ? JSON.parse(storedIsAdmin) : false;
-
-    const currentTime = Date.now();
-    this.formattedDate = new Date(currentTime).toLocaleDateString('fi-FI');
-    console.log('aika nyt' + this.formattedDate);
   }
 
   getAllCampaigns() {
@@ -121,10 +122,15 @@ export class CampaignsComponent implements OnInit {
   // DELETE BY ID
 
   deleteCampaign(campaignId: string) {
-    console.log('campaign id ' + campaignId);
+    console.log('Campaign id ' + campaignId);
 
     this.campaignService.deleteCampaignService(campaignId).subscribe({
-      next: (res: any) => {},
+      next: (res: any) => {
+        // Onnistuneesti poistettu kampanja
+        this.campaigns = this.campaigns.filter(
+          (campaign) => campaign.id !== campaignId
+        );
+      },
       error: (err) => {
         console.log(err);
       },
