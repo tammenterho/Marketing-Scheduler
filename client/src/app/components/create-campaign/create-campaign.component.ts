@@ -1,7 +1,8 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CampaignService } from 'src/app/services/campaign.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-create-campaign',
@@ -12,6 +13,8 @@ import { CampaignService } from 'src/app/services/campaign.service';
 })
 export class CreateCampaignComponent implements OnInit {
   campaignService = inject(CampaignService); // kun injektoi niin ei tarvitse contstructoria
+
+  @ViewChild('campaignForm') campaignForm!: NgForm; //uusi
 
   company: string = localStorage.getItem('company') || '';
 
@@ -66,10 +69,14 @@ export class CreateCampaignComponent implements OnInit {
     this.campaignService.postCampaignService(newCampaign).subscribe({
       next: (res: any) => {
         res.data;
+
         console.log('lähetetään kampanja');
       },
       error: (err) => {
         console.log(err);
+      },
+      complete: () => {
+        this.campaignForm.resetForm();
       },
     });
   }

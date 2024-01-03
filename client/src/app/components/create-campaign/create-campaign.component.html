@@ -1,5 +1,9 @@
 <div class="flex justify-center">
-  <form class="w-full max-w-lg">
+  <form
+    class="w-full max-w-lg"
+    (ngSubmit)="addCampaign()"
+    #campaignForm="ngForm"
+  >
     <!-- Company and Radio -->
 
     <h3
@@ -307,10 +311,7 @@
       </div>
     </div>
     <div class="max-w-2xl mx-auto mb-20">
-      <button
-        (click)="addCampaign()"
-        class="bg-lime-600 p-2 rounded mt-3 text-white"
-      >
+      <button class="bg-lime-600 p-2 rounded mt-3 text-white">
         Save Campaign
       </button>
     </div>
