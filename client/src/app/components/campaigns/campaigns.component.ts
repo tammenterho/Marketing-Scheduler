@@ -50,6 +50,7 @@ export class CampaignsComponent implements OnInit {
     this.filteredCampaigns = this.campaigns.filter((campaign) =>
       campaign?.name.toLowerCase().includes(text.toLowerCase())
     );
+    this.campaignsSize = this.filteredCampaigns.length;
   }
 
   getAllCampaigns() {
