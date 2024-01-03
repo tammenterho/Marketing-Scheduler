@@ -14,7 +14,9 @@ export class UsersComponent implements OnInit {
   users: any[] = [];
   usersSize: number = 0;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAllUsers();
+  }
 
   getAllUsers() {
     console.log('haetaan kaikki userit');

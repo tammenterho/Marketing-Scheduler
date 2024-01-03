@@ -1,50 +1,45 @@
-<button
-  (click)="getAllUsers()"
-  class="border-2 border-black rounded-xl p-3"
-  label="Users"
->
+<button class="border-2 border-black rounded-xl p-3" label="Users">
   Show Users
 </button>
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Company</th>
-    <th>Firstname</th>
-    <th>Lastname</th>
-    <th>Username</th>
-    <th>Email</th>
-    <th>Phone</th>
-  </tr>
-
-  <ng-container *ngFor="let user of users">
+<div class="flex justify-start mt-10 overflow-x-auto">
+  <table
+    class="min-w-full p-6 left-0 table-layout: fixed; border-separate text-center"
+  >
     <tr>
-      <td>
-        {{ user.id }}
-      </td>
-      <td>
-        {{ user.company }}
-      </td>
-      <td>
-        {{ user.firstName }}
-      </td>
-      <td>
-        {{ user.lastName }}
-      </td>
-      <td>
-        {{ user.login }}
-      </td>
-      <td>
-        {{ user.email }}
-      </td>
-      <td>
-        {{ user.phone }}
-      </td>
+      <th>ID</th>
+      <th>Company</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
 
-      <img
-        (click)="(user.id)"
-        class="delete-icon"
-        src="../assets/images/delete-icon.svg"
-      />
+      <th>Email</th>
+      <th>Admin</th>
     </tr>
-  </ng-container>
-</table>
+    <ng-container *ngFor="let user of users">
+      <tr>
+        <td>
+          {{ user._id }}
+        </td>
+        <td>
+          {{ user.company }}
+        </td>
+        <td>
+          {{ user.firstName }}
+        </td>
+        <td>
+          {{ user.lastName }}
+        </td>
+
+        <td>
+          {{ user.email }}
+        </td>
+        <td>
+          {{ user.isAdmin }}
+        </td>
+
+        <i
+          class="text-red-500 m-auto cursor-pointer pi pi-delete-left text-xl"
+        ></i>
+      </tr>
+    </ng-container>
+  </table>
+</div>
