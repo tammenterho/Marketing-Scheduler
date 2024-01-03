@@ -41,6 +41,8 @@ export class CampaignsComponent implements OnInit {
     this.isAdmin = storedIsAdmin ? JSON.parse(storedIsAdmin) : false;
   }
 
+  // SEARCH INPUT
+
   filterResults(text: string) {
     if (!text) {
       this.filteredCampaigns = this.campaigns;
@@ -52,6 +54,8 @@ export class CampaignsComponent implements OnInit {
     );
     this.campaignsSize = this.filteredCampaigns.length;
   }
+
+  // GET ALL
 
   getAllCampaigns() {
     const userId = localStorage.getItem('user_id') || '';
@@ -69,6 +73,8 @@ export class CampaignsComponent implements OnInit {
     });
   }
 
+  // ALL CAMPAIGNS BUTTON
+
   getAllButton() {
     this.pastBtnColor = 'bg-gray-500';
     this.allBtnColor = 'bg-green-500';
@@ -80,6 +86,8 @@ export class CampaignsComponent implements OnInit {
 
     this.emptyCampaigns = 'No campaigns';
   }
+
+  // FILTER PAST
 
   getPastCampaigns() {
     console.log('past clicked');
@@ -96,6 +104,8 @@ export class CampaignsComponent implements OnInit {
     this.campaignsSize = this.filteredCampaigns.length;
     this.emptyCampaigns = 'There have not been any campaigns';
   }
+
+  // FILTER CURRENT
 
   getCurrentCampaigns() {
     console.log('current clicked');
@@ -119,6 +129,9 @@ export class CampaignsComponent implements OnInit {
     this.campaignsSize = this.filteredCampaigns.length;
     this.emptyCampaigns = 'Theres no campaigns running at the moment';
   }
+
+  // FILTER UPCOMING
+
   getUpcomingCampaigns() {
     console.log('upcoming clicked');
 
@@ -160,6 +173,8 @@ export class CampaignsComponent implements OnInit {
     });
   }
 
+  // CHANGE STATUS
+
   toggleStatus(campaignId: string) {
     const clickedCampaign = this.campaigns.find(
       (campaign) => campaign._id === campaignId
@@ -181,6 +196,8 @@ export class CampaignsComponent implements OnInit {
       });
     }
   }
+
+  // OPEN CAMPAIGN DIALOG
 
   openDialog(clickedCampaignId: string): void {
     // Hae kampanja id:n perusteella
