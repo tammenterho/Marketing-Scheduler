@@ -32,7 +32,7 @@ export default class LoginComponent {
   }
 
   login() {
-    //console.log(this.loginForm.value);
+    console.log(this.loginForm.value);
 
     this.authService.loginService(this.loginForm.value).subscribe({
       next: (res) => {

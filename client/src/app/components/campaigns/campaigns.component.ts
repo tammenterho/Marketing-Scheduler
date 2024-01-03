@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  inject,
-} from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -65,7 +60,7 @@ export class CampaignsComponent implements OnInit {
         this.campaigns = res.data;
         this.filteredCampaigns = this.campaigns;
         this.campaignsSize = this.filteredCampaigns.length;
-        console.log('KAMPANJAT' + JSON.stringify(this.campaigns));
+        // console.log('KAMPANJAT' + JSON.stringify(this.campaigns));
       },
       error: (err) => {
         console.log(err);

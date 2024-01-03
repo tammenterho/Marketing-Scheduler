@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-users',
@@ -9,29 +10,29 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent implements OnInit {
+  userService = inject(UserService); // kun injektoi niin ei tarvitse contstructoria
+  users: any[] = [];
+  usersSize: number = 0;
+
   ngOnInit(): void {}
 
-  /*
   getAllUsers() {
-    this.userService.getUsers().subscribe(
-      (data: User[]) => {
-        this.users = data;
-        console.log('käyttäjät' + JSON.stringify(this.users));
+    console.log('haetaan kaikki userit');
+
+    const userId = localStorage.getItem('user_id') || '';
+
+    this.userService.getCampaignsService(userId).subscribe({
+      next: (res: any) => {
+        this.users = res.data;
+
+        this.usersSize = this.users.length;
+        console.log('USERIT' + JSON.stringify(this.users));
       },
-      (error) => {
-        console.error('error fetching users', error);
-      }
-    );
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
-  showUsers() {
-    if (this.color == 'danger') {
-      this.color = 'success';
-      this.getAllUsers();
-    } else {
-      this.color = 'danger';
-    }
-  }
-
-  */
+  showUsers() {}
 }

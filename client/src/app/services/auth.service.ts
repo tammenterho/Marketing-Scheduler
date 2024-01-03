@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { apiUrls } from '../api.urls';
 import { BehaviorSubject } from 'rxjs';
 
@@ -18,7 +18,9 @@ export class AuthService {
   }
 
   loginService(loginObj: any) {
-    return this.http.post<any>(`${apiUrls.authServiceApi}login`, loginObj);
+    return this.http.post<any>(`${apiUrls.authServiceApi}login`, loginObj, {
+      withCredentials: true,
+    });
   }
 
   sendEmailService(email: string) {
@@ -26,6 +28,7 @@ export class AuthService {
       email: email,
     });
   }
+
   resetPasswordService(resetObj: any) {
     return this.http.post<any>(
       `${apiUrls.authServiceApi}reset-password`,

@@ -4,6 +4,8 @@ import { CreateSuccess } from "../utils/success.js";
 
 export const getAllUsers = async (req, res, next) => {
   try {
+    console.log("päästiin serveriin hakemaan usereita");
+
     const users = await User.find();
     return next(CreateSuccess(200, "All Users", users));
   } catch (error) {

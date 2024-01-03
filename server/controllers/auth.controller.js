@@ -53,7 +53,7 @@ export const login = async (req, res, next) => {
       },
       process.env.JWT_SECRET
     );
-    res;
+    // res;
     res.cookie("access_token", token, { httpOnly: true }).status(200).json({
       status: 200,
       message: "Login success",

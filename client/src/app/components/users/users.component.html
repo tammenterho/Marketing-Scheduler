@@ -1,4 +1,10 @@
-<button class="p-button-success btn" label="Users">Show Users</button>
+<button
+  (click)="getAllUsers()"
+  class="border-2 border-black rounded-xl p-3"
+  label="Users"
+>
+  Show Users
+</button>
 <table>
   <tr>
     <th>ID</th>
@@ -9,9 +15,9 @@
     <th>Email</th>
     <th>Phone</th>
   </tr>
-  <!--
+
   <ng-container *ngFor="let user of users">
-    <tr *ngIf="user.firstName !== 'admin'">
+    <tr>
       <td>
         {{ user.id }}
       </td>
@@ -40,6 +46,5 @@
         src="../assets/images/delete-icon.svg"
       />
     </tr>
-</ng-container>
-    -->
+  </ng-container>
 </table>

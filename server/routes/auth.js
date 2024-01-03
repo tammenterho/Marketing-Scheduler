@@ -6,6 +6,7 @@ import {
   resetPassword,
   sendEmail,
 } from "../controllers/auth.controller.js";
+import { verifyAdmin } from "../utils/verifyToken.js";
 
 const router = express.Router(); // router has all crud get put post delete methods
 
