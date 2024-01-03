@@ -9,12 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent implements OnInit {
-  isAdmin: boolean = false;
-
-  ngOnInit(): void {
-    const storedIsAdmin = localStorage.getItem('isAdmin');
-    this.isAdmin = storedIsAdmin ? JSON.parse(storedIsAdmin) : false;
-  }
+  ngOnInit(): void {}
 
   /*
   getAllUsers() {

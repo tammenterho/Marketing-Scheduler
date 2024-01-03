@@ -41,6 +41,17 @@ export class CampaignsComponent implements OnInit {
     this.isAdmin = storedIsAdmin ? JSON.parse(storedIsAdmin) : false;
   }
 
+  filterResults(text: string) {
+    if (!text) {
+      this.filteredCampaigns = this.campaigns;
+      return;
+    }
+
+    this.filteredCampaigns = this.campaigns.filter((campaign) =>
+      campaign?.name.toLowerCase().includes(text.toLowerCase())
+    );
+  }
+
   getAllCampaigns() {
     const userId = localStorage.getItem('user_id') || '';
 

@@ -60,9 +60,12 @@
         type="text"
         placeholder="Search Campaign"
         class="w-64 p-2 pl-9 rounded rounded-r-none text-gray-600"
+        #filter
       />
       <button
+        type="button"
         class="bg-slate-400 p-2 rounded-r text-white outline-none outline-0"
+        (click)="filterResults(filter.value)"
       >
         Search
       </button>
