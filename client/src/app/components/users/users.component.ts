@@ -20,7 +20,7 @@ export class UsersComponent implements OnInit {
   }
 
   getAllUsers() {
-    console.log('haetaan kaikki userit');
+    // console.log('haetaan kaikki userit');
 
     const userId = localStorage.getItem('user_id') || '';
 
@@ -29,7 +29,7 @@ export class UsersComponent implements OnInit {
         this.users = res.data;
 
         this.usersSize = this.users.length;
-        console.log('USERIT' + JSON.stringify(this.users));
+        // console.log('USERIT' + JSON.stringify(this.users));
       },
       error: (err) => {
         console.log(err);

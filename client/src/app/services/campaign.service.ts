@@ -9,7 +9,7 @@ export class CampaignService {
   http = inject(HttpClient);
 
   getCampaignsService(userId: string) {
-    console.log('loginobj:  ' + userId);
+    // console.log('loginobj:  ' + userId);
     return this.http.get<any>(
       `${apiUrls.campaignServiceApi}campaigns/${userId}`
     );

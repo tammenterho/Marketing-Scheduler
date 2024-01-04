@@ -1,6 +1,6 @@
 import { Component, OnInit, inject, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, Validators } from '@angular/forms';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { NgForm } from '@angular/forms';
 
@@ -13,6 +13,10 @@ import { NgForm } from '@angular/forms';
 })
 export class CreateCampaignComponent implements OnInit {
   campaignService = inject(CampaignService); // kun injektoi niin ei tarvitse contstructoria
+  fb = inject(FormBuilder);
+  formSimple: boolean = true;
+  simpleColor: string = 'bg-green-600';
+  advancedColor: string = 'bg-gray-500';
 
   @ViewChild('campaignForm') campaignForm!: NgForm; //uusi
 
@@ -79,5 +83,17 @@ export class CreateCampaignComponent implements OnInit {
         this.campaignForm.resetForm();
       },
     });
+  }
+
+  toggleSimple() {
+    this.simpleColor = 'bg-green-600';
+    this.advancedColor = 'bg-gray-500';
+    this.formSimple = true;
+  }
+
+  toggleAdvanced() {
+    this.advancedColor = 'bg-green-600';
+    this.simpleColor = 'bg-gray-500';
+    this.formSimple = false;
   }
 }

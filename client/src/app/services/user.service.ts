@@ -9,7 +9,7 @@ export class UserService {
   http = inject(HttpClient);
 
   getCampaignsService(userId: string) {
-    console.log('getting users');
+    // console.log('getting users');
     return this.http.get<any>(`${apiUrls.usersServiceApi}`, {
       withCredentials: true,
     });
