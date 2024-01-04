@@ -2,14 +2,23 @@
 
 ### Currently
 
-This project currently features registration, login, and password reset functionalities.
+- **Login**: Login as user.
+- **Register**: Register as user.
+- **Forgot Password**: Reset your forgotten password.
+- **Campaign List**: Explore a list of campaigns.
+- **Create Campaign**: Create a new campaign.
+- **Delete Campaign**: Admins can delete campaigns allways, users only if they are undone.
+- **Filter Campaigns**: Filter campaigns by the date (past, current, upcoming).
+- **Search Campaigns**: Filter campaigns by the name.
+- **Campaign Status**: Admins have the ability to change campaigns status if it's done. Others have only view access to status.
+- **Userlist**: Admins can view all the users.
+- **Campaign Dialog**: View the whole campaign data when clicking the campaign.
+
+For an visual example implementation, refer to the MMfront repository.
 
 ### Coming Soon
 
-- **Campaign List**: Explore a list of campaigns.
-- **Create Campaign**: Have the ability to create a new campaign.
-
-For an example implementation, refer to the MMfront repository.
+- **Delete User**: Admins can delete users.
 
 ## Installation
 
