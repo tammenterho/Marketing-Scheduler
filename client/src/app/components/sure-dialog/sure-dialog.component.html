@@ -1,0 +1,17 @@
+<div class="bg-white">
+  <h2 mat-dialog-title>Install Angular</h2>
+  <mat-dialog-content class="mat-typography">
+    <p class="text-black">Delete campaign</p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close class="m-6">no</button>
+    <button
+      mat-button
+      [mat-dialog-close]="true"
+      cdkFocusInitial
+      class="text-red-700"
+    >
+      yes
+    </button>
+  </mat-dialog-actions>
+</div>

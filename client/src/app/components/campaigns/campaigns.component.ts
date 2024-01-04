@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import { SureDialogComponent } from '../sure-dialog/sure-dialog.component';
 
 @Component({
   selector: 'app-campaigns',
@@ -31,6 +32,7 @@ export class CampaignsComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
+    // initFlowbite();
     this.getAllCampaigns();
     const storedIsAdmin = localStorage.getItem('isAdmin');
     this.isAdmin = storedIsAdmin ? JSON.parse(storedIsAdmin) : false;
@@ -212,5 +214,19 @@ export class CampaignsComponent implements OnInit {
         //console.log('Dialog suljettu', result);
       });
     }
+  }
+
+  // ARE YOU SURE DELETE
+
+  sureDialog(campaignId: string) {
+    const dialogRef = this.dialog.open(SureDialogComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+
+      if (result) {
+        this.deleteCampaign(campaignId);
+      }
+    });
   }
 }
