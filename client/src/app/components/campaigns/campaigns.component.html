@@ -76,7 +76,7 @@
 
   <div class="flex justify-start mt-10 overflow-x-auto">
     <table
-      class="min-w-full p-6 left-0 table-layout: fixed; border-separate text-center"
+      class="min-w-full p-6 left-0 table-layout: fixed; border-separate border-spacing-x-3 text-center"
     >
       <thead>
         <tr>
@@ -101,7 +101,7 @@
             {{ campaign.name }}
           </td>
           <td (click)="campaign._id && openDialog(campaign._id)">
-            {{ campaign.adstart | date : "dd.MM.yyyy" }} -
+            {{ campaign.adstart | date : "dd.MM.yyyy" }}
           </td>
           <td (click)="campaign._id && openDialog(campaign._id)">
             {{ campaign.adend | date : "dd.MM.yyyy" }}
@@ -115,7 +115,7 @@
               (click)="isAdmin && campaign._id && toggleStatus(campaign._id)"
               class="pi {{
                 campaign.adstatus === 'Y' ? 'pi-check-circle' : 'pi-circle'
-              }}"
+              }} mx-2"
               style="color: {{
                 campaign.adstatus === 'Y' ? 'green' : 'red'
               }}; font-size: 1.5rem;"
@@ -127,7 +127,7 @@
             >
               <i
                 (click)="campaign._id && deleteCampaign(campaign._id)"
-                class="text-red-500 m-auto cursor-pointer pi pi-delete-left text-xl"
+                class="text-red-500 m-auto cursor-pointer pi pi-delete-left text-xl mx-4"
               ></i>
             </ng-container>
           </td>

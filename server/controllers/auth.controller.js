@@ -66,22 +66,26 @@ export const login = async (req, res, next) => {
 };
 
 export const registerAdmin = async (req, res, next) => {
-  const role = await Role.find({});
-  const salt = await bcrypt.genSalt(10); // Only 3 lines and password is crypted
-  const hashPassword = await bcrypt.hash(req.body.password, salt); // Only 3 lines and password is crypted
-  const newUser = new User({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    company: req.body.company,
-    email: req.body.email,
-    password: hashPassword, // Only 3 lines and password is crypted
-    isAdmin: true,
-    roles: role,
-  });
+  try {
+    const role = await Role.find({});
+    const salt = await bcrypt.genSalt(10); // Only 3 lines and password is crypted
+    const hashPassword = await bcrypt.hash(req.body.password, salt); // Only 3 lines and password is crypted
+    const newUser = new User({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      company: req.body.company,
+      email: req.body.email,
+      password: hashPassword, // Only 3 lines and password is crypted
+      isAdmin: true,
+      roles: role,
+    });
 
-  await newUser.save();
-  console.log("Registered!");
-  return next(CreateSuccess(200, "User Registered"));
+    await newUser.save();
+    console.log("Registered!");
+    return next(CreateSuccess(200, "User Registered"));
+  } catch (error) {
+    return next(CreateError(500, "duplicate"));
+  }
 };
 
 export const sendEmail = async (req, res, next) => {
@@ -124,7 +128,7 @@ export const sendEmail = async (req, res, next) => {
     </head>
     <body>
     <h1>Password Reset Request</h1>
-    <p>Dear ${user.userName},</p>
+    <p>Dear ${user.company},</p>
     <p>We have received a request to reset your password for your account in Marketing Scheduler. To complete the password reset process, please click on the button below: </p>
     <a href=${process.env.LIVE_URL}/reset/${token}><button style="background-color: #4CAF50; color: white; padding: 14px 20px; border: none; cursor: pointer; border-radius: 4px; "> Reset Password</button></a>
     <p>Please note that this link is only valid for 5mins. If you did not request a password reset, please disregard this message and contact terho.mikko@gmail.com</p>
