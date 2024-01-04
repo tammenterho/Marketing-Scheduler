@@ -13,6 +13,7 @@ export class UsersComponent implements OnInit {
   userService = inject(UserService); // kun injektoi niin ei tarvitse contstructoria
   users: any[] = [];
   usersSize: number = 0;
+  btnStatus: string = 'Hide';
 
   ngOnInit(): void {
     this.getAllUsers();
@@ -36,5 +37,11 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  showUsers() {}
+  toggleUsers() {
+    if (this.btnStatus === 'Hide') {
+      this.btnStatus = 'Show';
+    } else {
+      this.btnStatus = 'Hide';
+    }
+  }
 }
