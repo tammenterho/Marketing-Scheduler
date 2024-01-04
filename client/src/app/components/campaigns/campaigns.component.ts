@@ -21,7 +21,7 @@ export class CampaignsComponent implements OnInit {
   upcomingCampaigns: any[] = [];
   filteredCampaigns: any[] = [];
   campaignData!: any;
-  allBtnColor: string = 'bg-green-500';
+  allBtnColor: string = 'bg-green-600';
   pastBtnColor: string = 'bg-gray-500';
   currentBtnColor: string = 'bg-gray-500';
   upcomingBtnColor: string = 'bg-gray-500';
@@ -88,7 +88,7 @@ export class CampaignsComponent implements OnInit {
 
   getPastCampaigns() {
     console.log('past clicked');
-    this.pastBtnColor = 'bg-green-500';
+    this.pastBtnColor = 'bg-green-600';
     this.allBtnColor = 'bg-gray-500';
     this.currentBtnColor = 'bg-gray-500';
     this.upcomingBtnColor = 'bg-gray-500';
@@ -109,7 +109,7 @@ export class CampaignsComponent implements OnInit {
 
     this.pastBtnColor = 'bg-gray-500';
     this.allBtnColor = 'bg-gray-500';
-    this.currentBtnColor = 'bg-green-500';
+    this.currentBtnColor = 'bg-green-600';
     this.upcomingBtnColor = 'bg-gray-500';
 
     this.currentCampaigns = this.campaigns.filter((campaign) => {
@@ -135,7 +135,7 @@ export class CampaignsComponent implements OnInit {
     this.pastBtnColor = 'bg-gray-500';
     this.allBtnColor = 'bg-gray-500';
     this.currentBtnColor = 'bg-gray-500';
-    this.upcomingBtnColor = 'bg-green-500';
+    this.upcomingBtnColor = 'bg-green-600';
 
     this.upcomingCampaigns = this.campaigns.filter((campaign) => {
       const startDate = new Date(campaign.adstart).getTime();

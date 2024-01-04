@@ -1,13 +1,17 @@
 <div class="flex justify-center items-center">
   <button
     (click)="toggleSimple()"
-    class="border-2 text-white border-zinc-950 p-3 w-28 {{ simpleColor }}"
+    class="border-2 mr-1 text-white border-zinc-950 border-s-2 rounded-md p-3 w-28 {{
+      simpleColor
+    }}"
   >
     Simple
   </button>
   <button
     (click)="toggleAdvanced()"
-    class="border-2 border-zinc-950 text-white p-3 w-28 {{ advancedColor }}"
+    class="border-2 ml-1 border-zinc-950 text-white rounded-md  p-3 w-28 {{
+      advancedColor
+    }}"
   >
     Advanced
   </button>
@@ -78,7 +82,7 @@
         </label>
         <input
           name="budget"
-          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-black focus:bg-white focus:border-gray-500"
           id="grid-zip"
           [(ngModel)]="inputBudget"
           type="number"
@@ -213,7 +217,7 @@
         <input
           name="adtitle"
           [(ngModel)]="inputAdTitle"
-          class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+          class="appearance-none focus:outline-black block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
           id="grid-first-name"
           type="text"
           placeholder="Nyt kaikki puoleen hintaan!"
@@ -272,7 +276,7 @@
         <input
           name="adtitle"
           [(ngModel)]="inputUrl"
-          class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
+          class="appearance-none focus:outline-black block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
           id="grid-first-name"
           type="text"
           placeholder="Nyt kaikki puoleen hintaan!"
@@ -322,7 +326,7 @@
       </div>
     </div>
     <div class="max-w-2xl mx-auto mb-20">
-      <button class="bg-lime-600 p-2 rounded mt-3 text-white">
+      <button class="bg-green-600 p-2 rounded mt-3 text-white">
         Save Campaign
       </button>
     </div>
