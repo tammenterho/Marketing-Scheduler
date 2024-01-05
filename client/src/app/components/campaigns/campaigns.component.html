@@ -1,5 +1,5 @@
 <div
-  class="min-h-full border-2 rounded-lg border-black mb-10 ml-2 mr-0 lg:mx-32"
+  class="min-h-full border-2 rounded-lg border-orange-700 mb-10 ml-2 mr-0 lg:mx-32"
 >
   <!-- BUTTONS AND SEARCH -->
 
@@ -92,7 +92,7 @@
       <tbody>
         <tr
           *ngFor="let campaign of filteredCampaigns"
-          class="even:bg-gray-200 odd:bg-white h-20 align-middle cursor-pointer transition ease-in-out hover:scale-105"
+          class="even:bg-blue-100 odd:bg-white h-20 align-middle cursor-pointer transition ease-in-out hover:scale-105"
         >
           <td (click)="campaign._id && openDialog(campaign._id)">
             {{ campaign.company }}
