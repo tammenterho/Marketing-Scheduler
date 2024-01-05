@@ -92,7 +92,7 @@
       <tbody>
         <tr
           *ngFor="let campaign of filteredCampaigns"
-          class="even:bg-blue-100 odd:bg-white h-20 align-middle cursor-pointer transition ease-in-out hover:scale-105"
+          class="even:bg-blue-100 odd:bg-white h-20 align-middle cursor-pointer"
         >
           <td (click)="campaign._id && openDialog(campaign._id)">
             {{ campaign.company }}

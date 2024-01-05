@@ -54,11 +54,14 @@ export const login = async (req, res, next) => {
       process.env.JWT_SECRET
     );
     // res;
-    res.cookie("access_token", token, { httpOnly: true }).status(200).json({
-      status: 200,
-      message: "Login success",
-      data: user,
-    });
+    res.cookie("access_token", token, { httpOnly: true }).status(200).json(
+      {
+        status: 200,
+        message: "Login success",
+        data: user,
+      },
+      { sameSite: "none", secure: true } // tämä on lisätty niin token menee oikein
+    );
     // return next(CreateSuccess(200, "Login succesful!"));
   } catch (error) {
     return res.status(500).send("Something went wrong!");
