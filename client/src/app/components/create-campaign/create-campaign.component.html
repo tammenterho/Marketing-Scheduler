@@ -1,7 +1,7 @@
 <div class="flex justify-center items-center">
   <button
     (click)="toggleSimple()"
-    class="border-2 mr-1 text-white border-zinc-950 border-s-2 rounded-md p-3 w-28 {{
+    class="border-2 mr-1 text-white drop-shadow-md transition ease-in-out hover:scale-110 border-s-2 rounded-md p-3 w-28 {{
       simpleColor
     }}"
   >
@@ -9,7 +9,7 @@
   </button>
   <button
     (click)="toggleAdvanced()"
-    class="border-2 ml-1 border-zinc-950 text-white rounded-md  p-3 w-28 {{
+    class="border-2 ml-1 drop-shadow-md transition ease-in-out hover:scale-110 text-white rounded-md  p-3 w-28 {{
       advancedColor
     }}"
   >
@@ -326,7 +326,9 @@
       </div>
     </div>
     <div class="max-w-2xl mx-auto mb-20">
-      <button class="bg-green-600 p-2 rounded mt-3 text-white">
+      <button
+        class="bg-green-600 p-2 rounded mt-3 text-white transition ease-in-out hover:scale-110"
+      >
         Save Campaign
       </button>
     </div>

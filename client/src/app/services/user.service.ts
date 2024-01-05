@@ -8,6 +8,7 @@ import { apiUrls } from '../api.urls';
 export class UserService {
   http = inject(HttpClient);
 
+  // With credentials pakko laittaa mukaan. Tällöin voi tehdä serverissä verifyAdmin tai verifyUser
   getCampaignsService(userId: string) {
     // console.log('getting users');
     return this.http.get<any>(`${apiUrls.usersServiceApi}`, {
