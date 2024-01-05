@@ -20,7 +20,7 @@ router.post("/login", login);
 
 // register as Admin
 
-router.post("/register-admin", registerAdmin);
+// router.post("/register-admin", registerAdmin);
 
 // send reset email
 
