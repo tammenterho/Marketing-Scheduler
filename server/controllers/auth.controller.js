@@ -60,7 +60,7 @@ export const login = async (req, res, next) => {
         message: "Login success",
         data: user,
       },
-      { sameSite: "none", secure: true } // tämä on lisätty niin token menee oikein
+      { sameSite: "lax" } // tämä on lisätty niin token menee oikein
     );
     // return next(CreateSuccess(200, "Login succesful!"));
   } catch (error) {
