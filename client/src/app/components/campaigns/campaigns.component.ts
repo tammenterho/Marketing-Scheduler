@@ -4,15 +4,17 @@ import { CampaignService } from 'src/app/services/campaign.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { SureDialogComponent } from '../sure-dialog/sure-dialog.component';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-campaigns',
   standalone: true,
-  imports: [CommonModule, MatDialogModule],
+  imports: [CommonModule, MatDialogModule, ReactiveFormsModule],
   templateUrl: './campaigns.component.html',
   styleUrls: ['./campaigns.component.css'],
 })
 export class CampaignsComponent implements OnInit {
+  searchForm!: FormGroup;
   campaignService = inject(CampaignService); // kun injektoi niin ei tarvitse contstructoria
   campaigns: any[] = [];
   currentDate = Date.now();
