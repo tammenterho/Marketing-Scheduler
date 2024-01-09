@@ -57,6 +57,7 @@
     <form [formGroup]="searchForm" class="flex w-4/5 m-auto justify-center">
       <i class="mt-3 fa fa-search font-light" aria-hidden="true"></i>
       <input
+        formControlName="filter"
         type="text"
         placeholder="Search Campaign by name"
         class="w-64 p-2 pl-9 rounded rounded-r-none text-gray-600"
