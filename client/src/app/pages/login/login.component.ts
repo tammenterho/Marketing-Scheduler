@@ -40,12 +40,12 @@ export default class LoginComponent {
 
   login() {
     this.loading = true;
-    console.log(this.loginForm.value);
+    // console.log(this.loginForm.value);
 
     this.authService.loginService(this.loginForm.value).subscribe({
       next: (res) => {
         alert('Login is succesfull!');
-        console.log('id' + res.data._id);
+        // console.log('id' + res.data._id);
 
         localStorage.setItem('user_id', res.data._id);
         localStorage.setItem('company', res.data.company);

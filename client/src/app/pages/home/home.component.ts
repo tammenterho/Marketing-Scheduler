@@ -35,7 +35,7 @@ export default class HomeComponent implements OnInit {
 
   showCreate() {
     this.showAddCampaign = !this.showAddCampaign;
-    console.log('nappi ' + this.showAddCampaign);
+    // console.log('nappi ' + this.showAddCampaign);
 
     if (this.color === 'bg-green-600' && this.text === 'Show') {
       this.color = 'bg-red-600';

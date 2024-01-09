@@ -87,7 +87,7 @@ export class CampaignsComponent implements OnInit {
   // FILTER PAST
 
   getPastCampaigns() {
-    console.log('past clicked');
+    // console.log('past clicked');
     this.pastBtnColor = 'bg-green-600';
     this.allBtnColor = 'bg-gray-500';
     this.currentBtnColor = 'bg-gray-500';
@@ -96,7 +96,7 @@ export class CampaignsComponent implements OnInit {
     this.pastCampaigns = this.campaigns.filter(
       (campaign) => new Date(campaign.adend).getTime() < this.currentDate
     );
-    console.log(this.pastCampaigns);
+    // console.log(this.pastCampaigns);
     this.filteredCampaigns = this.pastCampaigns;
     this.campaignsSize = this.filteredCampaigns.length;
     this.emptyCampaigns = 'There have not been any campaigns';
@@ -105,7 +105,7 @@ export class CampaignsComponent implements OnInit {
   // FILTER CURRENT
 
   getCurrentCampaigns() {
-    console.log('current clicked');
+    // console.log('current clicked');
 
     this.pastBtnColor = 'bg-gray-500';
     this.allBtnColor = 'bg-gray-500';
@@ -121,7 +121,7 @@ export class CampaignsComponent implements OnInit {
       return startDate < now && now < endDate;
     });
 
-    console.log(this.currentCampaigns);
+    // console.log(this.currentCampaigns);
     this.filteredCampaigns = this.currentCampaigns;
     this.campaignsSize = this.filteredCampaigns.length;
     this.emptyCampaigns = 'Theres no campaigns running at the moment';
@@ -130,7 +130,7 @@ export class CampaignsComponent implements OnInit {
   // FILTER UPCOMING
 
   getUpcomingCampaigns() {
-    console.log('upcoming clicked');
+    // console.log('upcoming clicked');
 
     this.pastBtnColor = 'bg-gray-500';
     this.allBtnColor = 'bg-gray-500';
@@ -146,7 +146,7 @@ export class CampaignsComponent implements OnInit {
       return now < startDate;
     });
 
-    console.log(this.currentCampaigns);
+    // console.log(this.currentCampaigns);
     this.filteredCampaigns = this.upcomingCampaigns;
     this.campaignsSize = this.filteredCampaigns.length;
     this.emptyCampaigns = 'Theres no upcoming campaigns';
@@ -155,7 +155,7 @@ export class CampaignsComponent implements OnInit {
   // DELETE BY ID
 
   deleteCampaign(campaignId: string) {
-    console.log('Campaign id ' + campaignId);
+    // console.log('Campaign id ' + campaignId);
 
     this.campaignService.deleteCampaignService(campaignId).subscribe({
       next: (res: any) => {
@@ -177,7 +177,7 @@ export class CampaignsComponent implements OnInit {
       (campaign) => campaign._id === campaignId
     );
 
-    console.log('löydetty kampanja ' + JSON.stringify(clickedCampaign));
+    // console.log('löydetty kampanja ' + JSON.stringify(clickedCampaign));
 
     if (clickedCampaign) {
       // Käännä status
@@ -208,7 +208,7 @@ export class CampaignsComponent implements OnInit {
         data: clickedCampaign,
       });
       this.campaignData = clickedCampaign;
-      console.log(this.campaignData);
+      //console.log(this.campaignData);
 
       dialogRef.afterClosed().subscribe((result) => {
         //console.log('Dialog suljettu', result);
@@ -222,7 +222,7 @@ export class CampaignsComponent implements OnInit {
     const dialogRef = this.dialog.open(SureDialogComponent);
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
+      //console.log(`Dialog result: ${result}`);
 
       if (result) {
         this.deleteCampaign(campaignId);

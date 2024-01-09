@@ -16,7 +16,7 @@ export class CampaignService {
   }
 
   postCampaignService(newCampaign: any) {
-    console.log('newcampaign servicessä: ' + JSON.stringify(newCampaign));
+    // console.log('newcampaign servicessä: ' + JSON.stringify(newCampaign));
 
     return this.http.post<any>(
       `${apiUrls.campaignServiceApi}campaigns`,
@@ -27,7 +27,7 @@ export class CampaignService {
   // DELETE CAMPAIGN BY ID
 
   deleteCampaignService(campaignId: string) {
-    console.log('DELETING' + campaignId);
+    // console.log('DELETING' + campaignId);
 
     return this.http.delete<any>(
       `${apiUrls.campaignServiceApi}campaigns/${campaignId}`
@@ -37,7 +37,7 @@ export class CampaignService {
   // UPDATE CAMPAIGN
 
   updateCampaign(clickedCampaign: any) {
-    console.log('UPDATING ' + JSON.stringify(clickedCampaign));
+    // console.log('UPDATING ' + JSON.stringify(clickedCampaign));
     const campaignId = clickedCampaign._id;
 
     return this.http.put<any>(

@@ -43,7 +43,7 @@ export class CreateCampaignComponent implements OnInit {
 
   addCampaign() {
     this.loading = true;
-    console.log('add klikattu');
+    // console.log('add klikattu');
 
     const newCampaign = {
       creator:
@@ -71,13 +71,13 @@ export class CreateCampaignComponent implements OnInit {
         localStorage.getItem('lastname'),
     };
 
-    console.log('uusi kampanja' + JSON.stringify(newCampaign));
+    // console.log('uusi kampanja' + JSON.stringify(newCampaign));
 
     this.campaignService.postCampaignService(newCampaign).subscribe({
       next: (res: any) => {
         res.data;
 
-        console.log('lähetetään kampanja');
+        // console.log('lähetetään kampanja');
       },
       error: (err) => {
         console.log(err);
