@@ -41,10 +41,15 @@
     <button
       [disabled]="loginForm.invalid"
       [class.disabled]="loginForm.invalid"
-      class="bg-lime-600 w-20 p-2 rounded mt-3 text-white"
+      class="bg-lime-600 w-20 p-2 rounded mt-3 text-white flex items-center justify-center"
       (click)="login()"
     >
-      Login
+      <mat-spinner
+        *ngIf="loading"
+        class="h-4 m-auto"
+        color="primary"
+      ></mat-spinner>
+      <span *ngIf="!loading">Login</span>
     </button>
   </form>
   <div class="flex justify-between mt-5 w-2/3 xs:w-1/3">

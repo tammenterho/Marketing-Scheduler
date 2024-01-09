@@ -8,11 +8,17 @@ import {
 } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router, RouterModule } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule,
+    MatProgressSpinnerModule,
+  ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
@@ -20,6 +26,7 @@ export default class LoginComponent {
   fb = inject(FormBuilder);
   authService = inject(AuthService);
   router = inject(Router);
+  loading: boolean = false;
 
   loginForm!: FormGroup;
 
@@ -32,6 +39,7 @@ export default class LoginComponent {
   }
 
   login() {
+    this.loading = true;
     console.log(this.loginForm.value);
 
     this.authService.loginService(this.loginForm.value).subscribe({
@@ -50,6 +58,7 @@ export default class LoginComponent {
 
         this.router.navigate(['/home']);
         this.loginForm.reset();
+        this.loading = false;
       },
       error: (err) => {
         console.log(err);
