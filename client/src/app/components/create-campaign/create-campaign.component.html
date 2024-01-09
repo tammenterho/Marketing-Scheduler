@@ -332,9 +332,14 @@
     </div>
     <div class="max-w-2xl mx-auto mb-20">
       <button
-        class="bg-green-600 p-2 rounded mt-3 text-white transition ease-in-out hover:scale-110"
+        class="bg-green-600 p-2 rounded mt-3 text-white transition ease-in-out hover:scale-110 flex items-center justify-center"
       >
-        Save Campaign
+        <span *ngIf="!loading">Save Campaign</span>
+        <mat-spinner
+          *ngIf="loading"
+          class="h-4 m-auto"
+          color="primary"
+        ></mat-spinner>
       </button>
     </div>
   </form>

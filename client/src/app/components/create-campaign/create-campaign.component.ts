@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormsModule, Validators } from '@angular/forms';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { NgForm } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-create-campaign',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatProgressSpinnerModule],
   templateUrl: './create-campaign.component.html',
   styleUrls: ['./create-campaign.component.css'],
 })
@@ -17,6 +18,7 @@ export class CreateCampaignComponent implements OnInit {
   formSimple: boolean = true;
   simpleColor: string = 'bg-green-600';
   advancedColor: string = 'bg-gray-500';
+  loading: boolean = false;
 
   @ViewChild('campaignForm') campaignForm!: NgForm; //uusi
 
@@ -40,6 +42,7 @@ export class CreateCampaignComponent implements OnInit {
   ngOnInit(): void {}
 
   addCampaign() {
+    this.loading = true;
     console.log('add klikattu');
 
     const newCampaign = {
@@ -81,6 +84,7 @@ export class CreateCampaignComponent implements OnInit {
       },
       complete: () => {
         this.campaignForm.resetForm();
+        this.loading = false;
       },
     });
   }
