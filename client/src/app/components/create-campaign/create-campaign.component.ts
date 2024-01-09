@@ -81,6 +81,7 @@ export class CreateCampaignComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
+        this.loading = false;
       },
       complete: () => {
         this.campaignForm.resetForm();
