@@ -12,7 +12,7 @@ const router = express.Router(); // router has all crud get put post delete meth
 
 // register
 
-router.post("/register", register);
+// router.post("/register", register);
 
 // login
 

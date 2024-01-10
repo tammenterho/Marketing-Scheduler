@@ -15,9 +15,14 @@ dotenv.config(); // error -> throw new MongooseError('The `uri` parameter to `op
 // middleware
 app.use(express.json()); // can use json format in body
 app.use(cookieParser());
-// app.use(cors({ origin: "http://localhost:4200", credentials: true }));
+/* app.use(cors({ origin: "http://localhost:4200", credentials: true })); */
+/*app.use(
+  cors({ origin: "https://marketing-scheduler.vercel.app", credentials: true }) */
 app.use(
-  cors({ origin: "https://marketing-scheduler.vercel.app", credentials: true })
+  cors({
+    origin: "https://www.marketing-scheduler.com",
+    credentials: true,
+  })
 );
 app.use("/api/role", roleRoute);
 app.use("/api/auth", authRoute);
