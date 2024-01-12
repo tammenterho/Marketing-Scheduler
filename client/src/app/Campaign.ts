@@ -2,6 +2,7 @@ export interface Campaign {
   creator?: string;
   company: string;
   id?: number;
+  _id?: string;
   owner: number;
   name: string;
   adtitle: string;
@@ -13,6 +14,7 @@ export interface Campaign {
   adend: Date;
   mediainfo: string;
   adurl: string;
+  adcta: string;
   adother: string;
   adstatus: string;
   adcontact: string;

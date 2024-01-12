@@ -97,6 +97,7 @@ export const updateCampaign = async (req, res, next) => {
     } else {
       return next(CreateError(404, "Campaign not found"));
       */
+      return next(CreateSuccess(201, "Campaign updated"));
     }
   } catch (error) {
     console.error("Error updating campaign:", error);

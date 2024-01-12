@@ -4,6 +4,7 @@ import { CampaignService } from 'src/app/services/campaign.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { SureDialogComponent } from '../sure-dialog/sure-dialog.component';
+import { Campaign } from 'src/app/Campaign';
 
 @Component({
   selector: 'app-campaigns',

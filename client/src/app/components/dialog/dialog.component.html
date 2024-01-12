@@ -1,11 +1,19 @@
 <div class="bg-white p-10 max-h-screen overflow-y-scroll">
-  <div class="creator">
-    <p class="creator-title">Campaign Creator:</p>
-    <p class="creator-name">{{ campaignData.creator }}</p>
+  <div
+    *ngIf="campaignData.adstatus === 'N'"
+    class="text-end cursor-pointer transition ease-in-out hover:text-lime-700"
+    (click)="toggleEdit()"
+  >
+    <i class="text-gray-950 pi pi-pencil mr-2"></i>
+    <span>EDIT</span>
   </div>
-  <div class="contact">
-    <p class="contact-title">Campaign Contact:</p>
-    <p class="contact-info">{{ campaignData.adcontact }}</p>
+  <div class="creator flex">
+    <p class="font-bold">Campaign Creator:</p>
+    <p class="ml-5">{{ campaignData.creator }}</p>
+  </div>
+  <div class="contact flex">
+    <p class="font-bold">Campaign Contact:</p>
+    <p class="ml-5">{{ campaignData.adcontact }}</p>
   </div>
 
   <h2>General Information</h2>
@@ -13,21 +21,62 @@
   <table class="min-w-full mb-10">
     <tr>
       <th class="text-left w-2/5 py-6">Name of the company:</th>
-      <td class="py-6">{{ campaignData.company }}</td>
+      <td *ngIf="!edit" class="py-6">{{ campaignData.company }}</td>
+      <td *ngIf="edit">
+        <input
+          [(ngModel)]="editedData.company"
+          class="border-solid border-2 rounded-md border-gray-300 p-2"
+          type="text"
+          placeholder="{{ campaignData.company }}"
+        />
+      </td>
     </tr>
     <tr class="mb-4">
       <th class="text-left w-2/5 py-6">Name of the campaign:</th>
-      <td class="py-6">{{ campaignData.name }}</td>
+      <td *ngIf="!edit" class="py-6">{{ campaignData.name }}</td>
+      <td *ngIf="edit">
+        <input
+          [(ngModel)]="editedData.name"
+          class="border-solid border-2 rounded-md border-gray-300 p-2"
+          type="text"
+          placeholder="{{ campaignData.name }}"
+        />
+      </td>
     </tr>
     <tr class="mb-4">
       <th class="text-left w-2/5 py-6">Budget:</th>
-      <td class="py-6">{{ campaignData.adbudget }} €</td>
+      <td *ngIf="!edit" class="py-6">{{ campaignData.adbudget }} €</td>
+      <td *ngIf="edit">
+        <input
+          [(ngModel)]="editedData.adbudget"
+          class="border-solid border-2 rounded-md border-gray-300 p-2"
+          type="text"
+          placeholder="{{ campaignData.adbudget }}"
+        />
+      </td>
     </tr>
     <tr class="mb-4">
       <th class="text-left w-2/5 py-6">Duration:</th>
-      <td class="py-6">
+      <td *ngIf="!edit" class="py-6">
         {{ campaignData.adstart | date : "dd.MM.yyyy" }} -
         {{ campaignData.adend | date : "dd.MM.yyyy" }}
+      </td>
+      <td *ngIf="edit">
+        <input
+          [(ngModel)]="editedData.adstart"
+          class="border-solid border-2 rounded-md border-gray-300 p-2"
+          type="text"
+          placeholder="{{ campaignData.adstart | date : 'dd.MM.yyyy' }}"
+        />
+      </td>
+
+      <td *ngIf="edit">
+        <input
+          [(ngModel)]="editedData.adend"
+          class="border-solid border-2 rounded-md border-gray-300 p-2"
+          type="text"
+          placeholder="{{ campaignData.adend | date : 'dd.MM.yyyy' }}"
+        />
       </td>
     </tr>
   </table>
@@ -37,11 +86,27 @@
   <table class="min-w-full mb-10">
     <tr>
       <th class="text-left w-2/5 py-6">Target age and gender:</th>
-      <td class="py-6">{{ campaignData.adtarget }}</td>
+      <td *ngIf="!edit" class="py-6">{{ campaignData.adtarget }}</td>
+      <td *ngIf="edit">
+        <input
+          [(ngModel)]="editedData.adtarget"
+          class="border-solid border-2 rounded-md border-gray-300 p-2 min-w-full"
+          type="text"
+          placeholder="{{ campaignData.adtarget }}"
+        />
+      </td>
     </tr>
     <tr>
       <th class="text-left w-2/5 py-6">Target area:</th>
-      <td class="py-6">{{ campaignData.adarea }}</td>
+      <td *ngIf="!edit" class="py-6">{{ campaignData.adarea }}</td>
+      <td *ngIf="edit">
+        <input
+          [(ngModel)]="editedData.adarea"
+          class="border-solid border-2 rounded-md border-gray-300 p-2 min-w-full"
+          type="text"
+          placeholder="{{ campaignData.adarea }}"
+        />
+      </td>
     </tr>
   </table>
 
@@ -50,19 +115,74 @@
   <table class="min-w-full mb-10">
     <tr>
       <th class="text-left w-2/5 py-6">Title for the campaign:</th>
-      <td class="py-6">"{{ campaignData.adtitle }}"</td>
+      <td *ngIf="!edit" class="py-6">"{{ campaignData.adtitle }}"</td>
+      <td *ngIf="edit" class="min-w-full">
+        <input
+          [(ngModel)]="editedData.adtitle"
+          rows="5"
+          class="border-solid border-2 rounded-md border-gray-300 p-2 min-w-full"
+          type="text"
+          placeholder="{{ campaignData.adtitle }}"
+        />
+      </td>
     </tr>
     <tr>
       <th class="text-left w-2/5 py-6">Copytext for the Campaign:</th>
-      <td class="py-6">"{{ campaignData.adtext }}"</td>
+      <td *ngIf="!edit" class="py-6">"{{ campaignData.adtext }}"</td>
+      <td *ngIf="edit" class="min-w-full">
+        <textarea
+          rows="10"
+          [(ngModel)]="editedData.adtext"
+          class="border-solid border-2 rounded-md border-gray-300 p-2 min-w-full"
+          type="text"
+          placeholder="{{ campaignData.adtext }}"
+        >
+        </textarea>
+      </td>
     </tr>
     <tr>
       <th class="text-left w-2/5 py-6">Media info:</th>
-      <td class="py-6">{{ campaignData.mediainfo }}</td>
+      <td *ngIf="!edit" class="py-6">{{ campaignData.mediainfo }}</td>
+      <td *ngIf="edit" class="min-w-full">
+        <input
+          [(ngModel)]="editedData.mediainfo"
+          class="border-solid border-2 rounded-md border-gray-300 p-2 min-w-full"
+          type="text"
+          placeholder="{{ campaignData.mediainfo }}"
+        />
+      </td>
     </tr>
     <tr>
-      <th class="text-left w-2/5 py-6">Url and CTA:</th>
-      <td class="py-6">{{ campaignData.adurl }}</td>
+      <th class="text-left w-2/5 py-6">Url:</th>
+      <td *ngIf="!edit" class="py-6">{{ campaignData.adurl }}</td>
+      <td *ngIf="edit">
+        <input
+          [(ngModel)]="editedData.adurl"
+          class="border-solid border-2 rounded-md border-gray-300 p-2 min-w-full"
+          type="text"
+          placeholder="{{ campaignData.adurl }}"
+        />
+      </td>
+    </tr>
+    <tr>
+      <th class="text-left w-2/5 py-6">CTA:</th>
+      <td *ngIf="!edit" class="py-6">{{ campaignData.adcta }}</td>
+      <td *ngIf="edit">
+        <input
+          [(ngModel)]="editedData.adcta"
+          class="border-solid border-2 rounded-md border-gray-300 p-2 min-w-full"
+          type="text"
+          placeholder="{{ campaignData.adcta }}"
+        />
+      </td>
     </tr>
   </table>
+  <button *ngIf="edit" (click)="cancelChanges()">Cancel</button>
+  <button
+    *ngIf="edit"
+    (click)="saveChanges()"
+    class="bg-green-600 p-2 text-white rounded mb-20 transition ease-in-out hover:scale-125 drop-shadow-md ml-4"
+  >
+    Save Changes
+  </button>
 </div>
