@@ -6,7 +6,6 @@ export const apiUrls = {
   usersServiceApi: 'http://localhost:5050/api/user/',
 };
 */
-
 // prod
 
 export const apiUrls = {
