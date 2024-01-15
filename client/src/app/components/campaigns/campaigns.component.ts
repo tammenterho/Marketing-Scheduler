@@ -1,10 +1,16 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { SureDialogComponent } from '../sure-dialog/sure-dialog.component';
 import { Campaign } from 'src/app/Campaign';
+import { CampaignListService } from 'src/app/services/campaign-list.service';
 
 @Component({
   selector: 'app-campaigns',
@@ -16,6 +22,7 @@ import { Campaign } from 'src/app/Campaign';
 export class CampaignsComponent implements OnInit {
   campaignService = inject(CampaignService); // kun injektoi niin ei tarvitse contstructoria
   campaigns: any[] = [];
+
   currentDate = Date.now();
   pastCampaigns: any[] = [];
   currentCampaigns: any[] = [];
@@ -30,13 +37,27 @@ export class CampaignsComponent implements OnInit {
   isAdmin: boolean = false;
   emptyCampaigns: string = '';
 
+  //------------------ UUDET
+  campaignList = inject(CampaignListService);
+
+  //----------------------
+
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
     // initFlowbite();
-    this.getAllCampaigns();
+    // this.getAllCampaigns(); uusi
     const storedIsAdmin = localStorage.getItem('isAdmin');
     this.isAdmin = storedIsAdmin ? JSON.parse(storedIsAdmin) : false;
+
+    // UUSI-----------------
+
+    this.campaignList.campaigns$.subscribe((campaigns) => {
+      this.campaigns = campaigns;
+      this.getAllCampaigns();
+    });
+
+    //----- UUSI
   }
 
   // SEARCH INPUT
@@ -56,6 +77,13 @@ export class CampaignsComponent implements OnInit {
   // GET ALL
 
   getAllCampaigns() {
+    // UUUSi----------
+    console.log(
+      'nämä on taas kampanjat komponenttissa' + this.campaignList.campaigns
+    );
+
+    // -------------uusi
+    /*
     const userId = localStorage.getItem('user_id') || '';
 
     this.campaignService.getCampaignsService(userId).subscribe({
@@ -69,6 +97,13 @@ export class CampaignsComponent implements OnInit {
         console.log(err);
       },
     });
+    */
+    // UUSI-----------
+
+    // this.campaigns = this.campaignList.campaigns;
+    this.filteredCampaigns = this.campaigns;
+    this.campaignsSize = this.filteredCampaigns.length;
+    //---------UUSI
   }
 
   // ALL CAMPAIGNS BUTTON
@@ -154,7 +189,7 @@ export class CampaignsComponent implements OnInit {
   }
 
   // DELETE BY ID
-
+  /*
   deleteCampaign(campaignId: string) {
     // console.log('Campaign id ' + campaignId);
 
@@ -170,6 +205,7 @@ export class CampaignsComponent implements OnInit {
       },
     });
   }
+  */
 
   // CHANGE STATUS
 
@@ -202,6 +238,7 @@ export class CampaignsComponent implements OnInit {
     const clickedCampaign = this.campaigns.find(
       (campaign) => campaign._id === clickedCampaignId
     );
+    console.log('klikattu kampanja' + clickedCampaign);
 
     if (clickedCampaign) {
       const dialogRef = this.dialog.open(DialogComponent, {
@@ -226,8 +263,20 @@ export class CampaignsComponent implements OnInit {
       //console.log(`Dialog result: ${result}`);
 
       if (result) {
-        this.deleteCampaign(campaignId);
+        this.campaignList.deleteCampaign(campaignId);
+
+        // Etsi indeksi, jossa kampanjan id on
+        const index = this.campaigns.findIndex(
+          (campaign) => campaign._id === campaignId
+        );
+
+        // Jos indeksi löytyy, poista kampanja splice-metodilla
+        if (index !== -1) {
+          this.campaigns.splice(index, 1);
+        }
       }
     });
   }
+  // tähän uudet -------------------------------------
+  // GET CAMPAIGNS
 }

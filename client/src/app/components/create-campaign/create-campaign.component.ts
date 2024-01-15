@@ -4,6 +4,7 @@ import { FormBuilder, FormsModule, Validators } from '@angular/forms';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { NgForm } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CampaignListService } from 'src/app/services/campaign-list.service';
 
 @Component({
   selector: 'app-create-campaign',
@@ -14,6 +15,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 export class CreateCampaignComponent implements OnInit {
   campaignService = inject(CampaignService); // kun injektoi niin ei tarvitse contstructoria
+  campaignList = inject(CampaignListService); // uusi
   fb = inject(FormBuilder);
   formSimple: boolean = true;
   simpleColor: string = 'bg-green-600';
@@ -91,6 +93,7 @@ export class CreateCampaignComponent implements OnInit {
     this.campaignService.postCampaignService(newCampaign).subscribe({
       next: (res: any) => {
         res.data;
+        this.campaignList.campaigns.push(newCampaign);
 
         // console.log('lähetetään kampanja');
       },
@@ -101,6 +104,7 @@ export class CreateCampaignComponent implements OnInit {
       complete: () => {
         this.campaignForm.resetForm();
         this.loading = false;
+        this.campaignList.getAllCampaignsFromService();
       },
     });
   }
