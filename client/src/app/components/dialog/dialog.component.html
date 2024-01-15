@@ -43,6 +43,24 @@
         />
       </td>
     </tr>
+
+    <!-- PAYER -->
+
+    <tr class="mb-4">
+      <th class="text-left w-2/5 py-6">Payer:</th>
+      <td *ngIf="!edit" class="py-6">{{ campaignData.adpayer }}</td>
+      <td *ngIf="edit">
+        <input
+          [(ngModel)]="editedData.adpayer"
+          class="border-solid border-2 rounded-md border-gray-300 p-2"
+          type="text"
+          placeholder="{{ campaignData.adpayer }}"
+        />
+      </td>
+    </tr>
+
+    <!-- BUDGET -->
+
     <tr class="mb-4">
       <th class="text-left w-2/5 py-6">Budget:</th>
       <td *ngIf="!edit" class="py-6">{{ campaignData.adbudget }} €</td>
@@ -55,6 +73,9 @@
         />
       </td>
     </tr>
+
+    <!-- DURATION -->
+
     <tr class="mb-4">
       <th class="text-left w-2/5 py-6">Duration:</th>
       <td *ngIf="!edit" class="py-6">

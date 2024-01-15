@@ -17,10 +17,11 @@ app.use(express.json()); // can use json format in body
 app.use(cookieParser());
 
 // for developing
-
-/* app.use(cors({ origin: "http://localhost:4200", credentials: true })); */
+/*
+app.use(cors({ origin: "http://localhost:4200", credentials: true }));
 
 // for build
+*/
 
 app.use(
   cors({

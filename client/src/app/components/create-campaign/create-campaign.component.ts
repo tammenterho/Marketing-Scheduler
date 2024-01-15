@@ -19,6 +19,7 @@ export class CreateCampaignComponent implements OnInit {
   simpleColor: string = 'bg-green-600';
   advancedColor: string = 'bg-gray-500';
   loading: boolean = false;
+  visibleOther: boolean = false;
 
   @ViewChild('campaignForm') campaignForm!: NgForm; //uusi
 
@@ -38,8 +39,21 @@ export class CreateCampaignComponent implements OnInit {
   inputOther!: string;
   inputCta!: string;
   inputGender!: string;
+  inputPayer!: string;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.company = localStorage.getItem('company') || '';
+  }
+
+  payerCheck() {
+    this.visibleOther = true;
+    console.log(this.inputPayer);
+  }
+  payerunCheck() {
+    this.visibleOther = false;
+
+    console.log(this.inputPayer);
+  }
 
   addCampaign() {
     this.loading = true;
@@ -69,6 +83,7 @@ export class CreateCampaignComponent implements OnInit {
         localStorage.getItem('firstname') +
         ' ' +
         localStorage.getItem('lastname'),
+      adpayer: this.inputPayer,
     };
 
     // console.log('uusi kampanja' + JSON.stringify(newCampaign));

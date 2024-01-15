@@ -66,6 +66,9 @@ export class DialogComponent implements OnInit {
     this.editedData.adbudget =
       this.editedData.adbudget || this.campaignData.adbudget;
 
+    this.editedData.adpayer =
+      this.editedData.adpayer || this.campaignData.adpayer;
+
     this.editedData.adstart =
       this.editedData.adstart || this.campaignData.adstart;
 

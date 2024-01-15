@@ -13,6 +13,7 @@
 - **Campaign Status**: Admins have the ability to change campaigns status if it's done. Others have only view access to status.
 - **Userlist**: Admins can view all the users.
 - **Campaign Dialog**: View the whole campaign data when clicking the campaign.
+- **Edit Campaign**: Edit campaign if it's undone.
 
 For an visual example implementation, refer to the MMfront repository.
 

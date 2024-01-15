@@ -18,4 +18,5 @@ export interface Campaign {
   adother: string;
   adstatus: string;
   adcontact: string;
+  adpayer: string;
 }
