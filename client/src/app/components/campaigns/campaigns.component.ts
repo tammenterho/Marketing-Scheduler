@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  inject,
-} from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -37,27 +32,19 @@ export class CampaignsComponent implements OnInit {
   isAdmin: boolean = false;
   emptyCampaigns: string = '';
 
-  //------------------ UUDET
+  // MANAGEMENT OF CAMPAIGNS
   campaignList = inject(CampaignListService);
-
-  //----------------------
 
   constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    // initFlowbite();
-    // this.getAllCampaigns(); uusi
     const storedIsAdmin = localStorage.getItem('isAdmin');
     this.isAdmin = storedIsAdmin ? JSON.parse(storedIsAdmin) : false;
-
-    // UUSI-----------------
 
     this.campaignList.campaigns$.subscribe((campaigns) => {
       this.campaigns = campaigns;
       this.getAllCampaigns();
     });
-
-    //----- UUSI
   }
 
   // SEARCH INPUT
@@ -77,33 +64,15 @@ export class CampaignsComponent implements OnInit {
   // GET ALL
 
   getAllCampaigns() {
-    // UUUSi----------
     console.log(
       'nämä on taas kampanjat komponenttissa' + this.campaignList.campaigns
     );
 
-    // -------------uusi
-    /*
-    const userId = localStorage.getItem('user_id') || '';
-
-    this.campaignService.getCampaignsService(userId).subscribe({
-      next: (res: any) => {
-        this.campaigns = res.data;
-        this.filteredCampaigns = this.campaigns;
-        this.campaignsSize = this.filteredCampaigns.length;
-        // console.log('KAMPANJAT' + JSON.stringify(this.campaigns));
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-    */
-    // UUSI-----------
+    // CAMPAIGNS ARE GET IN CAMPAIGNLIST COMPONENT
 
     // this.campaigns = this.campaignList.campaigns;
     this.filteredCampaigns = this.campaigns;
     this.campaignsSize = this.filteredCampaigns.length;
-    //---------UUSI
   }
 
   // ALL CAMPAIGNS BUTTON
@@ -188,25 +157,6 @@ export class CampaignsComponent implements OnInit {
     this.emptyCampaigns = 'Theres no upcoming campaigns';
   }
 
-  // DELETE BY ID
-  /*
-  deleteCampaign(campaignId: string) {
-    // console.log('Campaign id ' + campaignId);
-
-    this.campaignService.deleteCampaignService(campaignId).subscribe({
-      next: (res: any) => {
-        // Onnistuneesti poistettu kampanja
-        this.campaigns = this.campaigns.filter(
-          (campaign) => campaign.id !== campaignId
-        );
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
-  */
-
   // CHANGE STATUS
 
   toggleStatus(campaignId: string) {
@@ -254,7 +204,7 @@ export class CampaignsComponent implements OnInit {
     }
   }
 
-  // ARE YOU SURE DELETE
+  // ARE YOU SURE DELETE and delete
 
   sureDialog(campaignId: string) {
     const dialogRef = this.dialog.open(SureDialogComponent);
@@ -277,6 +227,4 @@ export class CampaignsComponent implements OnInit {
       }
     });
   }
-  // tähän uudet -------------------------------------
-  // GET CAMPAIGNS
 }
