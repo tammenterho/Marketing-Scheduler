@@ -9,6 +9,7 @@ module.exports = {
       xs: "600px", // min-width
       lg: "900px",
     },
+
     extend: {},
   },
   plugins: [],
