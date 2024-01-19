@@ -16,18 +16,24 @@ dotenv.config(); // error -> throw new MongooseError('The `uri` parameter to `op
 app.use(express.json()); // can use json format in body
 app.use(cookieParser());
 
-// for developing
-/*
-app.use(cors({ origin: "http://localhost:4200", credentials: true }));
-*/
-// for build
+// for developing --------------------------------
 
+app.use(cors({ origin: "http://localhost:4200", credentials: true }));
+
+// for developing --------------------------------
+
+// for build ------------------------------------
+
+/*
 app.use(
   cors({
     origin: "https://www.marketing-scheduler.com",
     credentials: true,
   })
 );
+*/
+
+// for build ------------------------------------
 
 app.use("/api/role", roleRoute);
 app.use("/api/auth", authRoute);
