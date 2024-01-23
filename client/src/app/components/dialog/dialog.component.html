@@ -20,7 +20,7 @@
 
   <h2 class="">General Information</h2>
 
-  <table class="min-w-full mb-10 border-2 border-blue-950 rounded-xl">
+  <table class="min-w-full mb-10 rounded-xl">
     <tr>
       <th class="text-left w-2/5 pl-4 py-6 font-normal">
         Name of the company:
@@ -29,7 +29,7 @@
       <td *ngIf="edit">
         <input
           [(ngModel)]="editedData.company"
-          class="border-solid border-2 rounded-md border-gray-300 p-2"
+          class="border-2 rounded-md border-gray-300 p-2"
           type="text"
           placeholder="{{ campaignData.company }}"
         />
