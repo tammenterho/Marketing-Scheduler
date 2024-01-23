@@ -1,5 +1,7 @@
 # Marketing Scheduler (working title)
 
+### Scroll down for images
+
 ### Currently
 
 - **Login**: Login as user.
@@ -93,4 +95,3 @@ Please make sure to update tests as appropriate.
 
 <img width="281" alt="ms-login-mobile" src="https://github.com/tammenterho/Marketing-Scheduler/assets/115658804/e6b1e7ac-8b33-4dce-b43b-bc9471e2d459">
 <img width="283" alt="ms-campaigns-mobile" src="https://github.com/tammenterho/Marketing-Scheduler/assets/115658804/ac619a8b-0884-4c7a-a2ed-b311f9fa5505">
-
