@@ -1,5 +1,11 @@
 # Marketing Scheduler (working title)
 
+### Description
+
+The Marketing Scheduler is a versatile tool that enables client companies to submit campaign assignments to the marketing agency responsible for their campaigns. The application boasts excellent tracking, sorting, and filtering features, allowing both the client and marketing agency to seamlessly manage upcoming, ongoing, and past META campaigns. Moreover, marketing agencies also have the capability to create and set up campaigns within the system.
+
+**Sync Your Success: Elevate Campaign Management with Marketing Scheduler!**
+
 ### Scroll down for images
 
 ### Currently
