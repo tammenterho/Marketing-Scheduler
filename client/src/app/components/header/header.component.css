@@ -1,0 +1,24 @@
+.marquee {
+  position: relative;
+  width: 100vw;
+  max-width: 100%;
+  height: 20px;
+  overflow-x: hidden;
+  font-family: monospace;
+}
+
+.track {
+  position: absolute;
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee 60s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

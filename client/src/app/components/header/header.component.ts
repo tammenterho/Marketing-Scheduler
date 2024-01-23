@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   authService = inject(AuthService);
   isLoggedIn: boolean = false;
   user: string = localStorage.getItem('company') || '';
+  isLoginPage: boolean = true;
 
   ngOnInit(): void {
     this.authService.isLoggedIn$.subscribe((res) => {
@@ -29,5 +30,15 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('lastname');
     localStorage.removeItem('isAdmin');
     this.authService.isLoggedIn$.next(false);
+  }
+
+  toggleLoginPage() {
+    if (this.isLoginPage === true) {
+      this.isLoginPage = false;
+    } else {
+      this.isLoginPage = true;
+    }
+
+    console.log(this.isLoginPage);
   }
 }

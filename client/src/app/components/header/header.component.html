@@ -1,11 +1,13 @@
-<nav class="flex items-center py-10 bg-cyan-700 shadow-2xl">
-  <div class="flex nav-items w-1/2 justify-start m-3 xs:ml-20">
-    <span class="text-gray-200 text-xl xs:text-3xl xs:ml-10 flex items-center">
+<nav
+  class="flex items-center py-10 border-b-2 border-dashed bg-white border-orange-400 font-mono"
+>
+  <div class="flex nav-items w-1/2 justify-start ml-8 xs:ml-20">
+    <span class="text-gray-400 text-xl xs:text-3xl xs:ml-10 flex items-center">
       <ng-container *ngIf="isLoggedIn" class="w-1/2">
-        Welcome {{ user }}!
+        welcome {{ user }}!
       </ng-container>
-      <ng-container *ngIf="!isLoggedIn" class="w-1/2">
-        Marketing Scheduler!
+      <ng-container *ngIf="!isLoggedIn" class="">
+        marketing scheduler
       </ng-container>
     </span>
   </div>
@@ -14,22 +16,44 @@
     <ng-container *ngIf="!isLoggedIn">
       <span
         routerLink="/login"
-        class="text-xl cursor-pointer text-gray-200 font-medium m-3 hover:underline hover:text-indigo-200"
-        >Login</span
+        class="text-lg xxs:text-xl cursor-pointer text-gray-400 font-medium mr-4 xxs:mr-14 hover:underline hover:text-indigo-200"
+        >login</span
       >
       <span
         routerLink="/register"
-        class="text-xl cursor-pointer text-gray-200 font-medium m-3 xs:mr-16 hover:underline hover:text-indigo-200"
-        >Register</span
+        class="text-lg xxs:text-xl cursor-pointer text-gray-400 font-medium mr-4 xxs:mr-24 xs:mr-16 hover:underline hover:text-indigo-200"
+        >register</span
       >
     </ng-container>
     <ng-container *ngIf="isLoggedIn">
       <span
         routerLink="/login"
         (click)="logout()"
-        class="text-xl cursor-pointer text-gray-200 font-medium m-3 lg:mr-36 hover:underline hover:text-indigo-200"
-        >Logout</span
+        class="text-xl cursor-pointer text-gray-400 font-medium m-3 lg:mr-36 hover:underline hover:text-indigo-200"
+        >logout</span
       >
     </ng-container>
   </div>
 </nav>
+
+<!-- SCROLL -->
+
+<div class="marquee">
+  <div class="track">
+    <div class="content">
+      &nbsp; marketing scheduler marketing scheduler marketing scheduler
+      marketing scheduler marketing scheduler marketing scheduler marketing
+      scheduler marketing scheduler marketing scheduler marketing scheduler
+      marketing scheduler marketing scheduler marketing scheduler marketing
+      scheduler marketing scheduler marketing scheduler marketing scheduler
+      marketing scheduler marketing scheduler marketing scheduler marketing
+      scheduler marketing scheduler marketing scheduler marketing scheduler
+      marketing scheduler marketing scheduler marketing scheduler marketing
+      scheduler marketing scheduler marketing scheduler marketing scheduler
+      marketing scheduler marketing scheduler marketing scheduler marketing
+      scheduler marketing scheduler marketing scheduler marketing scheduler
+      marketing scheduler marketing scheduler marketing scheduler marketing
+      scheduler
+    </div>
+  </div>
+</div>
