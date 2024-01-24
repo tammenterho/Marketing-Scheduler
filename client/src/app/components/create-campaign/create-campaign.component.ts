@@ -5,6 +5,7 @@ import { CampaignService } from 'src/app/services/campaign.service';
 import { NgForm } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CampaignListService } from 'src/app/services/campaign-list.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-campaign',
@@ -14,6 +15,7 @@ import { CampaignListService } from 'src/app/services/campaign-list.service';
   styleUrls: ['./create-campaign.component.css'],
 })
 export class CreateCampaignComponent implements OnInit {
+  constructor(private toastr: ToastrService) {}
   campaignService = inject(CampaignService); // kun injektoi niin ei tarvitse contstructoria
   campaignList = inject(CampaignListService); // uusi
   fb = inject(FormBuilder);
@@ -99,9 +101,11 @@ export class CreateCampaignComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
+        this.toastr.error('Error when adding campaign');
         this.loading = false;
       },
       complete: () => {
+        this.toastr.success('Campaign added succesfully!');
         this.campaignForm.resetForm();
         this.loading = false;
         this.campaignList.getAllCampaignsFromService();

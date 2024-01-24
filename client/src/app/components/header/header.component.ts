@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +17,8 @@ export class HeaderComponent implements OnInit {
   user: string = localStorage.getItem('company') || '';
   isLoginPage: boolean = true;
 
+  constructor(private toastr: ToastrService) {}
+
   ngOnInit(): void {
     this.authService.isLoggedIn$.subscribe((res) => {
       this.isLoggedIn = this.authService.isLoggedIn();
@@ -24,12 +27,17 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('user_id');
-    localStorage.removeItem('company');
-    localStorage.removeItem('firstname');
-    localStorage.removeItem('lastname');
-    localStorage.removeItem('isAdmin');
-    this.authService.isLoggedIn$.next(false);
+    try {
+      localStorage.removeItem('user_id');
+      localStorage.removeItem('company');
+      localStorage.removeItem('firstname');
+      localStorage.removeItem('lastname');
+      localStorage.removeItem('isAdmin');
+      this.authService.isLoggedIn$.next(false);
+      this.toastr.success('Logged out!');
+    } catch (error) {
+      this.toastr.error('Could not log out!');
+    }
   }
 
   toggleLoginPage() {

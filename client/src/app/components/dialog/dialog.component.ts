@@ -12,6 +12,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Campaign } from 'src/app/Campaign';
 import { FormsModule } from '@angular/forms';
 import { CampaignService } from 'src/app/services/campaign.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dialog',
@@ -41,7 +42,10 @@ export class DialogComponent implements OnInit {
   edit: boolean = false;
   editedData: any = {};
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Campaign) {
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: Campaign,
+    private toastr: ToastrService
+  ) {
     this.campaignData = data;
   }
 
@@ -108,10 +112,14 @@ export class DialogComponent implements OnInit {
 
     this.campaignService.updateCampaign(editedData).subscribe({
       next: (updatedCampaign) => {
-        console.log('UPDATED' + updatedCampaign);
+        //console.log('UPDATED' + updatedCampaign);
+        this.toastr.success(
+          'Updated campaign! Refresh this page to see changes.'
+        );
       },
       error: (error) => {
-        console.log('failed to update', error);
+        //console.log('failed to update', error);
+        this.toastr.error('Failed to update');
       },
     });
   }

@@ -9,6 +9,7 @@ import {
 import { confirmPasswordValidator } from 'src/app/validators/confirmPassword.validator';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router, RouterModule } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -23,6 +24,8 @@ export default class RegisterComponent implements OnInit {
   router = inject(Router);
 
   registerForm!: FormGroup;
+
+  constructor(private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group(
@@ -50,10 +53,12 @@ export default class RegisterComponent implements OnInit {
         alert('User Created!');
         this.registerForm.reset();
         this.router.navigate(['login']);
-        console.log(res);
+        //console.log(res);
+        this.toastr.success('Registered successfully!');
       },
       error: (err) => {
-        console.log(err);
+        //console.log(err);
+        this.toastr.error('Could not register');
       },
     });
   }

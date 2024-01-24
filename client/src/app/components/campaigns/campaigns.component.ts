@@ -6,6 +6,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { SureDialogComponent } from '../sure-dialog/sure-dialog.component';
 import { Campaign } from 'src/app/Campaign';
 import { CampaignListService } from 'src/app/services/campaign-list.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-campaigns',
@@ -35,7 +36,7 @@ export class CampaignsComponent implements OnInit {
   // MANAGEMENT OF CAMPAIGNS
   campaignList = inject(CampaignListService);
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     const storedIsAdmin = localStorage.getItem('isAdmin');
@@ -213,16 +214,21 @@ export class CampaignsComponent implements OnInit {
       //console.log(`Dialog result: ${result}`);
 
       if (result) {
-        this.campaignList.deleteCampaign(campaignId);
+        try {
+          this.campaignList.deleteCampaign(campaignId);
 
-        // Etsi indeksi, jossa kampanjan id on
-        const index = this.campaigns.findIndex(
-          (campaign) => campaign._id === campaignId
-        );
+          // Etsi indeksi, jossa kampanjan id on
+          const index = this.campaigns.findIndex(
+            (campaign) => campaign._id === campaignId
+          );
 
-        // Jos indeksi löytyy, poista kampanja splice-metodilla
-        if (index !== -1) {
-          this.campaigns.splice(index, 1);
+          // Jos indeksi löytyy, poista kampanja splice-metodilla
+          if (index !== -1) {
+            this.campaigns.splice(index, 1);
+          }
+          this.toastr.success('Deleted succesfully!');
+        } catch (error) {
+          this.toastr.error('Could not delete campaign');
         }
       }
     });

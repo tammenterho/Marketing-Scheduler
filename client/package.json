@@ -10,7 +10,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^16.2.0",
+    "@angular/animations": "^16.2.12",
     "@angular/cdk": "^16.2.12",
     "@angular/common": "^16.2.0",
     "@angular/compiler": "^16.2.0",
@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
     "david-ui-angular": "^1.0.0-beta.5",
+    "ngx-toastr": "^18.0.0",
     "primeicons": "^6.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

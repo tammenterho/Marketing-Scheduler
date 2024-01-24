@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { CampaignService } from './campaign.service';
 import { BehaviorSubject, Observable, map } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -41,9 +42,10 @@ export class CampaignListService {
         this.campaigns = (this.campaigns as any[]).filter(
           (campaign) => campaign.id !== campaignId
         );
+        return res;
       },
       error: (err) => {
-        console.log(err);
+        return err;
       },
     });
   }

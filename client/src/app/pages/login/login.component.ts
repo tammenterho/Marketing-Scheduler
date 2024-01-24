@@ -9,6 +9,7 @@ import {
 import { AuthService } from 'src/app/services/auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   styleUrls: ['./login.component.css'],
 })
 export default class LoginComponent {
+  constructor(private toastr: ToastrService) {}
   fb = inject(FormBuilder);
   authService = inject(AuthService);
   router = inject(Router);
@@ -44,7 +46,8 @@ export default class LoginComponent {
 
     this.authService.loginService(this.loginForm.value).subscribe({
       next: (res) => {
-        alert('Login is succesfull!');
+        this.toastr.success('Login is succesfull!');
+
         // console.log('id' + res.data._id);
 
         localStorage.setItem('user_id', res.data._id);
@@ -62,7 +65,7 @@ export default class LoginComponent {
       },
       error: (err) => {
         console.log(err);
-        alert(err.error);
+        this.toastr.error('Wrong email or password');
         this.loading = false;
       },
     });
