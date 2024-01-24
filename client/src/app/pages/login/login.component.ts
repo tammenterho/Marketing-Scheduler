@@ -46,7 +46,7 @@ export default class LoginComponent {
 
     this.authService.loginService(this.loginForm.value).subscribe({
       next: (res) => {
-        this.toastr.success('Login is succesfull!');
+        this.toastr.success('Login is successfull!');
 
         // console.log('id' + res.data._id);
 

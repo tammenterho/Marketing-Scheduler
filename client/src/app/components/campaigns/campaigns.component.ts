@@ -226,7 +226,7 @@ export class CampaignsComponent implements OnInit {
           if (index !== -1) {
             this.campaigns.splice(index, 1);
           }
-          this.toastr.success('Deleted succesfully!');
+          this.toastr.success('Deleted successfully!');
         } catch (error) {
           this.toastr.error('Could not delete campaign');
         }

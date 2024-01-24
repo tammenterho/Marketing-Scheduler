@@ -15,7 +15,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./create-campaign.component.css'],
 })
 export class CreateCampaignComponent implements OnInit {
-  constructor(private toastr: ToastrService) {}
   campaignService = inject(CampaignService); // kun injektoi niin ei tarvitse contstructoria
   campaignList = inject(CampaignListService); // uusi
   fb = inject(FormBuilder);
@@ -25,6 +24,7 @@ export class CreateCampaignComponent implements OnInit {
   loading: boolean = false;
   visibleOther: boolean = false;
 
+  constructor(private toastr: ToastrService) {}
   @ViewChild('campaignForm') campaignForm!: NgForm; //uusi
 
   company: string = localStorage.getItem('company') || '';
@@ -100,12 +100,12 @@ export class CreateCampaignComponent implements OnInit {
         // console.log('lähetetään kampanja');
       },
       error: (err) => {
-        console.log(err);
+        //console.log(err);
         this.toastr.error('Error when adding campaign');
         this.loading = false;
       },
       complete: () => {
-        this.toastr.success('Campaign added succesfully!');
+        this.toastr.success('Campaign added successfully!');
         this.campaignForm.resetForm();
         this.loading = false;
         this.campaignList.getAllCampaignsFromService();

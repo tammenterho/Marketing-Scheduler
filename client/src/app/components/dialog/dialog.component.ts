@@ -106,7 +106,7 @@ export class DialogComponent implements OnInit {
   }
 
   updateCampaign(editedData: any) {
-    console.log('nyt updatessa ', editedData);
+    //console.log('nyt updatessa ', editedData);
 
     // Käännä status
 
