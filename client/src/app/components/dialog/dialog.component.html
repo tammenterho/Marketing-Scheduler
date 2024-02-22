@@ -52,7 +52,7 @@
 
     <!-- PAYER -->
 
-    <tr class="mb-4">
+    <tr *ngIf="campaignData.adType" class="mb-4">
       <th class="text-left w-2/5 pl-4 py-6 font-normal">Payer:</th>
       <td *ngIf="!edit" class="py-6">{{ campaignData.adpayer }}</td>
       <td *ngIf="edit">
@@ -67,7 +67,7 @@
 
     <!-- BUDGET -->
 
-    <tr class="mb-4">
+    <tr *ngIf="campaignData.adType" class="mb-4">
       <th class="text-left w-2/5 pl-4 py-6 font-normal">Budget:</th>
       <td *ngIf="!edit" class="py-6">{{ campaignData.adbudget }} €</td>
       <td *ngIf="edit">
@@ -82,7 +82,7 @@
 
     <!-- DURATION -->
 
-    <tr class="mb-4">
+    <tr *ngIf="campaignData.adType" class="mb-4">
       <th class="text-left w-2/5 pl-4 py-6 font-normal">Duration:</th>
       <td *ngIf="!edit" class="py-6">
         {{ campaignData.adstart | date : "dd.MM.yyyy" }} -
@@ -108,9 +108,12 @@
     </tr>
   </table>
 
-  <h2>Demographic Information</h2>
+  <h2 *ngIf="campaignData.adType">Demographic Information</h2>
 
-  <table class="min-w-full mb-10 border-gray-400 border-2 rounded-md">
+  <table
+    *ngIf="campaignData.adType"
+    class="min-w-full mb-10 border-gray-400 border-2 rounded-md"
+  >
     <tr>
       <th class="text-left w-2/5 pl-4 py-6 font-normal">
         Target age and gender:
@@ -142,7 +145,7 @@
   <h2>Campaign Information</h2>
 
   <table class="min-w-full mb-10 border-gray-400 border-2 rounded-xl">
-    <tr>
+    <tr *ngIf="campaignData.adType">
       <th class="text-left w-2/5 pl-4 py-6 font-normal">
         Title for the campaign:
       </th>
@@ -197,7 +200,7 @@
         />
       </td>
     </tr>
-    <tr>
+    <tr *ngIf="campaignData.adType">
       <th class="text-left w-2/5 pl-4 py-6 font-normal">CTA:</th>
       <td *ngIf="!edit" class="py-6">{{ campaignData.adcta }}</td>
       <td *ngIf="edit">

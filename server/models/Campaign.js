@@ -2,6 +2,7 @@
 import mongoose from "mongoose";
 
 const CampaignSchema = new mongoose.Schema({
+  adType: Boolean,
   creator: String,
   company: String,
   owner: String,

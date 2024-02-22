@@ -21,6 +21,9 @@ export class CreateCampaignComponent implements OnInit {
   formSimple: boolean = true;
   simpleColor: string = 'bg-green-600';
   advancedColor: string = 'bg-gray-500';
+  formAd: boolean = true;
+  paidAdColor: string = 'bg-green-600';
+  postColor: string = 'bg-gray-500';
   loading: boolean = false;
   visibleOther: boolean = false;
 
@@ -64,6 +67,7 @@ export class CreateCampaignComponent implements OnInit {
     // console.log('add klikattu');
 
     const newCampaign = {
+      adType: this.formAd,
       creator:
         localStorage.getItem('firstname') +
         ' ' +
@@ -123,5 +127,17 @@ export class CreateCampaignComponent implements OnInit {
     this.advancedColor = 'bg-green-600';
     this.simpleColor = 'bg-gray-500';
     this.formSimple = false;
+  }
+
+  togglePaid() {
+    this.paidAdColor = 'bg-green-600';
+    this.postColor = 'bg-gray-500';
+    this.formAd = true;
+  }
+
+  togglePost() {
+    this.postColor = 'bg-green-600';
+    this.paidAdColor = 'bg-gray-500';
+    this.formAd = false;
   }
 }
