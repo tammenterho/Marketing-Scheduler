@@ -82,13 +82,27 @@
 
     <!-- DURATION -->
 
-    <tr *ngIf="campaignData.adType" class="mb-4">
-      <th class="text-left w-2/5 pl-4 py-6 font-normal">Duration:</th>
-      <td *ngIf="!edit" class="py-6">
+    <tr class="mb-4">
+      <th
+        *ngIf="campaignData.adType"
+        class="text-left w-2/5 pl-4 py-6 font-normal"
+      >
+        Duration:
+      </th>
+      <th
+        *ngIf="!campaignData.adType"
+        class="text-left w-2/5 pl-4 py-6 font-normal"
+      >
+        Date:
+      </th>
+      <td *ngIf="!edit && campaignData.adType" class="py-6">
         {{ campaignData.adstart | date : "dd.MM.yyyy" }} -
         {{ campaignData.adend | date : "dd.MM.yyyy" }}
       </td>
-      <td *ngIf="edit">
+      <td *ngIf="!edit && !campaignData.adType" class="py-6">
+        {{ campaignData.postDate | date : "dd.MM.yyyy" }} -
+      </td>
+      <td *ngIf="edit && campaignData.adType">
         <input
           [(ngModel)]="editedData.adstart"
           class="border-solid border-2 rounded-md border-gray-300 p-2"
@@ -97,12 +111,20 @@
         />
       </td>
 
-      <td *ngIf="edit">
+      <td *ngIf="edit && campaignData.adType">
         <input
           [(ngModel)]="editedData.adend"
           class="border-solid border-2 rounded-md border-gray-300 p-2"
           type="text"
           placeholder="{{ campaignData.adend | date : 'dd.MM.yyyy' }}"
+        />
+      </td>
+      <td *ngIf="edit && !campaignData.adType">
+        <input
+          [(ngModel)]="editedData.postDate"
+          class="border-solid border-2 rounded-md border-gray-300 p-2"
+          type="text"
+          placeholder="{{ campaignData.postDate | date : 'dd.MM.yyyy' }}"
         />
       </td>
     </tr>
@@ -142,7 +164,8 @@
     </tr>
   </table>
 
-  <h2>Campaign Information</h2>
+  <h2 *ngIf="!campaignData.adType">Post Information</h2>
+  <h2 *ngIf="campaignData.adType">Campaign Information</h2>
 
   <table class="min-w-full mb-10 border-gray-400 border-2 rounded-xl">
     <tr *ngIf="campaignData.adType">

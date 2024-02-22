@@ -78,6 +78,9 @@ export class DialogComponent implements OnInit {
 
     this.editedData.adend = this.editedData.adend || this.campaignData.adend;
 
+    this.editedData.postDate =
+      this.editedData.postDate || this.campaignData.postDate;
+
     this.editedData.adtarget =
       this.editedData.adtarget || this.campaignData.adtarget;
 

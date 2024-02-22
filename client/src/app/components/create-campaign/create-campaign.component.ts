@@ -41,6 +41,7 @@ export class CreateCampaignComponent implements OnInit {
   inputBudget!: number;
   inputStart!: Date;
   inputEnd!: Date;
+  inputDatePost!: Date;
   inputMedia!: string;
   inputUrl!: string;
   inputOther!: string;
@@ -82,6 +83,7 @@ export class CreateCampaignComponent implements OnInit {
       adbudget: this.inputBudget,
       adstart: this.inputStart,
       adend: this.inputEnd,
+      postDate: this.inputDatePost,
       mediainfo: this.inputMedia,
       adurl: this.inputUrl,
       adcta: this.inputCta,

@@ -13,6 +13,7 @@ export interface Campaign {
   adbudget: number;
   adstart: Date;
   adend: Date;
+  postDate: Date;
   mediainfo: string;
   adurl: string;
   adcta: string;

@@ -14,6 +14,7 @@ const CampaignSchema = new mongoose.Schema({
   adbudget: Number,
   adstart: Date,
   adend: Date,
+  postDate: Date,
   mediainfo: String,
   adurl: String,
   adcta: String,
