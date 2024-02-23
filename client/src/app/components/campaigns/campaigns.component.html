@@ -97,14 +97,30 @@
           *ngFor="let campaign of filteredCampaigns"
           class="even:bg-blue-100 odd:bg-white h-20 align-middle cursor-pointer"
         >
-          <td (click)="campaign._id && openDialog(campaign._id)">
+          <td
+            [ngClass]="
+              campaign.adType
+                ? 'border-l-4 border-yellow-500'
+                : 'border-l-4 border-purple-600'
+            "
+            (click)="campaign._id && openDialog(campaign._id)"
+          >
             {{ campaign.company }}
           </td>
           <td (click)="campaign._id && openDialog(campaign._id)">
             {{ campaign.name }}
           </td>
-          <td (click)="campaign._id && openDialog(campaign._id)">
+          <td
+            *ngIf="campaign.adType"
+            (click)="campaign._id && openDialog(campaign._id)"
+          >
             {{ campaign.adstart | date : "dd.MM.yyyy" }}
+          </td>
+          <td
+            *ngIf="!campaign.adType"
+            (click)="campaign._id && openDialog(campaign._id)"
+          >
+            {{ campaign.postDate | date : "dd.MM.yyyy" }}
           </td>
           <td (click)="campaign._id && openDialog(campaign._id)">
             {{ campaign.adend | date : "dd.MM.yyyy" }}
