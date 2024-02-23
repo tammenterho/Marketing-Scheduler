@@ -100,8 +100,11 @@ export class CampaignsComponent implements OnInit {
     this.upcomingBtnColor = 'bg-gray-500';
 
     this.pastCampaigns = this.campaigns.filter(
-      (campaign) => new Date(campaign.adend).getTime() < this.currentDate
+      (campaign) =>
+        new Date(campaign.adend).getTime() < this.currentDate ||
+        new Date(campaign.postDate).getTime() < this.currentDate
     );
+
     // console.log(this.pastCampaigns);
     this.filteredCampaigns = this.pastCampaigns;
     this.campaignsSize = this.filteredCampaigns.length;
@@ -121,10 +124,14 @@ export class CampaignsComponent implements OnInit {
     this.currentCampaigns = this.campaigns.filter((campaign) => {
       const startDate = new Date(campaign.adstart).getTime();
       const endDate = new Date(campaign.adend).getTime();
+      const postedDate = new Date(campaign.postDate).getTime();
       const now = this.currentDate;
 
-      // Tarkista, onko alkamisaika mennyt ja loppumisaika on tulossa
-      return startDate < now && now < endDate;
+      return (
+        (startDate < now && now < endDate) ||
+        new Date(postedDate).setHours(0, 0, 0, 0) ===
+          new Date(now).setHours(0, 0, 0, 0)
+      );
     });
 
     // console.log(this.currentCampaigns);
@@ -145,11 +152,12 @@ export class CampaignsComponent implements OnInit {
 
     this.upcomingCampaigns = this.campaigns.filter((campaign) => {
       const startDate = new Date(campaign.adstart).getTime();
+      const postingDate = new Date(campaign.postDate).getTime();
 
       const now = this.currentDate;
 
       // Tarkista, onko alkamisaika mennyt ja loppumisaika on tulossa
-      return now < startDate;
+      return now < startDate || now < postingDate;
     });
 
     // console.log(this.currentCampaigns);
