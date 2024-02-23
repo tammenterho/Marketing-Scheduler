@@ -36,8 +36,17 @@
       </td>
     </tr>
     <tr class="mb-4">
-      <th class="text-left w-2/5 pl-4 py-6 font-normal">
+      <th
+        *ngIf="campaignData.adType"
+        class="text-left w-2/5 pl-4 py-6 font-normal"
+      >
         Name of the campaign:
+      </th>
+      <th
+        *ngIf="!campaignData.adType"
+        class="text-left w-2/5 pl-4 py-6 font-normal"
+      >
+        Name of the post:
       </th>
       <td *ngIf="!edit" class="py-6">{{ campaignData.name }}</td>
       <td *ngIf="edit">
@@ -54,13 +63,15 @@
 
     <tr class="mb-4">
       <th class="text-left w-2/5 pl-4 py-6 font-normal">Channels to post:</th>
-      <td *ngIf="!edit" class="py-6">{{ campaignData.postChannel }}</td>
+      <td *ngIf="!edit && !campaignData.adType" class="py-6">
+        {{ campaignData.postChannel }}
+      </td>
       <td *ngIf="edit">
         <input
-          [(ngModel)]="editedData.name"
+          [(ngModel)]="editedData.postChannel"
           class="border-solid border-2 rounded-md border-gray-300 p-2"
           type="text"
-          placeholder="{{ campaignData.name }}"
+          placeholder="{{ campaignData.postChannel }}"
         />
       </td>
     </tr>
@@ -199,8 +210,17 @@
       </td>
     </tr>
     <tr>
-      <th class="text-left w-2/5 pl-4 py-6 font-normal">
-        Copytext for the Campaign:
+      <th
+        *ngIf="campaignData.adType"
+        class="text-left w-2/5 pl-4 py-6 font-normal"
+      >
+        Copytext for the campaign:
+      </th>
+      <th
+        *ngIf="!campaignData.adType"
+        class="text-left w-2/5 pl-4 py-6 font-normal"
+      >
+        Copytext for the post:
       </th>
       <td *ngIf="!edit" class="py-6">"{{ campaignData.adtext }}"</td>
       <td *ngIf="edit" class="min-w-full">
