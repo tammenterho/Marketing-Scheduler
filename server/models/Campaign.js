@@ -22,6 +22,7 @@ const CampaignSchema = new mongoose.Schema({
   adstatus: String,
   adcontact: String,
   adpayer: String,
+  postChannel: String,
 });
 
 export default mongoose.model("Campaign", CampaignSchema);

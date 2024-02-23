@@ -65,9 +65,7 @@ export class CampaignsComponent implements OnInit {
   // GET ALL
 
   getAllCampaigns() {
-    console.log(
-      'nämä on taas kampanjat komponenttissa' + this.campaignList.campaigns
-    );
+    //console.log( 'nämä on taas kampanjat komponenttissa' + this.campaignList.campaigns );
 
     // CAMPAIGNS ARE GET IN CAMPAIGNLIST COMPONENT
 

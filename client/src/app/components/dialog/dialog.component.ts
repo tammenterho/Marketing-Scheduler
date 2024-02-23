@@ -98,6 +98,9 @@ export class DialogComponent implements OnInit {
 
     this.editedData.adcta = this.editedData.adcta || this.campaignData.adcta;
 
+    this.editedData.postChannel =
+      this.editedData.postChannel || this.campaignData.postChannel;
+
     this.editedData._id = this.campaignData._id;
 
     console.log('Päivitetty data: ', this.editedData);

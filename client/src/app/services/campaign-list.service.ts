@@ -21,7 +21,7 @@ export class CampaignListService {
 
   getAllCampaignsFromService(): void {
     const userId = localStorage.getItem('user_id') || '';
-    console.log('Päivitetään kampanjat');
+    // console.log('Päivitetään kampanjat');
 
     this.campaignService.getCampaignsService(userId).subscribe({
       next: (res: any) => {

@@ -50,6 +50,21 @@
       </td>
     </tr>
 
+    <!-- CHANNELS -->
+
+    <tr class="mb-4">
+      <th class="text-left w-2/5 pl-4 py-6 font-normal">Channels to post:</th>
+      <td *ngIf="!edit" class="py-6">{{ campaignData.postChannel }}</td>
+      <td *ngIf="edit">
+        <input
+          [(ngModel)]="editedData.name"
+          class="border-solid border-2 rounded-md border-gray-300 p-2"
+          type="text"
+          placeholder="{{ campaignData.name }}"
+        />
+      </td>
+    </tr>
+
     <!-- PAYER -->
 
     <tr *ngIf="campaignData.adType" class="mb-4">

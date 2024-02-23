@@ -21,4 +21,5 @@ export interface Campaign {
   adstatus: string;
   adcontact: string;
   adpayer: string;
+  postChannel: string;
 }

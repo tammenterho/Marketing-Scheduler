@@ -26,6 +26,7 @@ export class CreateCampaignComponent implements OnInit {
   postColor: string = 'bg-gray-500';
   loading: boolean = false;
   visibleOther: boolean = false;
+  postChannel: string = '';
 
   constructor(private toastr: ToastrService) {}
   @ViewChild('campaignForm') campaignForm!: NgForm; //uusi
@@ -48,6 +49,10 @@ export class CreateCampaignComponent implements OnInit {
   inputCta!: string;
   inputGender!: string;
   inputPayer!: string;
+  inputFacebook!: string;
+  inputInstagram!: string;
+  inputLinkedin!: string;
+  inputChannel!: string;
 
   ngOnInit(): void {
     this.company = localStorage.getItem('company') || '';
@@ -66,6 +71,7 @@ export class CreateCampaignComponent implements OnInit {
   addCampaign() {
     this.loading = true;
     // console.log('add klikattu');
+    this.checkPostChannel();
 
     const newCampaign = {
       adType: this.formAd,
@@ -94,6 +100,7 @@ export class CreateCampaignComponent implements OnInit {
         ' ' +
         localStorage.getItem('lastname'),
       adpayer: this.inputPayer,
+      postChannel: this.postChannel,
     };
 
     // console.log('uusi kampanja' + JSON.stringify(newCampaign));
@@ -141,5 +148,36 @@ export class CreateCampaignComponent implements OnInit {
     this.postColor = 'bg-green-600';
     this.paidAdColor = 'bg-gray-500';
     this.formAd = false;
+  }
+
+  // Katsoo mitkä kentät on valittu, eli mihin postatataan
+  checkPostChannel() {
+    if (this.inputFacebook) {
+      this.postChannel += 'Facebook';
+    }
+    // Tarkista, onko Instagram valittu, ja lisää se postChannel -muuttujaan
+    if (this.inputInstagram) {
+      // Lisätään pilkku, jos aiemmin on jo lisätty kanava
+      if (this.postChannel) {
+        this.postChannel += ', ';
+      }
+      this.postChannel += 'Instagram';
+    }
+    // Tarkista, onko Linkedin valittu, ja lisää se postChannel -muuttujaan
+    if (this.inputLinkedin) {
+      // Lisätään pilkku, jos aiemmin on jo lisätty kanava
+      if (this.postChannel) {
+        this.postChannel += ', ';
+      }
+      this.postChannel += 'Linkedin';
+    }
+    // Lisää muut kanavat, jos ne on syötetty tekstikenttään
+    if (this.inputChannel) {
+      // Lisätään pilkku, jos aiemmin on jo lisätty kanava
+      if (this.postChannel) {
+        this.postChannel += ', ';
+      }
+      this.postChannel += this.inputChannel;
+    }
   }
 }
