@@ -76,6 +76,7 @@
   </div>
 
   <!--  TABLE -->
+  <!--  (condition) ? valueIfTrue : valueIfFalse  -->
 
   <div class="flex justify-start mt-10 overflow-x-auto">
     <table
@@ -126,7 +127,7 @@
             {{ campaign.adend | date : "dd.MM.yyyy" }}
           </td>
           <td (click)="campaign._id && openDialog(campaign._id)">
-            {{ campaign.adbudget }} €
+            {{ campaign.adbudget ? campaign.adbudget + " €" : "-" }}
           </td>
           <td>
             <i
