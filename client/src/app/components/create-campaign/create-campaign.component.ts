@@ -27,6 +27,7 @@ export class CreateCampaignComponent implements OnInit {
   loading: boolean = false;
   visibleOther: boolean = false;
   postChannel: string = '';
+  visibleSave: boolean = false;
 
   constructor(private toastr: ToastrService) {}
   @ViewChild('campaignForm') campaignForm!: NgForm; //uusi
@@ -58,10 +59,21 @@ export class CreateCampaignComponent implements OnInit {
     this.company = localStorage.getItem('company') || '';
   }
 
+  validateEmptyFields() {
+    if (this.inputCompany === '') {
+      this.visibleSave = false;
+    } else {
+      this.visibleSave = true;
+    }
+  }
+
+  // Jos on true niin näyttää other vapaa -inputkentän kohdassa payer
   payerCheck() {
     this.visibleOther = true;
     console.log(this.inputPayer);
   }
+
+  // Jos on true niin näyttää other vapaa -inputkentän kohdassa payer
   payerunCheck() {
     this.visibleOther = false;
 

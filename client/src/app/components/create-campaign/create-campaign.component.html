@@ -61,14 +61,15 @@
       <div class="w-full md:w-1/2 px-3 md:mb-0">
         <label
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-          for="grid-first-name"
+          for="company"
         >
           Company
         </label>
         <input
-          novalidate
+          required
+          [ngClass]="{ 'border-green-600 border-4': inputCompany }"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-black focus:bg-white"
-          id="grid-first-name"
+          id="company"
           name="company"
           [(ngModel)]="inputCompany"
           type="text"
@@ -84,21 +85,23 @@
         <label
           *ngIf="formAd"
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-          for="grid-first-name"
+          for="name"
         >
           Name of the campaign
         </label>
         <label
           *ngIf="!formAd"
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-          for="grid-first-name"
+          for="name"
         >
           Name of the post
         </label>
         <input
           name="name"
+          [ngClass]="{ 'border-green-600 border-4': inputName }"
+          required
           class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-black focus:bg-white"
-          id="grid-first-name"
+          id="name"
           [(ngModel)]="inputName"
           type="text"
           placeholder="esim. Turku-Opiskelijat-Ilmainenviikko"
@@ -114,6 +117,7 @@
       </label>
       <input
         name="postDate"
+        [ngClass]="{ 'border-green-600 border-4': inputDatePost }"
         class="bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-black focus:bg-white focus:border-gray-500"
         type="date"
         [(ngModel)]="inputDatePost"
@@ -152,6 +156,7 @@
           <label for="ownCompany" class="ml-8">Other</label>
           <input
             name="payer"
+            [ngClass]="{ 'border-green-600 border-4': inputPayer }"
             (click)="payerCheck()"
             type="radio"
             id="payer"
@@ -161,6 +166,7 @@
         </div>
         <input
           [(ngModel)]="inputPayer"
+          [ngClass]="{ 'border-green-600 border-4': inputPayer }"
           name="payer"
           *ngIf="visibleOther"
           type="text"
@@ -177,14 +183,15 @@
       <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
         <label
           class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-          for="grid-zip"
+          for="budget"
         >
           Budget (€)
         </label>
         <input
+          [ngClass]="{ 'border-green-600 border-4': inputBudget }"
           name="budget"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-black focus:bg-white focus:border-gray-500"
-          id="grid-zip"
+          id="budget"
           [(ngModel)]="inputBudget"
           type="number"
           placeholder="esim. 500"
@@ -201,6 +208,7 @@
             >Start:
           </label>
           <input
+            [ngClass]="{ 'border-green-600 border-4': inputStart }"
             name="adstart"
             class="bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-black focus:bg-white focus:border-gray-500"
             type="date"
@@ -217,6 +225,7 @@
           </label>
           <input
             name="adend"
+            [ngClass]="{ 'border-green-600 border-4': inputEnd }"
             [(ngModel)]="inputEnd"
             class="bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-black focus:bg-white focus:border-gray-500"
             type="date"
@@ -246,6 +255,7 @@
         </label>
         <input
           name="targetArea"
+          [ngClass]="{ 'border-green-600 border-4': inputAdArea }"
           [(ngModel)]="inputAdArea"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-black focus:bg-white focus:border-gray-500"
           id="grid-city"
@@ -262,6 +272,7 @@
         </label>
         <input
           name="targetAge"
+          [ngClass]="{ 'border-green-600 border-4': inputAdTarget }"
           [(ngModel)]="inputAdTarget"
           class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-black focus:bg-white focus:border-gray-500"
           id="grid-zip"
@@ -278,6 +289,7 @@
         </label>
         <div class="relative">
           <select
+            [ngClass]="{ 'border-green-600 border-4': inputGender }"
             name="targerGender"
             class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-black focus:bg-white focus:border-gray-500"
             id="grid-state"
@@ -338,6 +350,7 @@
         <div class="w-1/4">
           <label for="inputFacebook">Facebook</label>
           <input
+            [ngClass]="{ 'border-green-600 border-4': inputFacebook }"
             name="inputFacebook"
             [(ngModel)]="inputFacebook"
             type="checkbox"
@@ -349,6 +362,7 @@
         <div class="w-1/4">
           <label for="inputInstagram">Instagram</label>
           <input
+            [ngClass]="{ 'border-green-600 border-4': inputInstagram }"
             name="inputInstagram"
             [(ngModel)]="inputInstagram"
             type="checkbox"
@@ -360,6 +374,7 @@
         <div class="w-1/4">
           <label for="inputLinkedin">Linkedin</label>
           <input
+            [ngClass]="{ 'border-green-600 border-4': inputLinkedin }"
             name="inputLinkedin"
             [(ngModel)]="inputLinkedin"
             type="checkbox"
@@ -370,6 +385,7 @@
         </div>
         <div class="w-2/4">
           <input
+            [ngClass]="{ 'border-green-600 border-4': inputChannel }"
             [(ngModel)]="inputChannel"
             name="inputChannel"
             type="text"
@@ -392,6 +408,7 @@
           Title for the campaign
         </label>
         <input
+          [ngClass]="{ 'border-green-600 border-4': inputAdTitle }"
           name="adtitle"
           [(ngModel)]="inputAdTitle"
           class="appearance-none focus:outline-black block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
@@ -420,7 +437,9 @@
         Copytext and hashtags for the Post
       </label>
       <textarea
+        [ngClass]="{ 'border-green-600 border-4': inputAdText }"
         name="adCopy"
+        required
         [(ngModel)]="inputAdText"
         id="message"
         rows="4"
@@ -439,6 +458,8 @@
         Mediainfo
       </label>
       <textarea
+        [ngClass]="{ 'border-green-600 border-4': inputMedia }"
+        required
         name="adMediaInfo"
         [(ngModel)]="inputMedia"
         id="message"
@@ -467,7 +488,9 @@
           Post Url
         </label>
         <input
+          [ngClass]="{ 'border-green-600 border-4': inputUrl }"
           name="adurl"
+          required
           [(ngModel)]="inputUrl"
           class="appearance-none focus:outline-black block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white"
           id="grid-first-name"
@@ -488,6 +511,7 @@
       </label>
       <div class="relative">
         <select
+          [ngClass]="{ 'border-green-600 border-4': inputCta }"
           name="adcta"
           class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-black focus:bg-white focus:border-gray-500"
           id="grid-state"
@@ -521,6 +545,11 @@
     <div class="max-w-2xl mx-auto mb-20">
       <button
         type="submit"
+        [disabled]="!campaignForm.form.valid"
+        [ngClass]="{
+          'bg-green-600': campaignForm.form.valid,
+          'bg-gray-400': !campaignForm.form.valid
+        }"
         class="bg-green-600 p-6 rounded mt-3 text-white transition ease-in-out hover:scale-110 flex items-center justify-center"
       >
         <span *ngIf="!loading">Save</span>
@@ -530,6 +559,9 @@
           color="primary"
         ></mat-spinner>
       </button>
+      <p *ngIf="!campaignForm.form.valid" class="text-red-700 text-xl mt-4">
+        Fill all the empty fields!
+      </p>
     </div>
   </form>
 </div>
