@@ -29,9 +29,12 @@ The Marketing Scheduler is a versatile tool that enables client companies to sub
 
 For an visual example implementation, refer to the MMfront repository.
 
-### Coming Soon
+### Product Backlog
 
-- **Delete User**: Admins can delete users.
+- **Copy to clipboard**: Users can copy long texts with a single button.
+- **Email notification**: Email notification when new campaign is created.
+- **Timeout Llgout**: Logout after certain time.
+- **Continue same campaign**: Users are able to to continue campaign. (now editing only possible if campaign isn't done by marketing agency)
 
 ## Installation
 
