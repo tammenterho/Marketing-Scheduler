@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
@@ -9,4 +9,10 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
   templateUrl: './sure-dialog.component.html',
   styleUrls: ['./sure-dialog.component.css'],
 })
-export class SureDialogComponent {}
+export class SureDialogComponent {
+  @Input() campaignName: string = '';
+
+  ngOnInit() {
+    // console.log('Campaign Name:', this.campaignName);
+  }
+}

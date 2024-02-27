@@ -7,6 +7,7 @@ import { SureDialogComponent } from '../sure-dialog/sure-dialog.component';
 import { Campaign } from 'src/app/Campaign';
 import { CampaignListService } from 'src/app/services/campaign-list.service';
 import { ToastrService } from 'ngx-toastr';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-campaigns',
@@ -32,6 +33,7 @@ export class CampaignsComponent implements OnInit {
   campaignsSize: number = 0;
   isAdmin: boolean = false;
   emptyCampaigns: string = '';
+  campaignName!: string;
 
   // MANAGEMENT OF CAMPAIGNS
   campaignList = inject(CampaignListService);
@@ -214,7 +216,19 @@ export class CampaignsComponent implements OnInit {
   // ARE YOU SURE DELETE and delete
 
   sureDialog(campaignId: string) {
+    const foundCampaign = this.campaigns.find(
+      (campaign) => campaign._id === campaignId
+    );
+    if (foundCampaign) {
+      this.campaignName = foundCampaign.name;
+      // console.log('CAMPAIGN NAME ' + this.campaignName);
+    } else {
+      console.log('not found');
+    }
+    // viittaus dialogiin = dialogRef
+    // antaa pääsyn instanssiin = componentInstance
     const dialogRef = this.dialog.open(SureDialogComponent);
+    dialogRef.componentInstance.campaignName = foundCampaign.name;
 
     dialogRef.afterClosed().subscribe((result) => {
       //console.log(`Dialog result: ${result}`);
