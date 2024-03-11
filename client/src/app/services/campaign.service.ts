@@ -16,7 +16,7 @@ export class CampaignService {
   }
 
   postCampaignService(newCampaign: any) {
-    console.log('newcampaign servicessä: ' + JSON.stringify(newCampaign));
+    // console.log('newcampaign servicessä: ' + JSON.stringify(newCampaign));
 
     return this.http.post<any>(
       `${apiUrls.campaignServiceApi}campaigns`,

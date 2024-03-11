@@ -117,7 +117,7 @@ export class CreateCampaignComponent implements OnInit {
       postChannel: this.postChannel,
     };
 
-    console.log('uusi kampanja' + JSON.stringify(newCampaign));
+    // console.log('uusi kampanja' + JSON.stringify(newCampaign));
 
     this.campaignService.postCampaignService(newCampaign).subscribe({
       next: (res: any) => {
