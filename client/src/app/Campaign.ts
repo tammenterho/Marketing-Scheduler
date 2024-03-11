@@ -1,5 +1,6 @@
 export interface Campaign {
   adType: boolean;
+  creationDate: Date;
   creator?: string;
   company: string;
   id?: number;

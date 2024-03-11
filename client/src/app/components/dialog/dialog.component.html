@@ -17,6 +17,12 @@
     <p class="w-1/3 font-medium text-lg">Contact:</p>
     <p class="w-2/3 text-lg">{{ campaignData.adcontact }}</p>
   </div>
+  <div class="contact flex m-auto mb-10">
+    <p class="w-1/3 font-medium text-lg">Created at:</p>
+    <p class="w-2/3 text-lg">
+      {{ campaignData.creationDate | date : "dd.MM.yyyy" }}
+    </p>
+  </div>
 
   <h2 class="">General Information</h2>
 

@@ -57,6 +57,7 @@ export class CreateCampaignComponent implements OnInit {
 
   ngOnInit(): void {
     this.company = localStorage.getItem('company') || '';
+    console.log('pvm nyt ' + Date.now());
   }
 
   validateEmptyFields() {
@@ -70,14 +71,14 @@ export class CreateCampaignComponent implements OnInit {
   // Jos on true niin näyttää other vapaa -inputkentän kohdassa payer
   payerCheck() {
     this.visibleOther = true;
-    console.log(this.inputPayer);
+    // console.log(this.inputPayer);
   }
 
   // Jos on true niin näyttää other vapaa -inputkentän kohdassa payer
   payerunCheck() {
     this.visibleOther = false;
 
-    console.log(this.inputPayer);
+    // console.log(this.inputPayer);
   }
 
   addCampaign() {
@@ -87,6 +88,7 @@ export class CreateCampaignComponent implements OnInit {
 
     const newCampaign = {
       adType: this.formAd,
+      creationDate: Date.now(),
       creator:
         localStorage.getItem('firstname') +
         ' ' +
@@ -115,7 +117,7 @@ export class CreateCampaignComponent implements OnInit {
       postChannel: this.postChannel,
     };
 
-    // console.log('uusi kampanja' + JSON.stringify(newCampaign));
+    console.log('uusi kampanja' + JSON.stringify(newCampaign));
 
     this.campaignService.postCampaignService(newCampaign).subscribe({
       next: (res: any) => {
