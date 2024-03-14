@@ -2,7 +2,7 @@
 
 **Sync Your Success: Elevate Campaign Management with Marketing Scheduler!**
 
-[Visit site!](www.marketing-scheduler.com)
+[Visit site!](https://www.marketing-scheduler.com/login)
 
 ### Description
 
