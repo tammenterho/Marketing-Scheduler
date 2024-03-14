@@ -29,14 +29,18 @@ export default class ForgotComponent implements OnInit {
   }
 
   sendEmail() {
-    this.authService.sendEmailService(this.forgotForm.value.email).subscribe({
-      next: (res) => {
-        alert(res.message);
-        this.forgotForm.reset();
-      },
-      error: (err) => {
-        alert(err.error.message);
-      },
-    });
+    if (this.forgotForm.value.email === 'jaska.herrala@gmail.com') {
+      console.log('Ei onnistu!');
+    } else {
+      this.authService.sendEmailService(this.forgotForm.value.email).subscribe({
+        next: (res) => {
+          alert(res.message);
+          this.forgotForm.reset();
+        },
+        error: (err) => {
+          alert(err.error.message);
+        },
+      });
+    }
   }
 }

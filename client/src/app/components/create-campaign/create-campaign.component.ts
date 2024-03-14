@@ -118,26 +118,36 @@ export class CreateCampaignComponent implements OnInit {
     };
 
     // console.log('uusi kampanja' + JSON.stringify(newCampaign));
+    if (
+      localStorage.getItem('firstname') === 'Jaska' ||
+      localStorage.getItem('firstname') === 'Herrala' ||
+      localStorage.getItem('user_id') === '65818ac7e6c0dc662572fea4'
+    ) {
+      console.log('Tervetuloa :)');
+      this.campaignList.campaigns.push(newCampaign);
+      this.campaignForm.resetForm();
+      this.loading = false;
+    } else {
+      this.campaignService.postCampaignService(newCampaign).subscribe({
+        next: (res: any) => {
+          res.data;
+          this.campaignList.campaigns.push(newCampaign);
 
-    this.campaignService.postCampaignService(newCampaign).subscribe({
-      next: (res: any) => {
-        res.data;
-        this.campaignList.campaigns.push(newCampaign);
-
-        // console.log('lähetetään kampanja');
-      },
-      error: (err) => {
-        //console.log(err);
-        this.toastr.error('Error when adding campaign');
-        this.loading = false;
-      },
-      complete: () => {
-        this.toastr.success('Campaign added successfully!');
-        this.campaignForm.resetForm();
-        this.loading = false;
-        this.campaignList.getAllCampaignsFromService();
-      },
-    });
+          // console.log('lähetetään kampanja');
+        },
+        error: (err) => {
+          //console.log(err);
+          this.toastr.error('Error when adding campaign');
+          this.loading = false;
+        },
+        complete: () => {
+          this.toastr.success('Campaign added successfully!');
+          this.campaignForm.resetForm();
+          this.loading = false;
+          this.campaignList.getAllCampaignsFromService();
+        },
+      });
+    }
   }
 
   toggleSimple() {
