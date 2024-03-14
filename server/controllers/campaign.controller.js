@@ -42,6 +42,19 @@ export const postCampaign = async (req, res, next) => {
   try {
     // Oletan, että kampanja tiedot tulevat pyynnön rungosta newCampaign-kentän alla
     const newCampaign = req.body;
+
+    // Check if the campaign owner is the specific user
+    if (newCampaign.owner === "65818ac7e6c0dc662572fea4") {
+      console.log("Campaign creation skipped for specified owner");
+      // Skip saving and return a success response or a specific message
+      return res
+        .status(200)
+        .json({
+          message:
+            "Campaign creation skipped for user 65818ac7e6c0dc662572fea4",
+        });
+    }
+
     console.log("tämä on serverin uusi kampanja" + newCampaign);
 
     // Luo uusi Campaign-instanssi Mongoose-mallin perusteella

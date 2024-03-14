@@ -102,6 +102,8 @@ export const sendEmail = async (req, res, next) => {
   });
   if (!user) {
     return next(CreateError(404, "User not found"));
+  } else if (email.toLowerCase() === "jaska.herrala@gmail.com") {
+    return res.status(200).json({ message: "Request received" });
   }
   const payload = {
     email: user.email,
