@@ -72,10 +72,18 @@ export class CampaignsComponent implements OnInit {
     // CAMPAIGNS ARE GET IN CAMPAIGNLIST COMPONENT
 
     // this.campaigns = this.campaignList.campaigns;
-    this.filteredCampaigns = this.campaigns.filter(
-      (campaign) => campaign.owner !== '65818ac7e6c0dc662572fea4'
-    );
-    this.campaignsSize = this.filteredCampaigns.length;
+    if (
+      localStorage.getItem('firstname') === 'Jaska' ||
+      localStorage.getItem('firstname') === 'Herrala' ||
+      localStorage.getItem('user_id') === '65818ac7e6c0dc662572fea4'
+    ) {
+      this.filteredCampaigns = this.campaigns;
+    } else {
+      this.filteredCampaigns = this.campaigns.filter(
+        (campaign) => campaign.owner !== '65818ac7e6c0dc662572fea4'
+      );
+      this.campaignsSize = this.filteredCampaigns.length;
+    }
   }
 
   // ALL CAMPAIGNS BUTTON
@@ -108,11 +116,19 @@ export class CampaignsComponent implements OnInit {
     );
 
     // console.log(this.pastCampaigns);
-    this.filteredCampaigns = this.pastCampaigns.filter(
-      (campaign) => campaign.owner !== '65818ac7e6c0dc662572fea4'
-    );
-    this.campaignsSize = this.filteredCampaigns.length;
-    this.emptyCampaigns = 'There have not been any campaigns';
+    if (
+      localStorage.getItem('firstname') === 'Jaska' ||
+      localStorage.getItem('firstname') === 'Herrala' ||
+      localStorage.getItem('user_id') === '65818ac7e6c0dc662572fea4'
+    ) {
+      this.filteredCampaigns = this.pastCampaigns;
+    } else {
+      this.filteredCampaigns = this.pastCampaigns.filter(
+        (campaign) => campaign.owner !== '65818ac7e6c0dc662572fea4'
+      );
+      this.campaignsSize = this.filteredCampaigns.length;
+      this.emptyCampaigns = 'There have not been any campaigns';
+    }
   }
 
   // FILTER CURRENT
