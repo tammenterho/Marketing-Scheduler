@@ -154,12 +154,20 @@ export class CampaignsComponent implements OnInit {
       );
     });
 
-    // console.log(this.currentCampaigns);
-    this.filteredCampaigns = this.currentCampaigns.filter(
-      (campaign) => campaign.owner !== '65818ac7e6c0dc662572fea4'
-    );
-    this.campaignsSize = this.filteredCampaigns.length;
-    this.emptyCampaigns = 'Theres no campaigns running at the moment';
+    if (
+      localStorage.getItem('firstname') === 'Jaska' ||
+      localStorage.getItem('firstname') === 'Herrala' ||
+      localStorage.getItem('user_id') === '65818ac7e6c0dc662572fea4'
+    ) {
+      this.filteredCampaigns = this.currentCampaigns;
+    } else {
+      // console.log(this.currentCampaigns);
+      this.filteredCampaigns = this.currentCampaigns.filter(
+        (campaign) => campaign.owner !== '65818ac7e6c0dc662572fea4'
+      );
+      this.campaignsSize = this.filteredCampaigns.length;
+      this.emptyCampaigns = 'Theres no campaigns running at the moment';
+    }
   }
 
   // FILTER UPCOMING
@@ -182,12 +190,20 @@ export class CampaignsComponent implements OnInit {
       return now < startDate || now < postingDate;
     });
 
-    // console.log(this.currentCampaigns);
-    this.filteredCampaigns = this.upcomingCampaigns.filter(
-      (campaign) => campaign.owner !== '65818ac7e6c0dc662572fea4'
-    );
-    this.campaignsSize = this.filteredCampaigns.length;
-    this.emptyCampaigns = 'Theres no upcoming campaigns';
+    if (
+      localStorage.getItem('firstname') === 'Jaska' ||
+      localStorage.getItem('firstname') === 'Herrala' ||
+      localStorage.getItem('user_id') === '65818ac7e6c0dc662572fea4'
+    ) {
+      this.filteredCampaigns = this.upcomingCampaigns;
+    } else {
+      // console.log(this.currentCampaigns);
+      this.filteredCampaigns = this.upcomingCampaigns.filter(
+        (campaign) => campaign.owner !== '65818ac7e6c0dc662572fea4'
+      );
+      this.campaignsSize = this.filteredCampaigns.length;
+      this.emptyCampaigns = 'Theres no upcoming campaigns';
+    }
   }
 
   // CHANGE STATUS
