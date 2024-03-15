@@ -94,7 +94,17 @@ export class CampaignsComponent implements OnInit {
     this.currentBtnColor = 'bg-gray-500';
     this.upcomingBtnColor = 'bg-gray-500';
 
-    this.filteredCampaigns = this.campaigns;
+    if (
+      localStorage.getItem('firstname') === 'Jaska' ||
+      localStorage.getItem('firstname') === 'Herrala' ||
+      localStorage.getItem('user_id') === '65818ac7e6c0dc662572fea4'
+    ) {
+      this.filteredCampaigns = this.campaigns;
+    } else {
+      this.filteredCampaigns = this.campaigns.filter(
+        (campaign) => campaign.owner !== '65818ac7e6c0dc662572fea4'
+      );
+    }
     this.campaignsSize = this.filteredCampaigns.length;
 
     this.emptyCampaigns = 'No campaigns';
