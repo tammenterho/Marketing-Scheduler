@@ -4,6 +4,8 @@
 
 [Visit site!](https://www.marketing-scheduler.com/login)
 
+Login with fictional demo account. Username: jaska.herrala@gmail.com, password: jaska
+
 ### Description
 
 The Marketing Scheduler is a versatile tool that enables client companies to submit campaign assignments to the marketing agency responsible for their campaigns. The application boasts excellent tracking, sorting, and filtering features, allowing both the client and marketing agency to seamlessly manage upcoming, ongoing, and past META campaigns. Moreover, marketing agencies also have the capability to create and set up campaigns within the system.
