@@ -86,6 +86,8 @@ export class CampaignsComponent implements OnInit {
     }
   }
 
+  showMoreCampaigns() {}
+
   // ALL CAMPAIGNS BUTTON
 
   getAllButton() {
@@ -105,8 +107,16 @@ export class CampaignsComponent implements OnInit {
         (campaign) => campaign.owner !== '65818ac7e6c0dc662572fea4'
       );
     }
-    this.campaignsSize = this.filteredCampaigns.length;
 
+    this.filteredCampaigns = this.filteredCampaigns.sort((a, b) => {
+      const today = new Date();
+      const aDiff = Math.abs(new Date(a.adend).getTime() - today.getTime());
+      const bDiff = Math.abs(new Date(b.adend).getTime() - today.getTime());
+
+      return aDiff - bDiff; // Ascending order
+    });
+
+    this.campaignsSize = this.filteredCampaigns.length;
     this.emptyCampaigns = 'No campaigns';
   }
 
@@ -136,6 +146,16 @@ export class CampaignsComponent implements OnInit {
       this.filteredCampaigns = this.pastCampaigns.filter(
         (campaign) => campaign.owner !== '65818ac7e6c0dc662572fea4'
       );
+
+      // sorting by date
+      this.filteredCampaigns = this.filteredCampaigns.sort((a, b) => {
+        const today = new Date();
+        const aDiff = Math.abs(new Date(a.adend).getTime() - today.getTime());
+        const bDiff = Math.abs(new Date(b.adend).getTime() - today.getTime());
+
+        return aDiff - bDiff; // Ascending order
+      });
+
       this.campaignsSize = this.filteredCampaigns.length;
       this.emptyCampaigns = 'There have not been any campaigns';
     }
@@ -175,6 +195,16 @@ export class CampaignsComponent implements OnInit {
       this.filteredCampaigns = this.currentCampaigns.filter(
         (campaign) => campaign.owner !== '65818ac7e6c0dc662572fea4'
       );
+
+      // sorting by date
+      this.filteredCampaigns = this.filteredCampaigns.sort((a, b) => {
+        const today = new Date();
+        const aDiff = Math.abs(new Date(a.adstart).getTime() - today.getTime());
+        const bDiff = Math.abs(new Date(b.adstart).getTime() - today.getTime());
+
+        return aDiff - bDiff; // Ascending order
+      });
+
       this.campaignsSize = this.filteredCampaigns.length;
       this.emptyCampaigns = 'Theres no campaigns running at the moment';
     }
@@ -211,6 +241,16 @@ export class CampaignsComponent implements OnInit {
       this.filteredCampaigns = this.upcomingCampaigns.filter(
         (campaign) => campaign.owner !== '65818ac7e6c0dc662572fea4'
       );
+
+      // sorting by date
+      this.filteredCampaigns = this.filteredCampaigns.sort((a, b) => {
+        const today = new Date();
+        const aDiff = Math.abs(new Date(a.adstart).getTime() - today.getTime());
+        const bDiff = Math.abs(new Date(b.adstart).getTime() - today.getTime());
+
+        return aDiff - bDiff; // Ascending order
+      });
+
       this.campaignsSize = this.filteredCampaigns.length;
       this.emptyCampaigns = 'Theres no upcoming campaigns';
     }

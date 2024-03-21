@@ -161,4 +161,9 @@
       {{ emptyCampaigns }}
     </p>
   </div>
+  <div *ngIf="campaignsSize > 7" class="flex justify-center items-center">
+    <button (click)="showMoreCampaigns()" class="border-2 border-black">
+      Load more
+    </button>
+  </div>
 </div>
