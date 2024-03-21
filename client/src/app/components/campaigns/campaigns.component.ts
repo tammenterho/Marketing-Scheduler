@@ -19,6 +19,7 @@ import { Input } from '@angular/core';
 export class CampaignsComponent implements OnInit {
   campaignService = inject(CampaignService); // kun injektoi niin ei tarvitse contstructoria
   campaigns: any[] = [];
+  displayLimit = 7; // Start with 7 items
 
   currentDate = Date.now();
   pastCampaigns: any[] = [];
@@ -82,15 +83,32 @@ export class CampaignsComponent implements OnInit {
       this.filteredCampaigns = this.campaigns.filter(
         (campaign) => campaign.owner !== '65818ac7e6c0dc662572fea4'
       );
+
+      this.filteredCampaigns = this.filteredCampaigns.sort((a, b) => {
+        const today = new Date();
+        const aDiff = Math.abs(new Date(a.adend).getTime() - today.getTime());
+        const bDiff = Math.abs(new Date(b.adend).getTime() - today.getTime());
+
+        return aDiff - bDiff; // Ascending order
+      });
+
       this.campaignsSize = this.filteredCampaigns.length;
     }
   }
 
-  showMoreCampaigns() {}
+  // SHOW MORE AND lESS WHEN OVER 7 CAMPAIGNS
+  showMoreCampaigns() {
+    this.displayLimit += 7;
+    //console.log('Limit' + this.displayLimit);
+  }
+  showLessCampaigns() {
+    this.displayLimit -= 7;
+  }
 
   // ALL CAMPAIGNS BUTTON
 
   getAllButton() {
+    this.displayLimit = 7;
     this.pastBtnColor = 'bg-gray-500';
     this.allBtnColor = 'bg-green-500';
     this.currentBtnColor = 'bg-gray-500';
@@ -123,6 +141,7 @@ export class CampaignsComponent implements OnInit {
   // FILTER PAST
 
   getPastCampaigns() {
+    this.displayLimit = 7;
     // console.log('past clicked');
     this.pastBtnColor = 'bg-green-600';
     this.allBtnColor = 'bg-gray-500';
@@ -164,6 +183,7 @@ export class CampaignsComponent implements OnInit {
   // FILTER CURRENT
 
   getCurrentCampaigns() {
+    this.displayLimit = 7;
     // console.log('current clicked');
 
     this.pastBtnColor = 'bg-gray-500';
@@ -213,6 +233,7 @@ export class CampaignsComponent implements OnInit {
   // FILTER UPCOMING
 
   getUpcomingCampaigns() {
+    this.displayLimit = 7;
     // console.log('upcoming clicked');
 
     this.pastBtnColor = 'bg-gray-500';

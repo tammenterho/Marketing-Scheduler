@@ -6,7 +6,7 @@ export const apiUrls = {
   usersServiceApi: 'http://localhost:5050/api/user/',
 };
 */
-// prod
+// build
 
 export const apiUrls = {
   authServiceApi: 'https://ms-back.onrender.com/api/auth/',

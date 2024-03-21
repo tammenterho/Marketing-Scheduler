@@ -95,7 +95,7 @@
       </thead>
       <tbody>
         <tr
-          *ngFor="let campaign of filteredCampaigns"
+          *ngFor="let campaign of filteredCampaigns | slice : 0 : displayLimit"
           class="even:bg-blue-100 odd:bg-white h-20 align-middle cursor-pointer"
         >
           <td
@@ -161,9 +161,20 @@
       {{ emptyCampaigns }}
     </p>
   </div>
-  <div *ngIf="campaignsSize > 7" class="flex justify-center items-center">
-    <button (click)="showMoreCampaigns()" class="border-2 border-black">
-      Load more
+  <div class="flex justify-center items-center">
+    <button
+      *ngIf="filteredCampaigns.length > displayLimit"
+      (click)="showMoreCampaigns()"
+      class="border-2 border-white bg-gray-500 hover:bg-gray-700 hover:scale-110 duration-150 mb-6 text-white font-bold py-2 px-4 rounded mr-2"
+    >
+      Show more
+    </button>
+    <button
+      *ngIf="displayLimit > 7"
+      (click)="showLessCampaigns()"
+      class="border-2 border-white bg-gray-500 hover:bg-gray-700 hover:scale-110 duration-150 mb-6 text-white font-bold py-2 px-4 rounded"
+    >
+      Show less
     </button>
   </div>
 </div>
