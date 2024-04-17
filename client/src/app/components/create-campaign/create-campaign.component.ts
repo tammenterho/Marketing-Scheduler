@@ -68,6 +68,11 @@ export class CreateCampaignComponent implements OnInit {
     }
   }
 
+  countCharacters(text: string) {
+    // Update the character count
+    this.inputAdText = text;
+  }
+
   // Jos on true niin näyttää other vapaa -inputkentän kohdassa payer
   payerCheck() {
     this.visibleOther = true;
