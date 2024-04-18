@@ -4,7 +4,7 @@
 
 [Visit site!](https://www.marketing-scheduler.com/login)
 
-Login with fictional demo account. Username: jaska.herrala@gmail.com, password: jaska
+
 
 ### Description
 

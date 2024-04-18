@@ -27,6 +27,7 @@ export class CampaignsComponent implements OnInit {
   upcomingCampaigns: any[] = [];
   filteredCampaigns: any[] = [];
   campaignData!: any;
+  unDoneBtnColor: string = 'bg-gray-500';
   allBtnColor: string = 'bg-green-600';
   pastBtnColor: string = 'bg-gray-500';
   currentBtnColor: string = 'bg-gray-500';
@@ -113,6 +114,7 @@ export class CampaignsComponent implements OnInit {
     this.allBtnColor = 'bg-green-500';
     this.currentBtnColor = 'bg-gray-500';
     this.upcomingBtnColor = 'bg-gray-500';
+    this.unDoneBtnColor = 'bg-gray-500';
 
     if (
       localStorage.getItem('firstname') === 'Jaska' ||
@@ -138,6 +140,21 @@ export class CampaignsComponent implements OnInit {
     this.emptyCampaigns = 'No campaigns';
   }
 
+  getUndoneCampaigns() {
+    this.unDoneBtnColor = 'bg-green-600';
+    this.pastBtnColor = 'bg-gray-500';
+    this.allBtnColor = 'bg-gray-500';
+    this.currentBtnColor = 'bg-gray-500';
+    this.upcomingBtnColor = 'bg-gray-500';
+
+    this.filteredCampaigns = this.campaigns.filter(
+      (campaign) => campaign.adstatus === 'N'
+    );
+
+    this.campaignsSize = this.filteredCampaigns.length;
+
+  }
+
   // FILTER PAST
 
   getPastCampaigns() {
@@ -147,6 +164,7 @@ export class CampaignsComponent implements OnInit {
     this.allBtnColor = 'bg-gray-500';
     this.currentBtnColor = 'bg-gray-500';
     this.upcomingBtnColor = 'bg-gray-500';
+    this.unDoneBtnColor = 'bg-gray-500';
 
     this.pastCampaigns = this.campaigns.filter(
       (campaign) =>
@@ -190,6 +208,7 @@ export class CampaignsComponent implements OnInit {
     this.allBtnColor = 'bg-gray-500';
     this.currentBtnColor = 'bg-green-600';
     this.upcomingBtnColor = 'bg-gray-500';
+    this.unDoneBtnColor = 'bg-gray-500';
 
     this.currentCampaigns = this.campaigns.filter((campaign) => {
       const startDate = new Date(campaign.adstart).getTime();
@@ -240,6 +259,7 @@ export class CampaignsComponent implements OnInit {
     this.allBtnColor = 'bg-gray-500';
     this.currentBtnColor = 'bg-gray-500';
     this.upcomingBtnColor = 'bg-green-600';
+    this.unDoneBtnColor = 'bg-gray-500';
 
     this.upcomingCampaigns = this.campaigns.filter((campaign) => {
       const startDate = new Date(campaign.adstart).getTime();

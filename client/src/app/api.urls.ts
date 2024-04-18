@@ -13,3 +13,4 @@ export const apiUrls = {
   campaignServiceApi: 'https://ms-back.onrender.com/api/campaigns/',
   usersServiceApi: 'https://ms-back.onrender.com/api/user/',
 };
+
